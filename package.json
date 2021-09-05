@@ -25,6 +25,8 @@
     "@babel/core": "^7.9.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.25.1",
+    "react-native-debugger-open": "^0.3.25",
+    "redux-devtools-extension": "^2.13.9",
     "redux-logger": "^3.0.6"
   },
   "private": true
