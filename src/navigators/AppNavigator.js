@@ -22,17 +22,15 @@ const AppNavigator = () => {
 
   useEffect(() => {
     (async () => {
+      setIsLoading(true);
+
       const token = await SecureStore.getItemAsync("token");
 
-      setIsLoading(false);
+      token ? dispatch(login()) : dispatch(logout());
 
-      if (!token) {
-        dispatch(logout());
-      } else {
-        dispatch(login());
-      }
+      setIsLoading(false);
     })();
-  }, [dispatch]);
+  }, []);
 
   if (isLoading) {
     return <Loading />;

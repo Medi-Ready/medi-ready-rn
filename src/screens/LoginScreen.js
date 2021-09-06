@@ -33,7 +33,11 @@ const LoginScreen = () => {
           body: JSON.stringify(userData),
         });
 
-        const token = await response.result;
+        if (!response.ok) {
+          //error
+        }
+
+        const { user, token } = await response.result;
 
         dispatch(login());
 

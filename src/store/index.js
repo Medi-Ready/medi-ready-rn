@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import logger from "redux-logger";
 
-import userReducer from "./userSlice";
+import userReducer from "../features/userSlice";
 import prescriptionReducer from "../features/prescriptionSlice";
 
 const store = configureStore({
