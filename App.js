@@ -1,13 +1,15 @@
 import React from "react";
 import { Provider } from "react-redux";
 
-import store from "./src/store/store";
+import store from "./src/store";
 import AppNavigator from "./src/navigators/AppNavigator";
 
-export default function App() {
+const App = () => {
   return (
     <Provider store={store}>
       <AppNavigator></AppNavigator>
     </Provider>
   );
-}
+};
+
+export default App;

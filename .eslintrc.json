@@ -24,6 +24,10 @@
     "no-console": "warn",
     "no-multi-spaces": "warn",
     "no-trailing-spaces": "warn",
+    "comma-dangle": [
+      "warn",
+      "always-multiline"
+    ],
     "quotes": [
       "warn",
       "double"
