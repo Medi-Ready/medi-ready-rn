@@ -1,40 +1,22 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { StatusBar } from "expo-status-bar";
-import * as SecureStore from "expo-secure-store";
 
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Loading from "../screens/Loading";
-import LoginScreen from "../screens/LoginScreen";
 import MainNavigator from "./MainNavigator";
-import { login, logout } from "../features/userSlice";
+import LoginScreen from "../screens/LoginScreen";
+import { checkAuthentication } from "../redux/features/userSlice";
 
 const AppStack = createNativeStackNavigator();
 
 const AppNavigator = () => {
-  const dispatch = useDispatch();
-
-  const [isLoading, setIsLoading] = useState(true);
   const isSignedIn = useSelector((state) => state.user.isSignedIn);
 
-  useEffect(() => {
-    (async () => {
-      setIsLoading(true);
-
-      const token = await SecureStore.getItemAsync("token");
-
-      token ? dispatch(login()) : dispatch(logout());
-
-      setIsLoading(false);
-    })();
-  }, []);
-
-  if (isLoading) {
-    return <Loading />;
-  }
+  const dispatch = useDispatch();
+  dispatch(checkAuthentication());
 
   return (
     <NavigationContainer>
@@ -42,7 +24,7 @@ const AppNavigator = () => {
         {
           isSignedIn
             ? <AppStack.Screen
-              name="Home"
+              name="Main"
               component={MainNavigator}
               options={{ headerShown: false }}
             />
