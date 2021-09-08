@@ -1,12 +1,12 @@
 import React from "react";
 import { View, Text } from "react-native";
 
-const DashboardAllScreen = () => {
+const DetailScreen = () => {
   return (
     <View>
-      <Text>ALL</Text>
+      <Text>detail</Text>
     </View>
   );
 };
 
-export default DashboardAllScreen;
+export default DetailScreen;

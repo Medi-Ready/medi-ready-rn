@@ -1,8 +1,8 @@
 import { createSlice } from "@reduxjs/toolkit";
-import { noop } from "lodash";
 
 const initialState = {
-  isSignedIn: false,
+  error: null,
+  isLoading: false,
   userInfo: {},
 };
 
@@ -11,16 +11,26 @@ export const userSlice = createSlice({
   initialState,
 
   reducers: {
-    login: noop,
-    logout: noop,
-    checkAuthentication: noop,
+    login: (state, action) => {
+      state.isLoading = true;
+    },
+    logout: (state, action) => {
+      state.isLoading = true;
+    },
+    loginFail: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
     setUserInfo: (state, action) => {
-      state.isSignedIn = true;
+      state.isLoading = false;
       state.userInfo = action.payload;
     },
     deleteUserInfo: (state, action) => {
-      state.isSignedIn = false;
       state.userInfo = {};
+      state.isLoading = false;
+    },
+    checkAuthentication: (state, action) => {
+      state.isLoading = true;
     },
   },
 });
@@ -28,6 +38,7 @@ export const userSlice = createSlice({
 export const {
   login,
   logout,
+  loginFail,
   setUserInfo,
   deleteUserInfo,
   checkAuthentication,

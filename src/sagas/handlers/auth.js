@@ -6,10 +6,10 @@ import { setUserInfo, deleteUserInfo, logout } from "../../redux/features/userSl
 
 export function* handleLogin() {
   const userData = yield call(signInWithGoogle);
-  const response = yield call(loginRequest, userData);
+  const { result, data } = yield call(loginRequest, userData);
 
-  if (response.result === "login success") {
-    yield put(setUserInfo(response.user));
+  if (result === "success") {
+    yield put(setUserInfo(data.user));
   }
 }
 
@@ -22,11 +22,9 @@ export function* handleLogout() {
 }
 
 export function* handleAuthCheck() {
-  const response = yield call(authCheck);
+  const { result, data } = yield call(authCheck);
 
-  if (response.result === "success") {
-    yield put(setUserInfo(response.userInfo));
-  } else {
-    yield put(logout());
-  }
+  result === "success"
+    ? yield put(setUserInfo(data.user))
+    : yield put(logout());
 }
