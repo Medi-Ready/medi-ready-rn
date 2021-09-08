@@ -7,7 +7,6 @@ const signInWithGoogle = async () => {
     const result = await Google.logInAsync(CLIENT_ID);
 
     if (result.type === "success") {
-
       const { name, email, photoUrl } = result.user;
 
       const userData = {

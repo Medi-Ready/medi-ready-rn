@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
+
 import { SafeAreaView } from "react-native-safe-area-context";
 import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 

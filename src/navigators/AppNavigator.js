@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { StatusBar } from "expo-status-bar";
@@ -16,7 +16,10 @@ const AppNavigator = () => {
   const isSignedIn = useSelector((state) => state.user.isSignedIn);
 
   const dispatch = useDispatch();
-  dispatch(checkAuthentication());
+
+  useEffect(() => {
+    dispatch(checkAuthentication());
+  }, []);
 
   return (
     <NavigationContainer>
@@ -24,7 +27,7 @@ const AppNavigator = () => {
         {
           isSignedIn
             ? <AppStack.Screen
-              name="Main"
+              name="MainNavigator"
               component={MainNavigator}
               options={{ headerShown: false }}
             />

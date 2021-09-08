@@ -12,11 +12,8 @@ export const userSlice = createSlice({
 
   reducers: {
     login: noop,
+    logout: noop,
     checkAuthentication: noop,
-    logout: (state, action) => {
-      state.isSignedIn = false;
-      state.userInfo = {};
-    },
     setUserInfo: (state, action) => {
       state.isSignedIn = true;
       state.userInfo = action.payload;

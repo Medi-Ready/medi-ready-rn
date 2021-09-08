@@ -1,16 +1,13 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import { View, Text, Button } from "react-native";
-import * as SecureStore from "expo-secure-store";
 
-import { logout } from "../features/userSlice";
+import { logout } from "../redux/features/userSlice";
 
 const SettingsScreen = () => {
   const dispatch = useDispatch();
 
-  const googleLogout = async () => {
-    await SecureStore.deleteItemAsync("token");
-
+  const googleLogout = () => {
     dispatch(logout());
   };
 
