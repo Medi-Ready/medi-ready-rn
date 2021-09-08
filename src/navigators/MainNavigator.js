@@ -1,45 +1,23 @@
 import React from "react";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import Ionicons from "react-native-vector-icons/Ionicons";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import DashboardTopTabNavigator from "./DashboardTopTabNavigator";
-import PrescriptionHistory from "../screens/PrescriptionHistoryScreen";
-import SettingsScreen from "../screens/SettingsScreen";
-import PushAlarmListScreen from "../screens/PushAlarmListScreen";
+import DetailScreen from "../screens/DetailScreen";
+import BottomTabNavigator from "./BottomTabNavigator";
+import AlarmSettingScreen from "../screens/AlarmSettingScreen";
+import HistoryDetailScreen from "../screens/HistoryDetailScreen";
+import PrescriptionCreateScreen from "../screens/CreatePrescriptionScreen";
 
-const MainTab = createBottomTabNavigator();
+const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
   return (
-    <MainTab.Navigator
-      screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
-
-          switch (route.name) {
-            case "Dashboard":
-              iconName = "md-home";
-              break;
-            case "History":
-              iconName = "list-outline";
-              break;
-            case "Settings":
-              iconName = "md-settings";
-              break;
-            case "Alarm":
-              iconName = "notifications";
-              break;
-          }
-
-          return <Ionicons name={iconName} size={size} color={color} />;
-        }
-      })}
-    >
-      <MainTab.Screen name="Dashboard" component={DashboardTopTabNavigator} />
-      <MainTab.Screen name="History" component={PrescriptionHistory} />
-      <MainTab.Screen name="Settings" component={SettingsScreen} />
-      <MainTab.Screen name="Alarm" component={PushAlarmListScreen} options={{ tabBarBadge: 3 }} />
-    </MainTab.Navigator >
+    <Stack.Navigator initialRouteName="BottomTabNavigator">
+      <Stack.Screen name="BottomTabNavigator" component={BottomTabNavigator} options={{ headerShown: false }} />
+      <Stack.Screen name="Detail" component={DetailScreen} />
+      <Stack.Screen name="Alarm Setting" component={AlarmSettingScreen} />
+      <Stack.Screen name="History Detail" component={HistoryDetailScreen} />
+      <Stack.Screen name="Create" component={PrescriptionCreateScreen} />
+    </Stack.Navigator>
   );
 };
 

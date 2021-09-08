@@ -61,7 +61,7 @@ export const authCheck = async (token) => {
   }
 };
 
-export const getPrescriptionList = async (token) => {
+export const requestPrescriptionList = async () => {
   try {
     const response = await fetch(`${DOMAIN}/prescriptions`, {
       method: "GET",
@@ -81,7 +81,7 @@ export const getPrescriptionList = async (token) => {
   }
 };
 
-export const createPrescriptionList = async (token, prescriptionData) => {
+export const createPrescriptionList = async (prescriptionData) => {
   try {
     const response = await fetch(`${DOMAIN}/prescriptions/create`, {
       method: "POST",
@@ -102,7 +102,7 @@ export const createPrescriptionList = async (token, prescriptionData) => {
   }
 };
 
-export const updatePrescription = async (token, prescriptionId, prescriptionData) => {
+export const updatePrescription = async (prescriptionId, prescriptionData) => {
   try {
     const response = await fetch(`${DOMAIN}/prescriptions/${prescriptionId}`, {
       method: "PUT",
@@ -123,7 +123,7 @@ export const updatePrescription = async (token, prescriptionId, prescriptionData
   }
 };
 
-export const deletePrescription = async (token, prescriptionId) => {
+export const deletePrescription = async (prescriptionId) => {
   try {
     const response = await fetch(`${DOMAIN}/prescriptions/${prescriptionId}`, {
       method: "DELETE",
