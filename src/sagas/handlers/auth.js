@@ -4,8 +4,8 @@ import signInWithGoogle from "../../utils/signInWithGoogle";
 import { loginRequest, logoutRequest, authCheck } from "../../api/index";
 import {
   logout,
-  loginFail,
-  loginCancel,
+  failLogin,
+  cancelLogin,
   setUserInfo,
   deleteUserInfo,
 } from "../../redux/features/userSlice";
@@ -15,7 +15,7 @@ export function* handleLogin() {
     const userData = yield call(signInWithGoogle);
 
     if (!userData) {
-      yield put(loginCancel());
+      yield put(cancelLogin());
       return;
     }
 
@@ -25,7 +25,7 @@ export function* handleLogin() {
       yield put(setUserInfo(data.user));
     }
   } catch (error) {
-    yield put(loginFail({ message: error.message }));
+    yield put(failLogin({ message: error.message }));
   }
 }
 
@@ -37,7 +37,7 @@ export function* handleLogout() {
       yield put(deleteUserInfo());
     }
   } catch (error) {
-    yield put(loginFail({ message: error.message }));
+    yield put(failLogin({ message: error.message }));
   }
 }
 
@@ -49,6 +49,6 @@ export function* handleAuthCheck() {
       ? yield put(setUserInfo(data.user))
       : yield put(logout());
   } catch (error) {
-    yield put(loginFail({ message: error.message }));
+    yield put(failLogin({ message: error.message }));
   }
 }

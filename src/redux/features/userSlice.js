@@ -17,11 +17,11 @@ export const userSlice = createSlice({
     logout: (state, action) => {
       state.isLoading = true;
     },
-    loginFail: (state, action) => {
+    failLogin: (state, action) => {
       state.isLoading = false;
       state.error = action.payload;
     },
-    loginCancel: (state, action) => {
+    cancelLogin: (state, action) => {
       state.isLoading = false;
     },
     setUserInfo: (state, action) => {
@@ -41,8 +41,8 @@ export const userSlice = createSlice({
 export const {
   login,
   logout,
-  loginFail,
-  loginCancel,
+  failLogin,
+  cancelLogin,
   setUserInfo,
   deleteUserInfo,
   checkAuthentication,
