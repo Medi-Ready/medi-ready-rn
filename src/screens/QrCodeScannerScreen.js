@@ -2,7 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { StyleSheet, Text, View, Button } from "react-native";
-import { openScanner, checkIn, setScanned } from "../redux/features/pharmacyCheckInSlice";
+import { openScanner, checkIn } from "../redux/features/pharmacyCheckInSlice";
+
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const QrCodeScannerScreen = ({ navigation }) => {
@@ -19,11 +20,6 @@ const QrCodeScannerScreen = ({ navigation }) => {
     dispatch(checkIn(data));
   };
 
-  const closeScanner = () => {
-    dispatch(setScanned(false));
-    navigation.goBack();
-  };
-
   if (hasPermission === null) {
     return <Text>Requesting for camera permission</Text>;
   }
@@ -37,7 +33,7 @@ const QrCodeScannerScreen = ({ navigation }) => {
         onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
-      {scanned && <Button title={"CHECKED IN!"} onPress={closeScanner} />}
+      {scanned && <Button title={"CHECKED IN!"} onPress={() => navigation.goBack()} />}
       <MaterialCommunityIcons name="scan-helper" size={200} color="black" />
     </View>
   );
