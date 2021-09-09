@@ -2,21 +2,25 @@ import React, { useState } from "react";
 import { useNavigation } from "@react-navigation/core";
 import { StyleSheet, Text, View, Switch, TouchableOpacity } from "react-native";
 
-const PrescriptionCard = ({prescription}) => {
+const PrescriptionCard = ({ prescriptionInfo }) => {
+  const { is_custom, created_at, pharmacist } = prescriptionInfo;
+  const [prescriptionName, setPrescriptionName] = useState(pharmacist.pharmacy_name);
   const [alarmEnabled, setAlarmEnabled] = useState(false);
 
   const navigation = useNavigation();
 
   const toggleSwitch = () => {
-    // toggle alarm
     setAlarmEnabled(previousState => !previousState);
   };
 
   return (
-    <TouchableOpacity style={styles.container} onPress={() => navigation.navigate("Detail")}>
+    <TouchableOpacity
+      style={styles.container}
+      onPress={() => navigation.navigate("Detail", { prescriptionInfo, prescriptionName })}
+    >
       <View>
-        <Text style={styles.title}>허지웅 약국</Text>
-        <Text style={styles.date}>2021.09.02</Text>
+        <Text style={styles.title}>{prescriptionName}</Text>
+        <Text style={styles.date}>{created_at}</Text>
       </View>
 
       <Switch
