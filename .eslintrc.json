@@ -18,6 +18,15 @@
     "react"
   ],
   "rules": {
+    "react/prop-types": [
+      "error",
+      {
+        "ignore": [
+          "navigation",
+          "route"
+        ]
+      }
+    ],
     "semi": "warn",
     "eol-last": "warn",
     "no-undef": "warn",

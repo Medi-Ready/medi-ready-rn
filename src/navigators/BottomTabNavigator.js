@@ -2,6 +2,7 @@ import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import QrCodeIcon from "../components/QrCodeIcon";
 import SettingsScreen from "../screens/SettingsScreen";
 import PrescriptionHistory from "../screens/HistoryListScreen";
 import PushAlarmListScreen from "../screens/PushAlarmListScreen";
@@ -33,6 +34,7 @@ const BottomTabNavigator = () => {
 
           return <Ionicons name={iconName} size={size} color={color} />;
         },
+        headerRight: () => <QrCodeIcon />,
       })}
       initialRouteName="Dashboard"
     >
