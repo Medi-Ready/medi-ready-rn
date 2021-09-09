@@ -81,6 +81,27 @@ export const requestPrescriptionList = async () => {
   }
 };
 
+export const queuePharmacy = async (userId) => {
+  try {
+    const response = await fetch(`${DOMAIN}/api/queue`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ userId }),
+    });
+
+    if (!response.ok) {
+      return;
+    }
+
+    return await response.json();
+  } catch (error) {
+    return { result: "error" };
+  }
+};
+
 export const createPrescriptionList = async (prescriptionData) => {
   try {
     const response = await fetch(`${DOMAIN}/api/prescriptions/create`, {
