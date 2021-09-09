@@ -63,7 +63,7 @@ export const authCheck = async (token) => {
 
 export const requestPrescriptionList = async () => {
   try {
-    const response = await fetch(`${DOMAIN}/prescriptions`, {
+    const response = await fetch(`${DOMAIN}/api/prescriptions`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -83,7 +83,7 @@ export const requestPrescriptionList = async () => {
 
 export const createPrescriptionList = async (prescriptionData) => {
   try {
-    const response = await fetch(`${DOMAIN}/prescriptions/create`, {
+    const response = await fetch(`${DOMAIN}/api/prescriptions/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -104,7 +104,7 @@ export const createPrescriptionList = async (prescriptionData) => {
 
 export const updatePrescription = async (prescriptionId, prescriptionData) => {
   try {
-    const response = await fetch(`${DOMAIN}/prescriptions/${prescriptionId}`, {
+    const response = await fetch(`${DOMAIN}/api/prescriptions/${prescriptionId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -125,7 +125,7 @@ export const updatePrescription = async (prescriptionId, prescriptionData) => {
 
 export const deletePrescription = async (prescriptionId) => {
   try {
-    const response = await fetch(`${DOMAIN}/prescriptions/${prescriptionId}`, {
+    const response = await fetch(`${DOMAIN}/api/prescriptions/${prescriptionId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

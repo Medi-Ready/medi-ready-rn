@@ -4,9 +4,13 @@ import { requestPrescriptionList } from "../../api/index";
 import { failGettingPrescriptionList, savePrescriptionList } from "../../redux/features/prescriptionSlice";
 
 export function* handlePrescriptionList() {
-  const { result, data } = yield call(requestPrescriptionList);
+  try {
+    const { result, data } = yield call(requestPrescriptionList);
 
-  result === "success"
-    ? yield put(savePrescriptionList(data))
-    : yield put(failGettingPrescriptionList());
+    if (result === "success") {
+      yield put(savePrescriptionList(data));
+    }
+  } catch(error) {
+    yield put(failGettingPrescriptionList({ message: error.message }));
+  }
 }

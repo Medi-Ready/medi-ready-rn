@@ -1,4 +1,5 @@
 import React from "react";
+import { Text } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import { ScrollView, RefreshControl, StyleSheet } from "react-native";
 
@@ -20,9 +21,13 @@ const DashboardScreen = ({ prescriptions }) => {
       style={styles.container}
       refreshControl={<RefreshControl refreshing={isLoading} onRefresh={handleRefresh} />}
     >
-      {prescriptions.map(prescription => {
-        return <PrescriptionCard key={prescription.prescription_id} prescriptionInfo={prescription} />;
-      })}
+      {
+        prescriptions.length
+          ? prescriptions.map(prescription => {
+            return <PrescriptionCard key={prescription.prescription_id} prescriptionInfo={prescription} />;
+          })
+          : <Text>No List yet...</Text>
+      }
     </ScrollView>
   );
 };
