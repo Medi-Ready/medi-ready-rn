@@ -2,29 +2,53 @@ import { call, put } from "redux-saga/effects";
 
 import signInWithGoogle from "../../utils/signInWithGoogle";
 import { loginRequest, logoutRequest, authCheck } from "../../api/index";
-import { setUserInfo, deleteUserInfo, logout } from "../../redux/features/userSlice";
+import {
+  logout,
+  loginFail,
+  loginCancel,
+  setUserInfo,
+  deleteUserInfo,
+} from "../../redux/features/userSlice";
 
 export function* handleLogin() {
-  const userData = yield call(signInWithGoogle);
-  const { result, data } = yield call(loginRequest, userData);
+  try {
+    const userData = yield call(signInWithGoogle);
 
-  if (result === "success") {
-    yield put(setUserInfo(data.user));
+    if (!userData) {
+      yield put(loginCancel());
+      return;
+    }
+
+    const { result, data } = yield call(loginRequest, userData);
+
+    if (result === "success") {
+      yield put(setUserInfo(data.user));
+    }
+  } catch (error) {
+    yield put(loginFail({ message: error.message }));
   }
 }
 
 export function* handleLogout() {
-  const response = yield call(logoutRequest);
+  try {
+    const response = yield call(logoutRequest);
 
-  if (response.result === "success") {
-    yield put(deleteUserInfo());
+    if (response.result === "success") {
+      yield put(deleteUserInfo());
+    }
+  } catch (error) {
+    yield put(loginFail({ message: error.message }));
   }
 }
 
 export function* handleAuthCheck() {
-  const { result, data } = yield call(authCheck);
+  try {
+    const { result, data } = yield call(authCheck);
 
-  result === "success"
-    ? yield put(setUserInfo(data.user))
-    : yield put(logout());
+    result === "success"
+      ? yield put(setUserInfo(data.user))
+      : yield put(logout());
+  } catch (error) {
+    yield put(loginFail({ message: error.message }));
+  }
 }

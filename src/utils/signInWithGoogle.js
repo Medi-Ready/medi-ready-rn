@@ -18,7 +18,7 @@ const signInWithGoogle = async () => {
 
       return userData;
     } else {
-      return { result: "cancelled" };
+      return;
     }
   } catch (error) {
     return { result: "error" };

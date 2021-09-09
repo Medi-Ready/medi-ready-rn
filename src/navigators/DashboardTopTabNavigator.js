@@ -5,11 +5,13 @@ import { createMaterialTopTabNavigator } from "@react-navigation/material-top-ta
 import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 
 import DashboardScreen from "../screens/DashboardScreen";
+import ErrorScreen from "../screens/ErrorScreen";
 import LoadingScreen from "../screens/LoadingScreen";
 
 const TopTab = createMaterialTopTabNavigator();
 
 const DashboardTopTabNavigator = () => {
+  const error = useSelector((state) => state.prescription.isLoading);
   const isLoading = useSelector((state) => state.prescription.isLoading);
   const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
 
@@ -25,6 +27,10 @@ const DashboardTopTabNavigator = () => {
   useEffect(() => {
     dispatch(getPrescriptionList());
   }, []);
+
+  if (error) {
+    return <ErrorScreen error={error}/>;
+  }
 
   if (isLoading) {
     return <LoadingScreen />;
