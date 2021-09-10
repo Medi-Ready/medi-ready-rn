@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { View, ScrollView, StyleSheet, RefreshControl } from "react-native";
+import { SafeAreaView, FlatList, StyleSheet } from "react-native";
 
 import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 import PrescriptionHistoryCard from "../components/PrescriptionHistoryCard";
@@ -19,31 +19,25 @@ const PrescriptionHistoryScreen = () => {
     dispatch(getPrescriptionList());
   };
 
+  const renderItem = ({ item }) => <PrescriptionHistoryCard prescriptionInfo={item} />;
+
   return (
-    <View style={styles.container}>
-      <ScrollView
-        refreshControl={
-          <RefreshControl
-            refreshing={isLoading}
-            onRefresh={handleRefresh}
-          />}
-      >
-        {prescriptionHistory.map((prescription) => {
-          return <PrescriptionHistoryCard
-            key={prescription.prescription_id}
-            prescriptionInfo={prescription}
-          />;
-        })}
-      </ScrollView>
-    </View>
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        data={prescriptionHistory}
+        renderItem={renderItem}
+        keyExtractor={prescription => prescription.prescription_id}
+        refreshing={isLoading}
+        onRefresh={handleRefresh}
+      />
+    </SafeAreaView>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    marginTop: 20,
-    marginHorizontal: 20,
+    alignItems: "center",
   },
 });
 

@@ -20,7 +20,7 @@ const QrCodeIcon = () => {
       style={styles.container}
       onPress={handleQrScannerOpen}
     >
-      <MaterialCommunityIcons name="qrcode-scan" size={24} color="blue" />
+      <MaterialCommunityIcons name="qrcode-scan" size={24} color="#006FF3" />
     </TouchableOpacity>
   );
 };

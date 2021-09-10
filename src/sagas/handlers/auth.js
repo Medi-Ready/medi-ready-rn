@@ -3,7 +3,6 @@ import { call, put } from "redux-saga/effects";
 import signInWithGoogle from "../../utils/signInWithGoogle";
 import { loginRequest, logoutRequest, authCheck } from "../../api/index";
 import {
-  logout,
   failLogin,
   cancelLogin,
   setUserInfo,
@@ -21,9 +20,9 @@ export function* handleLogin() {
 
     const { result, data } = yield call(loginRequest, userData);
 
-    if (result === "success") {
-      yield put(setUserInfo(data.user));
-    }
+    result === "success"
+      ? yield put(setUserInfo(data))
+      : yield put(cancelLogin());
   } catch (error) {
     yield put(failLogin({ message: error.message }));
   }
@@ -33,9 +32,9 @@ export function* handleLogout() {
   try {
     const response = yield call(logoutRequest);
 
-    if (response.result === "success") {
-      yield put(deleteUserInfo());
-    }
+    response.result === "success"
+      ? yield put(deleteUserInfo())
+      : yield put(cancelLogin());
   } catch (error) {
     yield put(failLogin({ message: error.message }));
   }
@@ -47,7 +46,7 @@ export function* handleAuthCheck() {
 
     result === "success"
       ? yield put(setUserInfo(data))
-      : yield put(logout());
+      : yield put(deleteUserInfo());
   } catch (error) {
     yield put(failLogin({ message: error.message }));
   }

@@ -8,18 +8,24 @@ import HistoryStatus from "./HistoryStatus";
 const PrescriptionHistoryCard = ({ prescriptionInfo }) => {
   const navigation = useNavigation();
 
-  const { created_at: createdAt, medicines } = prescriptionInfo;
   const {
-    pharmacy_name: pharmacyName,
-    pharmacy_address: pharmacyAddress,
-  } = prescriptionInfo.pharmacist;
+    medicines,
+    created_at: createdAt,
+    pharmacist: {
+      pharmacy_name: pharmacyName,
+      pharmacy_address: pharmacyAddress,
+    },
+  } = prescriptionInfo;
 
-  const prescriptionDate = dayjs(createdAt).format("YYYY.MM.DD");
+  const prescriptionDate = dayjs(createdAt).add(7, "hour").format("YYYY.MM.DD");
+
+  const { name: firstDisplayMedicine } = medicines[0].medicine_detail;
+  const { name: secondDisplayMedicine } = medicines[1].medicine_detail;
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate("History Detail", { prescriptionInfo })}
+      onPress={() => navigation.navigate("History Detail", { prescriptionInfo, prescriptionDate })}
     >
       <View>
         <Text style={styles.title}>{pharmacyName}</Text>
@@ -28,18 +34,22 @@ const PrescriptionHistoryCard = ({ prescriptionInfo }) => {
 
         <View style={styles.medicineList}>
           <View style={styles.medicine}>
-            <Text>타이레놀</Text>
+            <Text style={styles.medicineName} numberOfLines={1}>
+              {firstDisplayMedicine}
+            </Text>
           </View>
 
           <View style={styles.medicine}>
-            <Text>졸피뎀</Text>
+            <Text style={styles.medicineName} numberOfLines={1}>
+              {secondDisplayMedicine}
+            </Text>
           </View>
 
           <Text>...</Text>
         </View>
       </View>
 
-      <HistoryStatus style={styles.status} createdAt={createdAt} />
+      <HistoryStatus createdAt={createdAt} />
     </TouchableOpacity>
   );
 };
@@ -47,29 +57,27 @@ const PrescriptionHistoryCard = ({ prescriptionInfo }) => {
 const styles = StyleSheet.create({
   container: {
     position: "relative",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    height: 150,
-    marginBottom: 15,
-    padding: 30,
+    justifyContent: "center",
+    height: 200,
+    width: 350,
+    marginTop: 20,
+    paddingLeft: 30,
     borderRadius: 12,
     backgroundColor: "#D6D6D6",
-    shadowColor: "black",
   },
   title: {
     fontSize: 30,
   },
   address: {
-    fontSize: 18,
     marginTop: 5,
+    fontSize: 18,
   },
   date: {
     marginTop: 10,
   },
   medicineList: {
     flexDirection: "row",
-    marginTop: 10,
+    marginTop: 20,
   },
   medicine: {
     justifyContent: "center",
@@ -80,10 +88,8 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     backgroundColor: "#FFF",
   },
-  status: {
-    position: "absolute",
-    right: 0,
-    top: 0,
+  medicineName: {
+    maxWidth: 80,
   },
 });
 
