@@ -11,8 +11,6 @@ import LoadingScreen from "../screens/LoadingScreen";
 const TopTab = createMaterialTopTabNavigator();
 
 const DashboardTopTabNavigator = () => {
-  const error = useSelector((state) => state.prescription.isLoading);
-  const isLoading = useSelector((state) => state.prescription.isLoading);
   const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
 
   const customPrescriptionList = prescriptionList.filter((prescription) => {
@@ -28,22 +26,16 @@ const DashboardTopTabNavigator = () => {
     dispatch(getPrescriptionList());
   }, []);
 
-  if (error) {
-    return <ErrorScreen error={error}/>;
-  }
-
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   return (
     <TopTab.Navigator initialRouteName="All">
       <TopTab.Screen name="All">
         {props => <DashboardScreen {...props} prescriptions={prescriptionList} />}
       </TopTab.Screen>
+
       <TopTab.Screen name="CUSTOM">
         {props => <DashboardScreen {...props} prescriptions={customPrescriptionList} />}
       </TopTab.Screen>
+
       <TopTab.Screen name="PRESCRIPTION">
         {props => <DashboardScreen {...props} prescriptions={pharmacyPrescriptionList} />}
       </TopTab.Screen>

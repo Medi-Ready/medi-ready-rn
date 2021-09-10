@@ -30,7 +30,7 @@ const QrCodeScannerScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <BarCodeScanner
-        onBarCodeScanned={scanned ? undefined : handleBarCodeScanned}
+        onBarCodeScanned={!scanned && handleBarCodeScanned}
         style={StyleSheet.absoluteFillObject}
       />
       {scanned && <Button title={"CHECKED IN!"} onPress={() => navigation.goBack()} />}

@@ -46,7 +46,7 @@ export function* handleAuthCheck() {
     const { result, data } = yield call(authCheck);
 
     result === "success"
-      ? yield put(setUserInfo(data.user))
+      ? yield put(setUserInfo(data))
       : yield put(logout());
   } catch (error) {
     yield put(failLogin({ message: error.message }));
