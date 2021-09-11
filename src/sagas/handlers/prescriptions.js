@@ -5,12 +5,16 @@ import { failGettingPrescriptionList, savePrescriptionList } from "../../redux/f
 
 export function* handlePrescriptionList() {
   try {
+    let prescriptionList = [];
+
     const { result, data } = yield call(requestPrescriptionList);
 
     if (result === "success") {
-      yield put(savePrescriptionList(data));
+      prescriptionList = data;
     }
-  } catch(error) {
+
+    yield put(savePrescriptionList(prescriptionList));
+  } catch (error) {
     yield put(failGettingPrescriptionList({ message: error.message }));
   }
 }

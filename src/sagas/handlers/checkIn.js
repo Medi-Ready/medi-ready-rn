@@ -17,6 +17,10 @@ export function* handlePharmacyCheckIn(action) {
   try {
     const pharmacyId = action.payload;
 
+    if (!pharmacyId) {
+      yield put(setScanned(false));
+    }
+
     yield put(setScanned(true));
 
     const { result } = yield call(queuePharmacy, pharmacyId);
