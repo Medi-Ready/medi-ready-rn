@@ -11,7 +11,7 @@ import prescriptionReducer from "../features/prescriptionSlice";
 const sagaMiddleware = createSagaMiddleware();
 const middleware = process.env.NODE_ENV === "development"
   ? [logger, sagaMiddleware]
-  : [sagaMiddleware];
+  : (getDefaultMiddleware) => getDefaultMiddleware().concat(sagaMiddleware);
 
 const store = configureStore({
   reducer: {
@@ -19,7 +19,7 @@ const store = configureStore({
     prescription: prescriptionReducer,
     pharmacyCheckIn: pharmacyCheckInSlice,
   },
-  middleware: (getDefaultMiddleware) => getDefaultMiddleware().concat(middleware),
+  middleware,
 });
 
 sagaMiddleware.run(watcherSaga);

@@ -1,7 +1,7 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const ErrorScreen = ({ error }) => {
+const ErrorScreen = ({ navigation }) => {
   return (
     <View style={styles.container}>
       <Text>ERROR</Text>

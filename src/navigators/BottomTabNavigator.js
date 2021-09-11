@@ -1,16 +1,25 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch } from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
+import { getPrescriptionList } from "../redux/features/prescriptionSlice";
+
 import QrCodeIcon from "../components/QrCodeIcon";
 import SettingsScreen from "../screens/SettingsScreen";
+import DashboardScreen from "../screens/DashboardScreen";
 import PrescriptionHistory from "../screens/HistoryListScreen";
 import PushAlarmListScreen from "../screens/PushAlarmListScreen";
-import DashboardTopTabNavigator from "./DashboardTopTabNavigator";
 
 const BottomTab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPrescriptionList());
+  }, []);
+
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
@@ -38,10 +47,10 @@ const BottomTabNavigator = () => {
       })}
       initialRouteName="Dashboard"
     >
-      <BottomTab.Screen name="Dashboard" component={DashboardTopTabNavigator} />
+      <BottomTab.Screen name="Dashboard" component={DashboardScreen} />
       <BottomTab.Screen name="History" component={PrescriptionHistory} />
-      <BottomTab.Screen name="Settings" component={SettingsScreen} />
       <BottomTab.Screen name="Alarm" component={PushAlarmListScreen} options={{ tabBarBadge: 3 }} />
+      <BottomTab.Screen name="Settings" component={SettingsScreen} />
     </BottomTab.Navigator >
   );
 };

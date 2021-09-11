@@ -1,19 +1,14 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import {
-  Text,
-  View,
-  ScrollView,
-  RefreshControl,
-  StyleSheet,
-  TouchableOpacity,
-} from "react-native";
+import { SafeAreaView, FlatList, StyleSheet } from "react-native";
 
 import { getPrescriptionList } from "../redux/features/prescriptionSlice";
+
+import CreateIcon from "../components/CreateIcon";
 import PrescriptionCard from "../components/PrescriptionCard";
 
-const DashboardScreen = ({ navigation, prescriptions }) => {
+const DashboardScreen = ({ navigation }) => {
+  const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
   const isLoading = useSelector(state => state.prescription.isLoading);
 
   const dispatch = useDispatch();
@@ -22,27 +17,21 @@ const DashboardScreen = ({ navigation, prescriptions }) => {
     dispatch(getPrescriptionList());
   };
 
-  return (
-    <View style={styles.container}>
-      <ScrollView
-        refreshControl={<RefreshControl refreshing={isLoading} onRefresh={handleRefresh} />}
-      >
-        {
-          prescriptions.length
-            ? prescriptions.map(prescription => {
-              return <PrescriptionCard key={prescription.prescription_id} prescriptionInfo={prescription} />;
-            })
-            : <Text>No List yet...</Text>
-        }
-      </ScrollView>
+  const renderItem = ({ item }) => <PrescriptionCard prescriptionInfo={item} />;
 
-      <TouchableOpacity
-        style={styles.createIcon}
-        onPress={() => navigation.navigate("Create")}
-      >
-        <MaterialCommunityIcons name="alarm-plus" size={50} color="blue" />
-      </TouchableOpacity>
-    </View>
+  return (
+    <SafeAreaView style={styles.container}>
+      <FlatList
+        style={styles.prescriptionList}
+        data={prescriptionList}
+        renderItem={renderItem}
+        keyExtractor={prescription => `${prescription.prescription_id}dashboard`}
+        refreshing={isLoading}
+        onRefresh={handleRefresh}
+      />
+
+      <CreateIcon navigation={navigation} />
+    </SafeAreaView>
   );
 };
 
@@ -50,15 +39,10 @@ const styles = StyleSheet.create({
   container: {
     position: "relative",
     flex: 1,
-    marginTop: 20,
-    marginHorizontal: 20,
+    alignItems: "center",
   },
-  createIcon: {
-    zIndex: 100,
-    position: "absolute",
-    bottom: 20,
-    right: 5,
-    alignSelf: "flex-end",
+  prescriptionList: {
+    flex: 1,
   },
 });
 

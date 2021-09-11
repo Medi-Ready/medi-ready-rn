@@ -2,6 +2,7 @@ import React from "react";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import DetailScreen from "../screens/DetailScreen";
+import ErrorScreen from "../screens/ErrorScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
 import QrCodeScannerScreen from "../screens/QrCodeScannerScreen";
 import AlarmSettingScreen from "../screens/AlarmSettingScreen";
@@ -22,6 +23,7 @@ const MainNavigator = () => {
       <Stack.Screen name="Create" component={CreatePrescriptionScreen} />
       <Stack.Screen name="Alarm Setting" component={AlarmSettingScreen} />
       <Stack.Screen name="History Detail" component={HistoryDetailScreen} />
+      <Stack.Screen name="Error" component={ErrorScreen} />
     </Stack.Navigator>
   );
 };
