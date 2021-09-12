@@ -11,7 +11,9 @@ const HistoryStatus = ({ createdAt }) => {
 
   return (
     <View style={dateDifference ? styles.expired : styles.progress}>
-      <Text style={{ color: fontColor }}>{dateDifference ? "Expired" : "Progress"}</Text>
+      <Text style={{ color: fontColor }}>
+        {dateDifference ? "Expired" : "Progress"}
+      </Text>
     </View>
   );
 };

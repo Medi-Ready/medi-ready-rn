@@ -11,13 +11,13 @@ export const loginRequest = async (userData) => {
       body: JSON.stringify(userData),
     });
 
-    if (!response.ok) {
-      return;
+    if (response.ok) {
+      return await response.json();
     }
 
-    return await response.json();
+    throw new Error(response.error.message);
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };
 
@@ -31,13 +31,13 @@ export const logoutRequest = async () => {
       },
     });
 
-    if (!response.ok) {
-      return;
+    if (response.ok) {
+      return await response.json();
     }
 
-    return await response.json();
+    throw new Error(response.error.message);
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };
 
@@ -51,13 +51,13 @@ export const authCheck = async (token) => {
       },
     });
 
-    if (!response.ok) {
-      return;
+    if (response.ok) {
+      return await response.json();
     }
 
-    return await response.json();
+    throw new Error(response.error.message);
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };
 
@@ -71,13 +71,13 @@ export const requestPrescriptionList = async () => {
       },
     });
 
-    if (!response.ok) {
-      return;
+    if (response.ok) {
+      return await response.json();
     }
 
-    return await response.json();
+    throw new Error(response.error.message);
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };
 
@@ -92,13 +92,13 @@ export const queuePharmacy = async (userId) => {
       body: JSON.stringify({ userId }),
     });
 
-    if (!response.ok) {
-      return;
+    if (response.ok) {
+      return await response.json();
     }
 
-    return await response.json();
+    throw new Error(response.error.message);
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };
 
@@ -113,13 +113,13 @@ export const createPrescriptionList = async (prescriptionData) => {
       body: JSON.stringify(prescriptionData),
     });
 
-    if (!response.ok) {
-      return;
+    if (response.ok) {
+      return await response.json();
     }
 
-    return await response.json();
+    throw new Error(response.error.message);
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };
 
@@ -134,13 +134,13 @@ export const updatePrescription = async (prescriptionId, prescriptionData) => {
       body: JSON.stringify(prescriptionData),
     });
 
-    if (!response.ok) {
-      return;
+    if (response.ok) {
+      return await response.json();
     }
 
-    return await response.json();
+    throw new Error(response.error.message);
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };
 
@@ -154,12 +154,12 @@ export const deletePrescription = async (prescriptionId) => {
       },
     });
 
-    if (!response.ok) {
-      return;
+    if (response.ok) {
+      return await response.json();
     }
 
-    return await response.result;
+    throw new Error(response.error.message);
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };

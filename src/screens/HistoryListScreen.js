@@ -9,10 +9,6 @@ const PrescriptionHistoryScreen = () => {
   const isLoading = useSelector(state => state.prescription.isLoading);
   const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
 
-  const prescriptionHistory = prescriptionList.filter((prescription) => {
-    return prescription.is_custom === false;
-  });
-
   const dispatch = useDispatch();
 
   const handleRefresh = () => {
@@ -24,7 +20,7 @@ const PrescriptionHistoryScreen = () => {
   return (
     <SafeAreaView style={styles.container}>
       <FlatList
-        data={prescriptionHistory}
+        data={prescriptionList}
         renderItem={renderItem}
         keyExtractor={prescription => prescription.prescription_id}
         refreshing={isLoading}

@@ -1,43 +1,65 @@
-import React, { useState } from "react";
+import React from "react";
+import dayjs from "dayjs";
 import { useNavigation } from "@react-navigation/core";
-import { StyleSheet, Text, View, Switch, TouchableOpacity } from "react-native";
+import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+
+import AlarmSwitch from "./AlarmSwitch";
 
 const PrescriptionCard = ({ prescriptionInfo }) => {
-  const { is_custom, created_at, pharmacist } = prescriptionInfo;
-  const [prescriptionName, setPrescriptionName] = useState(pharmacist.pharmacy_name);
-  const [alarmEnabled, setAlarmEnabled] = useState(false);
-
   const navigation = useNavigation();
 
-  const toggleSwitch = () => {
-    setAlarmEnabled(previousState => !previousState);
-  };
+  const {
+    medicines,
+    description,
+    created_at: prescriptionDateUTC,
+    expiration_date: expirationDateUTC,
+    dose_histories: doseHistories,
+    is_alarm_on: isAlarmOn,
+    pharmacist: {
+      pharmacy_name: pharmacyName,
+      pharmacy_address: pharmacyAddress,
+      user: {
+        name: pharmacistName,
+        picture: pharmacistPicture,
+      },
+    },
+  } = prescriptionInfo;
+
+  const expirationDate = dayjs(expirationDateUTC).add(9, "hour").format("YYYY.MM.DD");
+  const prescriptionDate = dayjs(prescriptionDateUTC).add(9, "hour").format("YYYY.MM.DD");
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate("Detail", { prescriptionInfo, prescriptionName })}
+      onPress={() => navigation.navigate("Detail", {
+        isAlarmOn,
+        medicines,
+        description,
+        pharmacyName,
+        doseHistories,
+        pharmacistName,
+        expirationDate,
+        pharmacyAddress,
+        prescriptionDate,
+        pharmacistPicture,
+      })}
     >
       <View>
-        <Text style={styles.title}>{prescriptionName}</Text>
-        <Text style={styles.date}>{created_at}</Text>
+        <Text style={styles.title}>{pharmacyName}</Text>
+        <Text style={styles.date}>{`${prescriptionDate} - ${expirationDate}`}</Text>
       </View>
 
-      <Switch
-        onValueChange={toggleSwitch}
-        value={alarmEnabled}
-      />
+      <AlarmSwitch isAlarmOn={isAlarmOn} />
     </TouchableOpacity>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
+    position: "relative",
     height: 150,
-    marginBottom: 15,
+    width: 350,
+    marginTop: 20,
     padding: 30,
     borderRadius: 12,
     backgroundColor: "#D6D6D6",

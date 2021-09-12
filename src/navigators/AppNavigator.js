@@ -25,30 +25,24 @@ const AppNavigator = () => {
     dispatch(checkAuthentication());
   }, []);
 
-  if (isLoading) {
-    return <LoadingScreen />;
-  }
-
   if (error) {
-    return <ErrorScreen error={error}/>;
+    return <ErrorScreen error={error} />;
   }
 
   return (
     <NavigationContainer>
       <AppStack.Navigator>
-        {
-          userInfo
-            ? <AppStack.Screen
-              name="MainNavigator"
-              component={MainNavigator}
-              options={{ headerShown: false }}
-            />
-            : <AppStack.Screen
-              name="Login"
-              component={LoginScreen}
-              options={{ headerShown: false }}
-            />
-        }
+        {userInfo
+          ? <AppStack.Screen
+            name="MainNavigator"
+            component={MainNavigator}
+            options={{ headerShown: false }}
+          />
+          : <AppStack.Screen
+            name="Login"
+            component={LoginScreen}
+            options={{ headerShown: false }}
+          />}
       </AppStack.Navigator>
       <StatusBar style="auto" />
     </NavigationContainer>
