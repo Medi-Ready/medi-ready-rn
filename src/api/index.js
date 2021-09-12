@@ -1,8 +1,8 @@
-import { DOMAIN } from "@env";
+import { API_SERVER_URL } from "@env";
 
 export const loginRequest = async (userData) => {
   try {
-    const response = await fetch(`${DOMAIN}/api/login`, {
+    const response = await fetch(`${API_SERVER_URL}/api/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -15,7 +15,9 @@ export const loginRequest = async (userData) => {
       return await response.json();
     }
 
-    throw new Error(response.error.message);
+    const result = await response.json();
+
+    throw new Error(result.message);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -23,7 +25,7 @@ export const loginRequest = async (userData) => {
 
 export const logoutRequest = async () => {
   try {
-    const response = await fetch(`${DOMAIN}/api/logout`, {
+    const response = await fetch(`${API_SERVER_URL}/api/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -35,15 +37,17 @@ export const logoutRequest = async () => {
       return await response.json();
     }
 
-    throw new Error(response.error.message);
+    const result = await response.json();
+
+    throw new Error(result.message);
   } catch (error) {
     throw new Error(error.message);
   }
 };
 
-export const authCheck = async (token) => {
+export const authCheck = async () => {
   try {
-    const response = await fetch(`${DOMAIN}/api/auth-check`, {
+    const response = await fetch(`${API_SERVER_URL}/api/auth-check`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -55,7 +59,9 @@ export const authCheck = async (token) => {
       return await response.json();
     }
 
-    throw new Error(response.error.message);
+    const result = await response.json();
+
+    throw new Error(result.message);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -63,7 +69,7 @@ export const authCheck = async (token) => {
 
 export const requestPrescriptionList = async () => {
   try {
-    const response = await fetch(`${DOMAIN}/api/prescriptions`, {
+    const response = await fetch(`${API_SERVER_URL}/api/prescriptions`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",
@@ -75,7 +81,9 @@ export const requestPrescriptionList = async () => {
       return await response.json();
     }
 
-    throw new Error(response.error.message);
+    const result = await response.json();
+
+    throw new Error(result.message);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -83,7 +91,7 @@ export const requestPrescriptionList = async () => {
 
 export const queuePharmacy = async (userId) => {
   try {
-    const response = await fetch(`${DOMAIN}/api/queue`, {
+    const response = await fetch(`${API_SERVER_URL}/api/queue`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -96,7 +104,9 @@ export const queuePharmacy = async (userId) => {
       return await response.json();
     }
 
-    throw new Error(response.error.message);
+    const result = await response.json();
+
+    throw new Error(result.message);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -104,7 +114,7 @@ export const queuePharmacy = async (userId) => {
 
 export const createPrescriptionList = async (prescriptionData) => {
   try {
-    const response = await fetch(`${DOMAIN}/api/prescriptions/create`, {
+    const response = await fetch(`${API_SERVER_URL}/api/prescriptions/create`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -117,7 +127,9 @@ export const createPrescriptionList = async (prescriptionData) => {
       return await response.json();
     }
 
-    throw new Error(response.error.message);
+    const result = await response.json();
+
+    throw new Error(result.message);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -125,7 +137,7 @@ export const createPrescriptionList = async (prescriptionData) => {
 
 export const updatePrescription = async (prescriptionId, prescriptionData) => {
   try {
-    const response = await fetch(`${DOMAIN}/api/prescriptions/${prescriptionId}`, {
+    const response = await fetch(`${API_SERVER_URL}/api/prescriptions/${prescriptionId}`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",
@@ -138,7 +150,9 @@ export const updatePrescription = async (prescriptionId, prescriptionData) => {
       return await response.json();
     }
 
-    throw new Error(response.error.message);
+    const result = await response.json();
+
+    throw new Error(result.message);
   } catch (error) {
     throw new Error(error.message);
   }
@@ -146,7 +160,7 @@ export const updatePrescription = async (prescriptionId, prescriptionData) => {
 
 export const deletePrescription = async (prescriptionId) => {
   try {
-    const response = await fetch(`${DOMAIN}/api/prescriptions/${prescriptionId}`, {
+    const response = await fetch(`${API_SERVER_URL}/api/prescriptions/${prescriptionId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -158,7 +172,9 @@ export const deletePrescription = async (prescriptionId) => {
       return await response.json();
     }
 
-    throw new Error(response.error.message);
+    const result = await response.json();
+
+    throw new Error(result.message);
   } catch (error) {
     throw new Error(error.message);
   }

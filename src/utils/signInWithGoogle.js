@@ -21,7 +21,7 @@ const signInWithGoogle = async () => {
       return;
     }
   } catch (error) {
-    return { result: "error" };
+    throw new Error(error.message);
   }
 };
 

@@ -24,7 +24,7 @@ export function* handleLogin() {
       ? yield put(setUserInfo(data))
       : yield put(cancelLogin());
   } catch (error) {
-    yield put(failLogin({ message: error.message }));
+    yield put(failLogin(error));
   }
 }
 
@@ -36,7 +36,7 @@ export function* handleLogout() {
       ? yield put(deleteUserInfo())
       : yield put(cancelLogin());
   } catch (error) {
-    yield put(failLogin({ message: error.message }));
+    yield put(failLogin(error));
   }
 }
 
@@ -48,6 +48,6 @@ export function* handleAuthCheck() {
       ? yield put(setUserInfo(data))
       : yield put(deleteUserInfo());
   } catch (error) {
-    yield put(failLogin({ message: error.message }));
+    yield put(failLogin(error));
   }
 }
