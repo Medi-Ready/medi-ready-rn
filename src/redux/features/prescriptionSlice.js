@@ -12,6 +12,7 @@ export const prescriptionSlice = createSlice({
   reducers: {
     getPrescriptionList: (state, action) => {
       state.isLoading = true;
+      state.error = null;
     },
     savePrescriptionList: (state, action) => {
       state.prescriptionList = action.payload;

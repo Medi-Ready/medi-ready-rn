@@ -10,27 +10,46 @@ const PrescriptionHistoryCard = ({ prescriptionInfo }) => {
 
   const {
     medicines,
-    created_at: createdAt,
+    description,
+    created_at: prescriptionDateUTC,
+    expiration_date: expirationDateUTC,
+    dose_histories: doseHistories,
+    is_alarm_on: isAlarmOn,
     pharmacist: {
       pharmacy_name: pharmacyName,
       pharmacy_address: pharmacyAddress,
+      user: {
+        name: pharmacistName,
+        picture: pharmacistPicture,
+      },
     },
   } = prescriptionInfo;
 
-  const prescriptionDate = dayjs(createdAt).add(7, "hour").format("YYYY.MM.DD");
+  const prescriptionDate = dayjs(prescriptionDateUTC).add(9, "hour").format("YYYY.MM.DD");
+  const expirationDate = dayjs(expirationDateUTC).add(9, "hour").format("YYYY.MM.DD");
 
-  const { name: firstDisplayMedicine } = medicines[0].medicine_detail;
-  const { name: secondDisplayMedicine } = medicines[1].medicine_detail;
+  const firstDisplayMedicine = medicines[0]?.medicine_detail.name;
+  const secondDisplayMedicine = medicines[1]?.medicine_detail.name;
 
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate("History Detail", { prescriptionInfo, prescriptionDate })}
+      onPress={() => navigation.navigate("History Detail", {
+        medicines,
+        description,
+        pharmacyName,
+        doseHistories,
+        pharmacistName,
+        expirationDate,
+        pharmacyAddress,
+        prescriptionDate,
+        pharmacistPicture,
+      })}
     >
       <View>
         <Text style={styles.title}>{pharmacyName}</Text>
         <Text style={styles.address}>{pharmacyAddress}</Text>
-        <Text style={styles.date}>{prescriptionDate}</Text>
+        <Text style={styles.date}>{`${prescriptionDate} - ${expirationDate}`}</Text>
 
         <View style={styles.medicineList}>
           <View style={styles.medicine}>
@@ -49,7 +68,7 @@ const PrescriptionHistoryCard = ({ prescriptionInfo }) => {
         </View>
       </View>
 
-      <HistoryStatus createdAt={createdAt} />
+      <HistoryStatus expirationDate={expirationDate} />
     </TouchableOpacity>
   );
 };

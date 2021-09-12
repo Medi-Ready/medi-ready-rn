@@ -11,6 +11,7 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
   const {
     medicines,
     description,
+    prescription_id: prescriptionId,
     created_at: prescriptionDateUTC,
     expiration_date: expirationDateUTC,
     dose_histories: doseHistories,
@@ -39,6 +40,7 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
         doseHistories,
         pharmacistName,
         expirationDate,
+        prescriptionId,
         pharmacyAddress,
         prescriptionDate,
         pharmacistPicture,
@@ -57,18 +59,19 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
 const styles = StyleSheet.create({
   container: {
     position: "relative",
-    height: 150,
-    width: 350,
-    marginTop: 20,
-    padding: 30,
+    height: 110,
+    width: 330,
+    marginHorizontal: 20,
+    marginTop: 15,
+    padding: 20,
     borderRadius: 12,
     backgroundColor: "#D6D6D6",
   },
   title: {
-    fontSize: 30,
+    fontSize: 25,
   },
   date: {
-    marginTop: 20,
+    marginTop: 15,
   },
 });
 

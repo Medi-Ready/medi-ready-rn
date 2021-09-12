@@ -2,17 +2,17 @@ import React, { useState } from "react";
 import { StyleSheet, Switch } from "react-native";
 
 const AlarmSwitch = ({ isAlarmOn }) => {
-  const [alarmEnabled, setAlarmEnabled] = useState(isAlarmOn);
+  const [isAlarmEnabled, setIsAlarmEnabled] = useState(isAlarmOn);
 
   const toggleSwitch = () => {
-    setAlarmEnabled((previousState) => !previousState);
+    setIsAlarmEnabled((previousState) => !previousState);
   };
 
   return (
     <Switch
       style={styles.alarmSwitch}
       onValueChange={toggleSwitch}
-      value={alarmEnabled}
+      value={isAlarmEnabled}
     />
   );
 };

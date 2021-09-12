@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Text } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import { StatusBar } from "expo-status-bar";
@@ -9,8 +10,6 @@ import { checkAuthentication } from "../redux/features/userSlice";
 
 import MainNavigator from "./MainNavigator";
 import LoginScreen from "../screens/LoginScreen";
-import ErrorScreen from "../screens/ErrorScreen";
-import LoadingScreen from "../screens/LoadingScreen";
 
 const AppStack = createNativeStackNavigator();
 
@@ -26,24 +25,31 @@ const AppNavigator = () => {
   }, []);
 
   if (error) {
-    return <ErrorScreen error={error} />;
+    return <Text>{error.message}</Text>;
+  }
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
   }
 
   return (
     <NavigationContainer>
       <AppStack.Navigator>
-        {userInfo
-          ? <AppStack.Screen
+        {userInfo ? (
+          <AppStack.Screen
             name="MainNavigator"
             component={MainNavigator}
             options={{ headerShown: false }}
           />
-          : <AppStack.Screen
+        ) : (
+          <AppStack.Screen
             name="Login"
             component={LoginScreen}
             options={{ headerShown: false }}
-          />}
+          />
+        )}
       </AppStack.Navigator>
+
       <StatusBar style="auto" />
     </NavigationContainer>
   );

@@ -1,17 +1,12 @@
 import React from "react";
-import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/core";
 import { StyleSheet, TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 
-import { setScanned } from "../redux/features/pharmacyCheckInSlice";
-
 const QrCodeIcon = () => {
-  const dispatch = useDispatch();
   const navigation = useNavigation();
 
   const handleQrScannerOpen = () => {
-    dispatch(setScanned(false));
     navigation.navigate("Check In");
   };
 

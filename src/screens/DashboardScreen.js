@@ -1,10 +1,9 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { SafeAreaView, FlatList, StyleSheet } from "react-native";
 
 import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 
-import CreateIcon from "../components/CreateIcon";
 import PrescriptionCard from "../components/PrescriptionCard";
 
 const DashboardScreen = ({ navigation }) => {
@@ -12,6 +11,12 @@ const DashboardScreen = ({ navigation }) => {
   const isLoading = useSelector(state => state.prescription.isLoading);
 
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    navigation.addListener("focus", () => {
+      dispatch(getPrescriptionList());
+    });
+  }, [navigation]);
 
   const handleRefresh = () => {
     dispatch(getPrescriptionList());
@@ -29,8 +34,6 @@ const DashboardScreen = ({ navigation }) => {
         refreshing={isLoading}
         onRefresh={handleRefresh}
       />
-
-      <CreateIcon navigation={navigation} />
     </SafeAreaView>
   );
 };

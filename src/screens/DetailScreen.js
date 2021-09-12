@@ -1,6 +1,6 @@
 import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { ScrollView, View, Text, StyleSheet, Img } from "react-native";
+import { ScrollView, TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
 import DoseDays from "../components/DoseDays";
 
@@ -13,10 +13,15 @@ const DetailScreen = ({ route }) => {
     doseHistories,
     pharmacistName,
     expirationDate,
+    prescriptionId,
     pharmacyAddress,
     prescriptionDate,
     pharmacistPicture,
   } = route.params;
+
+  const handlePrescriptionDelete = () => {
+
+  };
 
   return (
     <View style={styles.container}>
@@ -28,13 +33,26 @@ const DetailScreen = ({ route }) => {
 
         <Text style={styles.prescriptionDate}>{`${prescriptionDate} - ${expirationDate}`}</Text>
 
-        <DoseDays/>
+        <DoseDays doseHistories={doseHistories} />
 
         <View style={styles.doseGuide}>
           <Text>
             {description}
           </Text>
         </View>
+
+        <View>
+          <View>
+            <Text>약 목록</Text>
+          </View>
+        </View>
+
+        <TouchableOpacity
+          style={styles.deleteButton}
+          onPress={handlePrescriptionDelete}
+        >
+          <Text style={styles.deleteButtonText}>Delete this Prescription</Text>
+        </TouchableOpacity>
       </ScrollView>
     </View>
   );
@@ -43,6 +61,7 @@ const DetailScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
     marginHorizontal: 10,
   },
   pharmacyInfo: {
@@ -62,7 +81,24 @@ const styles = StyleSheet.create({
   prescriptionDate: {
     fontSize: 15,
     marginTop: 10,
+    marginBottom: 30,
     textAlign: "right",
+  },
+  doseGuide: {
+    minHeight: 200,
+    marginTop: 30,
+    padding: 20,
+    borderColor: "#000",
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  deleteButton: {
+    marginTop: 30,
+    marginHorizontal: 100,
+  },
+  deleteButtonText: {
+    fontSize: 15,
+    color: "#FF0000",
   },
   doseGuide: {
     minHeight: 200,

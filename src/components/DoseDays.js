@@ -1,19 +1,25 @@
 import React from "react";
 import dayjs from "dayjs";
-import { StyleSheet, Text, View } from "react-native";
+import { useSelector, dispatch } from "react-redux";
+import { StyleSheet, View, Text } from "react-native";
 
-const DoseDays = ({ createdAt, expirationDate }) => {
+import Day from "./Day";
+
+const DoseDays = ({ doseHistories }) => {
+  const selectedDay = dayjs().format("MM/DD");
+
   const daysInWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  const doseDays = doseHistories.map((history) => history.date);
 
   return (
     <View style={styles.container}>
-      {daysInWeek.map((day) => {
-        return (
-          <View >
-            <Text>{day}</Text>
-          </View>
-        );
-      })}
+      <View>
+        <Text>{selectedDay}</Text>
+      </View>
+
+      <View style={styles.weekView}>
+        {daysInWeek.map((day) => <Day day={day} />)}
+      </View>
     </View>
   );
 };
@@ -21,9 +27,11 @@ const DoseDays = ({ createdAt, expirationDate }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    flexDirection: "row",
-    borderColor: "#000",
+    justifyContent: "center",
   },
+  weekView: {
+    flexDirection: "row",
+  }
 });
 
 export default DoseDays;
