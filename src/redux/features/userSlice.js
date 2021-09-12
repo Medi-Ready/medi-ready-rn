@@ -13,8 +13,8 @@ export const userSlice = createSlice({
   reducers: {
     login: (state, action) => {
       state.error = null;
-      state.userInfo = null,
-        state.isLoading = true;
+      state.userInfo = null;
+      state.isLoading = true;
     },
     logout: (state, action) => {
       state.isLoading = true;

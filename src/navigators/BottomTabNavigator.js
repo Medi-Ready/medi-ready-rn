@@ -1,9 +1,6 @@
-import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import React from "react";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-
-import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 
 import QrCodeIcon from "../components/QrCodeIcon";
 import SettingsScreen from "../screens/SettingsScreen";
@@ -14,12 +11,6 @@ import PushAlarmListScreen from "../screens/PushAlarmListScreen";
 const BottomTab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getPrescriptionList());
-  }, []);
-
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({

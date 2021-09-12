@@ -1,15 +1,15 @@
-import React, { useEffect } from 'react';
-import { Text } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import React, { useEffect } from "react";
+import { Text } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
 
-import { StatusBar } from 'expo-status-bar';
-import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
+import { StatusBar } from "expo-status-bar";
+import { NavigationContainer } from "@react-navigation/native";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { checkAuthentication } from '../redux/features/userSlice';
+import { checkAuthentication } from "../redux/features/userSlice";
 
-import MainNavigator from './MainNavigator';
-import LoginScreen from '../screens/LoginScreen';
+import MainNavigator from "./MainNavigator";
+import LoginScreen from "../screens/LoginScreen";
 
 const AppStack = createNativeStackNavigator();
 
@@ -37,20 +37,20 @@ const AppNavigator = () => {
       <AppStack.Navigator>
         {userInfo ? (
           <AppStack.Screen
-            name='MainNavigator'
+            name="MainNavigator"
             component={MainNavigator}
             options={{ headerShown: false }}
           />
         ) : (
           <AppStack.Screen
-            name='Login'
+            name="Login"
             component={LoginScreen}
             options={{ headerShown: false }}
           />
         )}
       </AppStack.Navigator>
 
-      <StatusBar style='auto' />
+      <StatusBar style="auto" />
     </NavigationContainer>
   );
 };

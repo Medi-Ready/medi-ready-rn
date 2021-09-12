@@ -12,11 +12,7 @@ const AlarmSwitch = ({ isAlarmOn }) => {
     <Switch
       style={styles.alarmSwitch}
       onValueChange={toggleSwitch}
-<<<<<<< HEAD
-      value={alarmEnabled}
-=======
       value={isAlarmEnabled}
->>>>>>> 2d3b56f (Feat: modify file structure)
     />
   );
 };

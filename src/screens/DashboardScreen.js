@@ -13,7 +13,7 @@ const DashboardScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    navigation.addListener('focus', () => {
+    navigation.addListener("focus", () => {
       dispatch(getPrescriptionList());
     });
   }, [navigation]);
@@ -34,10 +34,6 @@ const DashboardScreen = ({ navigation }) => {
         refreshing={isLoading}
         onRefresh={handleRefresh}
       />
-<<<<<<< HEAD
-
-=======
->>>>>>> 2d3b56f (Feat: modify file structure)
     </SafeAreaView>
   );
 };

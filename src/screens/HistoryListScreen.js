@@ -13,7 +13,7 @@ const PrescriptionHistoryScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    return navigation.addListener('focus', () => {
+    return navigation.addListener("focus", () => {
       dispatch(getPrescriptionList());
     });
   }, [navigation]);

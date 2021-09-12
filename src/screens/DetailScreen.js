@@ -1,6 +1,6 @@
 import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { ScrollView, TouchableOpacity, View, Text, StyleSheet, Button } from "react-native";
+import { ScrollView, TouchableOpacity, View, Text, StyleSheet } from "react-native";
 
 import DoseDays from "../components/DoseDays";
 
@@ -13,21 +13,15 @@ const DetailScreen = ({ route }) => {
     doseHistories,
     pharmacistName,
     expirationDate,
-<<<<<<< HEAD
-=======
     prescriptionId,
->>>>>>> 2d3b56f (Feat: modify file structure)
     pharmacyAddress,
     prescriptionDate,
     pharmacistPicture,
   } = route.params;
-<<<<<<< HEAD
-=======
 
   const handlePrescriptionDelete = () => {
 
   };
->>>>>>> 2d3b56f (Feat: modify file structure)
 
   return (
     <View style={styles.container}>
@@ -39,17 +33,17 @@ const DetailScreen = ({ route }) => {
 
         <Text style={styles.prescriptionDate}>{`${prescriptionDate} - ${expirationDate}`}</Text>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
+        <DoseDays doseHistories={doseHistories} />
+
+        <View style={styles.doseGuide}>
+          <Text>
+            {description}
+          </Text>
+        </View>
 
         <View>
           <View>
             <Text>약 목록</Text>
-          </View>
-
-          <View>
-
           </View>
         </View>
 
@@ -59,7 +53,6 @@ const DetailScreen = ({ route }) => {
         >
           <Text style={styles.deleteButtonText}>Delete this Prescription</Text>
         </TouchableOpacity>
->>>>>>> 2d3b56f (Feat: modify file structure)
       </ScrollView>
     </View>
   );
@@ -68,10 +61,7 @@ const DetailScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-<<<<<<< HEAD
-=======
     alignItems: "center",
->>>>>>> 2d3b56f (Feat: modify file structure)
     marginHorizontal: 10,
   },
   pharmacyInfo: {
@@ -91,9 +81,6 @@ const styles = StyleSheet.create({
   prescriptionDate: {
     fontSize: 15,
     marginTop: 10,
-<<<<<<< HEAD
-    textAlign: "right",
-=======
     marginBottom: 30,
     textAlign: "right",
   },
@@ -112,7 +99,6 @@ const styles = StyleSheet.create({
   deleteButtonText: {
     fontSize: 15,
     color: "#FF0000",
->>>>>>> 2d3b56f (Feat: modify file structure)
   },
   doseGuide: {
     minHeight: 200,

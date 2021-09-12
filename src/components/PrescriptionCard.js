@@ -56,5 +56,23 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
   );
 };
 
+const styles = StyleSheet.create({
+  container: {
+    position: "relative",
+    height: 110,
+    width: 330,
+    marginHorizontal: 20,
+    marginTop: 15,
+    padding: 20,
+    borderRadius: 12,
+    backgroundColor: "#D6D6D6",
+  },
+  title: {
+    fontSize: 25,
+  },
+  date: {
+    marginTop: 15,
+  },
+});
 
 export default PrescriptionCard;
