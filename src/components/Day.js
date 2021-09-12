@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
 const Day = ({ day }) => {
-  const [isSelected, setIsSelected] = useState("false");
+  const [isSelected, setIsSelected] = useState(false);
 
   const handleSelectDay = () => {
     setIsSelected((prev) => !prev);
@@ -10,10 +10,10 @@ const Day = ({ day }) => {
 
   return (
     <TouchableOpacity
-      style={isSelected ? styles.default : styles.selected}
+      style={isSelected ? styles.selected : styles.default}
       onPress={handleSelectDay}
     >
-      <Text style={isSelected ? styles.defaultText : styles.selectedText}>
+      <Text style={isSelected ? styles.selectedText : styles.defaultText}>
         {day}
       </Text>
     </TouchableOpacity>

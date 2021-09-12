@@ -7,7 +7,7 @@ import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 import PrescriptionHistoryCard from "../components/PrescriptionHistoryCard";
 
 const PrescriptionHistoryScreen = ({ navigation }) => {
-  const isLoading = useSelector(state => state.prescription.isLoading);
+  const isLoading = useSelector((state) => state.prescription.isLoading);
   const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
 
   const dispatch = useDispatch();

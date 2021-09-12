@@ -1,6 +1,5 @@
 import React from "react";
 import dayjs from "dayjs";
-import { useSelector, dispatch } from "react-redux";
 import { StyleSheet, View, Text } from "react-native";
 
 import Day from "./Day";
@@ -9,7 +8,6 @@ const DoseDays = ({ doseHistories }) => {
   const selectedDay = dayjs().format("MM/DD");
 
   const daysInWeek = ["일", "월", "화", "수", "목", "금", "토"];
-  const doseDays = doseHistories.map((history) => history.date);
 
   return (
     <View style={styles.container}>
