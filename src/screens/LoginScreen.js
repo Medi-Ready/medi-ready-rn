@@ -24,7 +24,7 @@ const LoginScreen = () => {
       </View>
 
       <TouchableOpacity style={styles.loginButton} onPress={(signInWithGoogle)}>
-        <Ionicons name="logo-google" size={24} color="#FFFF" />
+        <Ionicons name="logo-google" size={24} color="#FFF" />
         <Text style={styles.loginButtonText}>Google Login</Text>
       </TouchableOpacity>
 
