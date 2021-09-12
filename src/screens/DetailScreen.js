@@ -1,6 +1,6 @@
 import React from "react";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
-import { ScrollView, View, Text, StyleSheet, Img } from "react-native";
+import { ScrollView, TouchableOpacity, View, Text, StyleSheet, Button } from "react-native";
 
 import DoseDays from "../components/DoseDays";
 
@@ -13,10 +13,21 @@ const DetailScreen = ({ route }) => {
     doseHistories,
     pharmacistName,
     expirationDate,
+<<<<<<< HEAD
+=======
+    prescriptionId,
+>>>>>>> 2d3b56f (Feat: modify file structure)
     pharmacyAddress,
     prescriptionDate,
     pharmacistPicture,
   } = route.params;
+<<<<<<< HEAD
+=======
+
+  const handlePrescriptionDelete = () => {
+
+  };
+>>>>>>> 2d3b56f (Feat: modify file structure)
 
   return (
     <View style={styles.container}>
@@ -28,13 +39,27 @@ const DetailScreen = ({ route }) => {
 
         <Text style={styles.prescriptionDate}>{`${prescriptionDate} - ${expirationDate}`}</Text>
 
-        <DoseDays/>
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
 
-        <View style={styles.doseGuide}>
-          <Text>
-            {description}
-          </Text>
+        <View>
+          <View>
+            <Text>약 목록</Text>
+          </View>
+
+          <View>
+
+          </View>
         </View>
+
+        <TouchableOpacity
+          style={styles.deleteButton}
+          onPress={handlePrescriptionDelete}
+        >
+          <Text style={styles.deleteButtonText}>Delete this Prescription</Text>
+        </TouchableOpacity>
+>>>>>>> 2d3b56f (Feat: modify file structure)
       </ScrollView>
     </View>
   );
@@ -43,6 +68,10 @@ const DetailScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+<<<<<<< HEAD
+=======
+    alignItems: "center",
+>>>>>>> 2d3b56f (Feat: modify file structure)
     marginHorizontal: 10,
   },
   pharmacyInfo: {
@@ -62,7 +91,28 @@ const styles = StyleSheet.create({
   prescriptionDate: {
     fontSize: 15,
     marginTop: 10,
+<<<<<<< HEAD
     textAlign: "right",
+=======
+    marginBottom: 30,
+    textAlign: "right",
+  },
+  doseGuide: {
+    minHeight: 200,
+    marginTop: 30,
+    padding: 20,
+    borderColor: "#000",
+    borderWidth: 1,
+    borderRadius: 10,
+  },
+  deleteButton: {
+    marginTop: 30,
+    marginHorizontal: 100,
+  },
+  deleteButtonText: {
+    fontSize: 15,
+    color: "#FF0000",
+>>>>>>> 2d3b56f (Feat: modify file structure)
   },
   doseGuide: {
     minHeight: 200,

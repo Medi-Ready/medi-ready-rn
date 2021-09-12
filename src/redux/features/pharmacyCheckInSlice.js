@@ -12,7 +12,10 @@ export const pharmacyCheckInSlice = createSlice({
   initialState,
   reducers: {
     openScanner: (state, action) => {
+      state.error = null;
+      state.scanned = false;
       state.isLoading = true;
+      state.hasPermission = null;
     },
     checkIn: (state, action) => {
       state.isLoading = true;

@@ -1,16 +1,15 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from 'react';
+import { Text } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
-import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
-import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { StatusBar } from 'expo-status-bar';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { checkAuthentication } from "../redux/features/userSlice";
+import { checkAuthentication } from '../redux/features/userSlice';
 
-import MainNavigator from "./MainNavigator";
-import LoginScreen from "../screens/LoginScreen";
-import ErrorScreen from "../screens/ErrorScreen";
-import LoadingScreen from "../screens/LoadingScreen";
+import MainNavigator from './MainNavigator';
+import LoginScreen from '../screens/LoginScreen';
 
 const AppStack = createNativeStackNavigator();
 
@@ -26,25 +25,32 @@ const AppNavigator = () => {
   }, []);
 
   if (error) {
-    return <ErrorScreen error={error} />;
+    return <Text>{error.message}</Text>;
+  }
+
+  if (isLoading) {
+    return <Text>Loading...</Text>;
   }
 
   return (
     <NavigationContainer>
       <AppStack.Navigator>
-        {userInfo
-          ? <AppStack.Screen
-            name="MainNavigator"
+        {userInfo ? (
+          <AppStack.Screen
+            name='MainNavigator'
             component={MainNavigator}
             options={{ headerShown: false }}
           />
-          : <AppStack.Screen
-            name="Login"
+        ) : (
+          <AppStack.Screen
+            name='Login'
             component={LoginScreen}
             options={{ headerShown: false }}
-          />}
+          />
+        )}
       </AppStack.Navigator>
-      <StatusBar style="auto" />
+
+      <StatusBar style='auto' />
     </NavigationContainer>
   );
 };
