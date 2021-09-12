@@ -7,8 +7,10 @@ import { openScanner, checkIn } from "../redux/features/pharmacyCheckInSlice";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 const QrCodeScannerScreen = ({ navigation }) => {
-  const hasPermission = useSelector((state) => state.pharmacyCheckIn.hasPermission);
+  const error = useSelector((state) => state.pharmacyCheckIn.error);
   const scanned = useSelector((state) => state.pharmacyCheckIn.scanned);
+  const isLoading = useSelector((state) => state.pharmacyCheckIn.isLoading);
+  const hasPermission = useSelector((state) => state.pharmacyCheckIn.hasPermission);
 
   const dispatch = useDispatch();
 
@@ -20,11 +22,16 @@ const QrCodeScannerScreen = ({ navigation }) => {
     dispatch(checkIn(data));
   };
 
-  if (hasPermission === null) {
+  if (hasPermission === null || isLoading) {
     return <Text>Requesting for camera permission</Text>;
   }
+
   if (hasPermission === false) {
     return <Text>No access to camera</Text>;
+  }
+
+  if (error) {
+    return <Text>{error.message}</Text>
   }
 
   return (
