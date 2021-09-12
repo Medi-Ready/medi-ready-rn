@@ -5,14 +5,16 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import AlarmSwitch from "./AlarmSwitch";
 
+const PrescriptionCard = ({ prescriptionInfo }) => {
+  const navigation = useNavigation();
+
   const {
     medicines,
     description,
-    is_alarm_on: isAlarmOn,
-    dose_histories: doseHistories,
     created_at: prescriptionDateUTC,
-    prescription_id: prescriptionId,
     expiration_date: expirationDateUTC,
+    dose_histories: doseHistories,
+    is_alarm_on: isAlarmOn,
     pharmacist: {
       pharmacy_name: pharmacyName,
       pharmacy_address: pharmacyAddress,
@@ -23,7 +25,7 @@ import AlarmSwitch from "./AlarmSwitch";
     },
   } = prescriptionInfo;
 
-  const expirationDate = dayjs(expirationDateUTC).add(9, "hour").subtract(1, "day").format("YYYY.MM.DD");
+  const expirationDate = dayjs(expirationDateUTC).add(9, "hour").format("YYYY.MM.DD");
   const prescriptionDate = dayjs(prescriptionDateUTC).add(9, "hour").format("YYYY.MM.DD");
 
   return (
@@ -37,10 +39,7 @@ import AlarmSwitch from "./AlarmSwitch";
         doseHistories,
         pharmacistName,
         expirationDate,
-<<<<<<< HEAD
-=======
         prescriptionId,
->>>>>>> 528fd00 (Chore: fix git conflict)
         pharmacyAddress,
         prescriptionDate,
         pharmacistPicture,
