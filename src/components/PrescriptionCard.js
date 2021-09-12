@@ -11,6 +11,7 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
   const {
     medicines,
     description,
+    prescription_id: prescriptionId,
     created_at: prescriptionDateUTC,
     expiration_date: expirationDateUTC,
     dose_histories: doseHistories,
