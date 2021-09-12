@@ -5,16 +5,14 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import AlarmSwitch from "./AlarmSwitch";
 
-const PrescriptionCard = ({ prescriptionInfo }) => {
-  const navigation = useNavigation();
-
   const {
     medicines,
     description,
-    created_at: prescriptionDateUTC,
-    expiration_date: expirationDateUTC,
-    dose_histories: doseHistories,
     is_alarm_on: isAlarmOn,
+    dose_histories: doseHistories,
+    created_at: prescriptionDateUTC,
+    prescription_id: prescriptionId,
+    expiration_date: expirationDateUTC,
     pharmacist: {
       pharmacy_name: pharmacyName,
       pharmacy_address: pharmacyAddress,
@@ -25,7 +23,7 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
     },
   } = prescriptionInfo;
 
-  const expirationDate = dayjs(expirationDateUTC).add(9, "hour").format("YYYY.MM.DD");
+  const expirationDate = dayjs(expirationDateUTC).add(9, "hour").subtract(1, "day").format("YYYY.MM.DD");
   const prescriptionDate = dayjs(prescriptionDateUTC).add(9, "hour").format("YYYY.MM.DD");
 
   return (
@@ -39,6 +37,10 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
         doseHistories,
         pharmacistName,
         expirationDate,
+<<<<<<< HEAD
+=======
+        prescriptionId,
+>>>>>>> 528fd00 (Chore: fix git conflict)
         pharmacyAddress,
         prescriptionDate,
         pharmacistPicture,
@@ -54,22 +56,5 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
   );
 };
 
-const styles = StyleSheet.create({
-  container: {
-    position: "relative",
-    height: 150,
-    width: 350,
-    marginTop: 20,
-    padding: 30,
-    borderRadius: 12,
-    backgroundColor: "#D6D6D6",
-  },
-  title: {
-    fontSize: 30,
-  },
-  date: {
-    marginTop: 20,
-  },
-});
 
 export default PrescriptionCard;
