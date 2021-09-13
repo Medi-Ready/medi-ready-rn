@@ -112,52 +112,6 @@ export const queuePharmacy = async (userId) => {
   }
 };
 
-export const createPrescriptionList = async (prescriptionData) => {
-  try {
-    const response = await fetch(`${API_SERVER_URL}/api/prescriptions/create`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(prescriptionData),
-    });
-
-    if (response.ok) {
-      return await response.json();
-    }
-
-    const result = await response.json();
-
-    throw new Error(result.message);
-  } catch (error) {
-    throw new Error(error.message);
-  }
-};
-
-export const updatePrescription = async (prescriptionId, prescriptionData) => {
-  try {
-    const response = await fetch(`${API_SERVER_URL}/api/prescriptions/${prescriptionId}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-      },
-      body: JSON.stringify(prescriptionData),
-    });
-
-    if (response.ok) {
-      return await response.json();
-    }
-
-    const result = await response.json();
-
-    throw new Error(result.message);
-  } catch (error) {
-    throw new Error(error.message);
-  }
-};
-
 export const deletePrescription = async (prescriptionId) => {
   try {
     const response = await fetch(`${API_SERVER_URL}/api/prescriptions/${prescriptionId}`, {
@@ -166,6 +120,29 @@ export const deletePrescription = async (prescriptionId) => {
         "Content-Type": "application/json",
         Accept: "application/json",
       },
+    });
+
+    if (response.ok) {
+      return await response.json();
+    }
+
+    const result = await response.json();
+
+    throw new Error(result.message);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const setAlarmTime = async (alarmTime) => {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/api/settings/alarm`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ alarmTime }),
     });
 
     if (response.ok) {
