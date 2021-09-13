@@ -45,6 +45,7 @@ const AlarmTimeSettingScreen = () => {
                 key={`${index}-${dosePeriod}`}
                 dosePeriod={dosePeriod}
                 dosePeriodTitle={dosePeriodTitleList[index]}
+                alarmTime={alarmTimes[dosePeriod]}
               />
             );
           })}

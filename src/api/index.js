@@ -89,6 +89,28 @@ export const requestPrescriptionList = async () => {
   }
 };
 
+export const deletePrescription = async (prescriptionId) => {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/api/prescriptions/${prescriptionId}`, {
+      method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
+      return await response.json();
+    }
+
+    const result = await response.json();
+
+    throw new Error(result.message);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const queuePharmacy = async (userId) => {
   try {
     const response = await fetch(`${API_SERVER_URL}/api/queue`, {
@@ -112,10 +134,10 @@ export const queuePharmacy = async (userId) => {
   }
 };
 
-export const deletePrescription = async (prescriptionId) => {
+export const getAlarmTime = async () => {
   try {
-    const response = await fetch(`${API_SERVER_URL}/api/prescriptions/${prescriptionId}`, {
-      method: "DELETE",
+    const response = await fetch(`${API_SERVER_URL}/api/alarm-time`, {
+      method: "GET",
       headers: {
         "Content-Type": "application/json",
         Accept: "application/json",
@@ -136,7 +158,7 @@ export const deletePrescription = async (prescriptionId) => {
 
 export const setAlarmTime = async (alarmTime) => {
   try {
-    const response = await fetch(`${API_SERVER_URL}/api/settings/alarm`, {
+    const response = await fetch(`${API_SERVER_URL}/api/settings/alarm-time`, {
       method: "PUT",
       headers: {
         "Content-Type": "application/json",

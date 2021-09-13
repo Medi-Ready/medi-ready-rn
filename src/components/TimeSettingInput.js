@@ -4,9 +4,9 @@ import { Text, StyleSheet, View, TextInput } from "react-native";
 
 import { setAlarm } from "../redux/features/alarmSettingSlice";
 
-const TimeSettingInput = ({ dosePeriod, dosePeriodTitle }) => {
-  const [hour, setHour] = useState("");
-  const [minute, setMinute] = useState("");
+const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
+  const [hour, setHour] = useState(alarmTime.split(":")[0]);
+  const [minute, setMinute] = useState(alarmTime.split(":")[1]);
 
   const [error, setError] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -24,7 +24,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle }) => {
   const handleHourChange = (hourInput) => {
     if (Number(hourInput[0]) > 2 || Number(hourInput) > 23) {
       setError(true);
-      setErrorMessage("24시 이전만 입력할 수 있습니다!")
+      setErrorMessage("24시 이전만 입력할 수 있습니다!");
     } else {
       setError(false);
       setHour(hourInput);
@@ -34,7 +34,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle }) => {
   const handleMinuteChange = (minuteInput) => {
     if (Number(minuteInput[0]) > 6 || Number(minuteInput) >= 60) {
       setError(true);
-      setErrorMessage("60분 이전만 입력할 수 있습니다!")
+      setErrorMessage("60분 이전만 입력할 수 있습니다!");
     } else {
       setError(false);
       setMinute(minuteInput);
@@ -51,7 +51,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle }) => {
         <TextInput
           maxLength={2}
           value={hour}
-          placeholder="00"
+          placeholder={hour}
           textAlign="center"
           style={styles.timeInput}
           keyboardType="number-pad"
@@ -63,7 +63,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle }) => {
         <TextInput
           maxLength={2}
           value={minute}
-          placeholder="00"
+          placeholder={minute}
           textAlign="center"
           style={styles.timeInput}
           keyboardType="number-pad"
@@ -112,4 +112,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default TimeSettingInput
+export default TimeSettingInput;

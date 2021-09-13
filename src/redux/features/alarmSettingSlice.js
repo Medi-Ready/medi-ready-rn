@@ -4,10 +4,10 @@ const initialState = {
   error: null,
   isLoading: false,
   alarmTimes: {
-    morning: "",
-    lunch: "",
-    dinner: "",
-    beforeBed: "",
+    morning: "08:00",
+    lunch: "12:00",
+    dinner: "18:00",
+    beforeBed: "22:00",
   },
 };
 
@@ -15,6 +15,10 @@ export const alarmSettingSlice = createSlice({
   name: "alarmSetting",
   initialState,
   reducers: {
+    getAlarmTime: (state, action) => {
+      state.error = null;
+      state.isLoading = true;
+    },
     setAlarm: (state, action) => {
       const { dosePeriod, alarmTime } = action.payload;
 
@@ -22,12 +26,13 @@ export const alarmSettingSlice = createSlice({
       state.error = null;
     },
     saveAlarm: (state, action) => {
-      state.isLoading = true;
       state.error = null;
+      state.isLoading = true;
     },
     completeAlarmSetting: (state, action) => {
-      state.isLoading = false;
       state.error = null;
+      state.isLoading = false;
+      state.alarmTimes = action.payload;
     },
     failAlarmSetting: (state, action) => {
       state.isLoading = false;
@@ -39,6 +44,7 @@ export const alarmSettingSlice = createSlice({
 export const {
   setAlarm,
   saveAlarm,
+  getAlarmTime,
   failAlarmSetting,
   completeAlarmSetting,
 } = alarmSettingSlice.actions;
