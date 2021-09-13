@@ -1,74 +1,76 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
+import { Button } from "react-native-elements";
 import {
   View,
   Text,
-  Keyboard,
-  Pressable,
   StyleSheet,
-  KeyboardAvoidingView,
-  TouchableWithoutFeedback,
+  ScrollView,
 } from "react-native";
 
-import { saveAlarm } from "../redux/features/alarmSettingSlice";
+import { saveAlarm, failAlarmSetting } from "../redux/features/alarmSettingSlice";
+
 import TimeSettingInput from "../components/TimeSettingInput";
 
 const AlarmTimeSettingScreen = () => {
-  const dosePeriodList = ["morning", "lunch", "dinner", "beforeBed"];
   const dosePeriodTitleList = ["아침", "점심", "저녁", "취침전"];
+  const dosePeriodList = ["morning", "lunch", "dinner", "beforeBed"];
 
-  const alarmTimeList = useSelector((state) => state.alarmSetting.alarmTimeList);
+  const error = useSelector((state) => state.alarmSetting.error);
+  const isLoading = useSelector((state) => state.alarmSetting.isLoading);
+  const alarmTimes = useSelector((state) => state.alarmSetting.alarmTimes);
 
   const dispatch = useDispatch();
 
   const handleAlarmTimeSubmit = () => {
-    dispatch(saveAlarm(alarmTimeList));
+    const isEmpty = Object.values(alarmTimes).some(time => {
+      return time === null || time === "";
+    });
+
+    !isEmpty
+      ? dispatch(saveAlarm(alarmTimes))
+      : dispatch(failAlarmSetting("새로운 알람 시간을 모두 입력해 주십시요"));
   };
 
   return (
-    <KeyboardAvoidingView
-      style={styles.container}
-      behavior={Platform.OS === "ios" ? "height" : "height"}
-    >
-      <TouchableWithoutFeedback
-        onPress={Keyboard.dismiss}
-        accessible={false}
-      >
-        <View style={styles.inner}>
-          <Text style={styles.title}>알림 설정</Text>
-          <Text>원하는 시간대에 알림을 설정해 주세요!</Text>
+    <ScrollView keyboardShouldPersistTaps="never" contentContainerStyle={styles.contentContainer}>
+      <View style={styles.container}>
+        <Text style={styles.title}>알림 설정</Text>
+        <Text>원하는 시간대에 알림을 설정해 주세요!</Text>
 
-          <View style={styles.setAlarmContainer}>
-            {dosePeriodList.map((dosePeriod, index) => {
-              return (
-                <TimeSettingInput
-                  key={`${index}-${dosePeriod}`}
-                  dosePeriod={dosePeriod}
-                  dosePeriodTitle={dosePeriodTitleList[index]}
-                />
-              );
-            })}
-          </View>
-
-          <Pressable
-            style={styles.saveButton}
-            onPress={handleAlarmTimeSubmit}
-          >
-            <Text>저장</Text>
-          </Pressable>
+        <View style={styles.setAlarmContainer}>
+          {dosePeriodList.map((dosePeriod, index) => {
+            return (
+              <TimeSettingInput
+                key={`${index}-${dosePeriod}`}
+                dosePeriod={dosePeriod}
+                dosePeriodTitle={dosePeriodTitleList[index]}
+              />
+            );
+          })}
         </View>
-      </TouchableWithoutFeedback >
-    </KeyboardAvoidingView>
+
+        <Button
+          title="저장"
+          type="outline"
+          loading={isLoading}
+          buttonStyle={styles.saveButton}
+          onPress={handleAlarmTimeSubmit}
+        />
+
+        {error && <Text style={styles.errorMessage}>{error}</Text>}
+      </View>
+    </ScrollView>
   );
 };
 
 const styles = StyleSheet.create({
+  contentContainer: {
+    flexGrow: 3,
+  },
   container: {
     position: "relative",
-    flex: 1,
     marginTop: 30,
-  },
-  inner: {
     alignItems: "center",
   },
   title: {
@@ -83,9 +85,13 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 40,
     width: 100,
-    marginTop: 30,
-    borderWidth: 1,
+    marginTop: 10,
     borderRadius: 10,
+    borderWidth: 1,
+  },
+  errorMessage: {
+    color: "red",
+    marginTop: 20,
   },
 });
 

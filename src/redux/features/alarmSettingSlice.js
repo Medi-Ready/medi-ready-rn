@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   error: null,
   isLoading: false,
-  alarmTimeList: {
+  alarmTimes: {
     morning: "",
     lunch: "",
     dinner: "",
@@ -18,7 +18,8 @@ export const alarmSettingSlice = createSlice({
     setAlarm: (state, action) => {
       const { dosePeriod, alarmTime } = action.payload;
 
-      state.alarmTimeList[dosePeriod] = alarmTime;
+      state.alarmTimes[dosePeriod] = alarmTime;
+      state.error = null;
     },
     saveAlarm: (state, action) => {
       state.isLoading = true;
@@ -26,6 +27,7 @@ export const alarmSettingSlice = createSlice({
     },
     completeAlarmSetting: (state, action) => {
       state.isLoading = false;
+      state.error = null;
     },
     failAlarmSetting: (state, action) => {
       state.isLoading = false;
