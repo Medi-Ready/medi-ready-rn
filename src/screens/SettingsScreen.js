@@ -21,9 +21,7 @@ const SettingsScreen = ({ navigation }) => {
       <View style={styles.userInformation}>
         <Image
           style={styles.profileImage}
-          source={{
-            uri: picture,
-          }}
+          source={{ uri: picture }}
         />
         <Text style={styles.userName}>{name}</Text>
       </View>
@@ -31,12 +29,12 @@ const SettingsScreen = ({ navigation }) => {
       <View style={styles.settingOptions}>
         <TouchableOpacity style={styles.alarmSetting} onPress={() => navigation.navigate("Alarm Setting")}>
           <MaterialCommunityIcons name="alarm" size={25} color="#006FF3" />
-          <Text style={styles.alarmSettingText}>Alarm Time Setting</Text>
+          <Text style={styles.alarmSettingText}>알림 시간 설정</Text>
         </TouchableOpacity>
 
         <TouchableOpacity style={styles.logoutOption} onPress={googleLogout}>
           <MaterialCommunityIcons name="logout" size={25} color="#006FF3" />
-          <Text style={styles.logoutText}>Log out</Text>
+          <Text style={styles.logoutText}>로그아웃</Text>
         </TouchableOpacity>
       </View>
     </View>
@@ -46,6 +44,7 @@ const SettingsScreen = ({ navigation }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    alignItems: "center",
   },
   userInformation: {
     alignItems: "center",
@@ -54,9 +53,7 @@ const styles = StyleSheet.create({
     width: 100,
     height: 100,
     marginTop: 70,
-    borderWidth: 1,
     borderRadius: 50,
-    borderColor: "#006FF3",
   },
   userName: {
     marginTop: 24,
@@ -64,8 +61,8 @@ const styles = StyleSheet.create({
     fontWeight: "500",
   },
   settingOptions: {
-    marginTop: 60,
-    marginHorizontal: 75,
+    marginTop: 80,
+    paddingRight: 20,
   },
   alarmSetting: {
     flexDirection: "row",
@@ -81,7 +78,7 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
   logoutText: {
-    fontSize: 22,
+    fontSize: 20,
     marginLeft: 20,
   },
 });
