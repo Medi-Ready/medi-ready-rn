@@ -5,6 +5,7 @@ import { StyleSheet, Text, View, Button } from "react-native";
 import { openScanner, checkIn } from "../redux/features/pharmacyCheckInSlice";
 
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+import LoadingScreen from "./LoadingScreen";
 
 const QrCodeScannerScreen = ({ navigation }) => {
   const error = useSelector((state) => state.pharmacyCheckIn.error);
@@ -15,7 +16,9 @@ const QrCodeScannerScreen = ({ navigation }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    dispatch(openScanner());
+    navigation.addListener("focus", () => {
+      dispatch(openScanner());
+    });
   }, []);
 
   const handleBarCodeScanned = ({ data }) => {
@@ -23,15 +26,15 @@ const QrCodeScannerScreen = ({ navigation }) => {
   };
 
   if (hasPermission === null || isLoading) {
-    return <Text>Requesting for camera permission</Text>;
+    return <LoadingScreen />;
   }
 
   if (hasPermission === false) {
-    return <Text>No access to camera</Text>;
+    navigation.navigate("Error", { errorMessage: "No Permission" });
   }
 
   if (error) {
-    return <Text>{error.message}</Text>
+    navigation.navigate("Error", { errorMessage: error.message });
   }
 
   return (

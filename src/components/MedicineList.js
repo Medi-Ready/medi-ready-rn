@@ -9,7 +9,7 @@ const MedicineList = ({ medicines }) => {
         return (
           <View style={styles.medicineNameBox} key={medicine.medicine_id}>
             <Text numberOfLines={1}>
-              {medicine.medicine_detail.name}
+              {medicine.medicine_detail.itemName}
             </Text>
           </View>
         );

@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   title: {
-    fontSize: 40,
+    fontSize: 25,
     marginBottom: 10,
   },
   setAlarmContainer: {

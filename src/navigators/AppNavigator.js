@@ -3,13 +3,23 @@ import { Text } from "react-native";
 import { useSelector, useDispatch } from "react-redux";
 
 import { StatusBar } from "expo-status-bar";
-import { NavigationContainer } from "@react-navigation/native";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { checkAuthentication } from "../redux/features/userSlice";
 
 import MainNavigator from "./MainNavigator";
 import LoginScreen from "../screens/LoginScreen";
+import LoadingScreen from "../screens/LoadingScreen";
+
+const MyTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: "#FFF",
+    border: "#FFF",
+  },
+};
 
 const AppStack = createNativeStackNavigator();
 
@@ -29,11 +39,11 @@ const AppNavigator = () => {
   }
 
   if (isLoading) {
-    return <Text>Loading...</Text>;
+    return <LoadingScreen />;
   }
 
   return (
-    <NavigationContainer>
+    <NavigationContainer theme={MyTheme}>
       <AppStack.Navigator>
         {userInfo ? (
           <AppStack.Screen
