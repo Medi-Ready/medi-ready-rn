@@ -13,6 +13,7 @@ const BottomTab = createBottomTabNavigator();
 const BottomTabNavigator = () => {
   return (
     <BottomTab.Navigator
+      labeled={false}
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
           let iconName;
@@ -36,7 +37,6 @@ const BottomTabNavigator = () => {
         },
         headerRight: () => <QrCodeIcon />,
       })}
-      initialRouteName="Dashboard"
     >
       <BottomTab.Screen name="Dashboard" component={DashboardScreen} />
       <BottomTab.Screen name="History" component={PrescriptionHistory} />
