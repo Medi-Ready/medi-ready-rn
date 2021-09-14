@@ -1,14 +1,16 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SafeAreaView, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 
+import NoPrescriptions from "../components/shared/NoPrescriptions";
 import PrescriptionAlarmList from "../components/PrescriptionAlarmList";
 
 const DashboardScreen = ({ navigation }) => {
-  const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
+  const error = useSelector((state) => state.prescription.error);
   const isLoading = useSelector(state => state.prescription.isLoading);
+  const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
 
   const dispatch = useDispatch();
 
@@ -22,14 +24,22 @@ const DashboardScreen = ({ navigation }) => {
     dispatch(getPrescriptionList());
   };
 
+  if (error) {
+    navigation.navigate("Error", { errorMessage: error.message });
+  }
+
+  if (!prescriptionList.length) {
+    return <NoPrescriptions />;
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
+    <View style={styles.container}>
       <PrescriptionAlarmList
         isLoading={isLoading}
         handleRefresh={handleRefresh}
         prescriptionList={prescriptionList}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 

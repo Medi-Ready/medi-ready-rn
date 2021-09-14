@@ -4,11 +4,12 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { getAlarmTime } from "../redux/features/alarmSettingSlice";
 
-import DetailScreen from "../screens/DetailScreen";
+import ErrorScreen from "../screens/ErrorScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
-import QrCodeScannerScreen from "../screens/QrCodeScannerScreen";
 import AlarmSettingScreen from "../screens/AlarmSettingScreen";
-import HistoryDetailScreen from "../screens/HistoryDetailScreen";
+import QrCodeScannerScreen from "../screens/QrCodeScannerScreen";
+import PrescriptionDetailScreen from "../screens/PrescriptionDetailScreen";
+import PrescriptionHistoryDetailScreen from "../screens/PrescriptionHistoryDetailScreen";
 
 const Stack = createNativeStackNavigator();
 
@@ -25,10 +26,11 @@ const MainNavigator = () => {
         component={BottomTabNavigator}
         options={{ headerShown: false }}
       />
-      <Stack.Screen name="Detail" component={DetailScreen} />
+      <Stack.Screen name="Detail" component={PrescriptionDetailScreen} />
       <Stack.Screen name="Check In" component={QrCodeScannerScreen} />
       <Stack.Screen name="Alarm Setting" component={AlarmSettingScreen} />
-      <Stack.Screen name="History Detail" component={HistoryDetailScreen} />
+      <Stack.Screen name="History Detail" component={PrescriptionHistoryDetailScreen} />
+      <Stack.Screen name="Error" component={ErrorScreen} />
     </Stack.Navigator>
   );
 };

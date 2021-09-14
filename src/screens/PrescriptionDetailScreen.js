@@ -22,7 +22,7 @@ const PrescriptionDetailScreen = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View style={styles.pharmacyInfo}>
           <Text numberOfLines={1} style={styles.pharmacyName}>
             {pharmacyName}
@@ -85,7 +85,7 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   deleteButton: {
-    marginTop: 20,
+    marginVertical: 30,
     marginHorizontal: 100,
   },
   deleteButtonText: {
