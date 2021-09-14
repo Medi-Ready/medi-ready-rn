@@ -5,7 +5,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import QrCodeIcon from "../components/QrCodeIcon";
 import SettingsScreen from "../screens/SettingsScreen";
 import DashboardScreen from "../screens/DashboardScreen";
-import PrescriptionHistory from "../screens/HistoryListScreen";
+import PrescriptionHistory from "../screens/PrescriptionHistoryScreen";
 import PushAlarmListScreen from "../screens/PushAlarmListScreen";
 
 const BottomTab = createBottomTabNavigator();

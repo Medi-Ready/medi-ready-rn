@@ -1,22 +1,33 @@
 import { createSlice } from "@reduxjs/toolkit";
-import dayjs from "dayjs";
 
 const initialState = {
   error: null,
   isLoading: false,
-  selectedDay: "YYYY-MM-DD",
 };
 
 export const doseDaysSlice = createSlice({
-  name: "pharmacy check in",
+  name: "doseDays",
   initialState,
   reducers: {
-
+    setDoseComplete: (state, action) => {
+      state.isLoading = true;
+      state.error = null;
+    },
+    completeSetDose: (state, action) => {
+      state.isLoading = false;
+      state.error = null;
+    },
+    failSetDose: (state, action) => {
+      state.isLoading = false;
+      state.error = action.payload;
+    },
   },
 });
 
 export const {
-
+  failSetDose,
+  completeSetDose,
+  setDoseComplete,
 } = doseDaysSlice.actions;
 
 export default doseDaysSlice.reducer;

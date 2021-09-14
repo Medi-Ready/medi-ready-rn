@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SafeAreaView, FlatList, StyleSheet } from "react-native";
+import { SafeAreaView, StyleSheet } from "react-native";
 
 import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 
-import PrescriptionCard from "../components/PrescriptionCard";
+import PrescriptionAlarmList from "../components/PrescriptionAlarmList";
 
 const DashboardScreen = ({ navigation }) => {
   const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
@@ -22,17 +22,12 @@ const DashboardScreen = ({ navigation }) => {
     dispatch(getPrescriptionList());
   };
 
-  const renderItem = ({ item }) => <PrescriptionCard prescriptionInfo={item} />;
-
   return (
     <SafeAreaView style={styles.container}>
-      <FlatList
-        style={styles.prescriptionList}
-        data={prescriptionList}
-        renderItem={renderItem}
-        keyExtractor={prescription => `${prescription.prescription_id}dashboard`}
-        refreshing={isLoading}
-        onRefresh={handleRefresh}
+      <PrescriptionAlarmList
+        isLoading={isLoading}
+        handleRefresh={handleRefresh}
+        prescriptionList={prescriptionList}
       />
     </SafeAreaView>
   );
@@ -40,12 +35,8 @@ const DashboardScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   container: {
-    position: "relative",
     flex: 1,
     alignItems: "center",
-  },
-  prescriptionList: {
-    flex: 1,
   },
 });
 

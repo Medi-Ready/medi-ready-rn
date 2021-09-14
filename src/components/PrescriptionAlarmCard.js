@@ -5,25 +5,18 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
 import AlarmSwitch from "./AlarmSwitch";
 
-const PrescriptionCard = ({ prescriptionInfo }) => {
+const PrescriptionAlarmCard = ({ prescriptionInfo }) => {
   const navigation = useNavigation();
 
   const {
     medicines,
     description,
-    prescription_id: prescriptionId,
-    created_at: prescriptionDateUTC,
-    expiration_date: expirationDateUTC,
-    dose_histories: doseHistories,
     is_alarm_on: isAlarmOn,
-    pharmacist: {
-      pharmacy_name: pharmacyName,
-      pharmacy_address: pharmacyAddress,
-      user: {
-        name: pharmacistName,
-        picture: pharmacistPicture,
-      },
-    },
+    dose_histories: doseHistories,
+    created_at: prescriptionDateUTC,
+    prescription_id: prescriptionId,
+    expiration_date: expirationDateUTC,
+    pharmacist: { pharmacy_name: pharmacyName },
   } = prescriptionInfo;
 
   const expirationDate = dayjs(expirationDateUTC).add(9, "hour").format("YYYY.MM.DD");
@@ -33,17 +26,13 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
     <TouchableOpacity
       style={styles.container}
       onPress={() => navigation.navigate("Detail", {
-        isAlarmOn,
         medicines,
         description,
         pharmacyName,
         doseHistories,
-        pharmacistName,
         expirationDate,
         prescriptionId,
-        pharmacyAddress,
         prescriptionDate,
-        pharmacistPicture,
       })}
     >
       <View>
@@ -51,7 +40,9 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
         <Text style={styles.date}>{`${prescriptionDate} - ${expirationDate}`}</Text>
       </View>
 
-      <AlarmSwitch isAlarmOn={isAlarmOn} />
+      <View style={styles.alarmSwitch}>
+        <AlarmSwitch isAlarmOn={isAlarmOn} prescriptionId={prescriptionId} />
+      </View>
     </TouchableOpacity>
   );
 };
@@ -59,20 +50,34 @@ const PrescriptionCard = ({ prescriptionInfo }) => {
 const styles = StyleSheet.create({
   container: {
     position: "relative",
-    height: 110,
+    height: 100,
     width: 330,
-    marginHorizontal: 20,
     marginTop: 15,
+    marginHorizontal: 20,
     padding: 20,
-    borderRadius: 12,
-    backgroundColor: "#D6D6D6",
+    paddingLeft: 25,
+    borderRadius: 10,
+    backgroundColor: "#FFF",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 8,
+    elevation: 5,
   },
   title: {
-    fontSize: 25,
+    fontSize: 22,
   },
   date: {
     marginTop: 15,
   },
+  alarmSwitch: {
+    position: "absolute",
+    top: 18,
+    right: 8,
+  },
 });
 
-export default PrescriptionCard;
+export default PrescriptionAlarmCard;

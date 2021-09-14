@@ -1,22 +1,68 @@
-import React from "react";
+import React, { useState } from "react";
 import dayjs from "dayjs";
-import { StyleSheet, View, Text } from "react-native";
+import { StyleSheet, View, Text, ScrollView } from "react-native";
 
 import Day from "./Day";
+import Pills from "./Pills";
 
 const DoseDays = ({ doseHistories }) => {
-  const selectedDay = dayjs().format("MM/DD");
+  const today = dayjs().format("YYYY-MM-DD");
+  const todayDoseHistory = doseHistories.find((doseHistory) => doseHistory.date === today);
 
-  const daysInWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  const [selectedDoseHistory, setSelectedDoseHistory] = useState(todayDoseHistory);
+
+  const {
+    morning,
+    lunch,
+    dinner,
+    before_bed: beforeBed,
+  } = selectedDoseHistory;
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text>{selectedDay}</Text>
-      </View>
+      <ScrollView contentContainerStyle={styles.weekView} horizontal={true}>
+        {doseHistories.map((doseHistory) => {
+          const { dose_history_id: doseHistoryId } = doseHistory;
 
-      <View style={styles.weekView}>
-        {daysInWeek.map((day) => <Day day={day} />)}
+          return (
+            <Day
+              key={doseHistoryId}
+              doseHistory={doseHistory}
+              selectedDoseHistory={selectedDoseHistory}
+              setSelectedDoseHistory={setSelectedDoseHistory}
+            />
+          );
+        })}
+      </ScrollView>
+
+      <View style={styles.doseMarkContainer}>
+        <View style={styles.dosePeriod}>
+          <Text>아침</Text>
+          <View style={styles.pillIcon}>
+            <Pills isCompleteDose={morning} />
+          </View>
+        </View>
+
+        <View style={styles.dosePeriod}>
+          <Text>점심</Text>
+          <View style={styles.pillIcon}>
+            <Pills isCompleteDose={lunch} />
+          </View>
+        </View>
+
+        <View style={styles.dosePeriod}>
+          <Text>저녁</Text>
+          <View style={styles.pillIcon}>
+            <Pills isCompleteDose={dinner} />
+          </View>
+        </View>
+
+        <View style={styles.dosePeriod}>
+          <Text>취침전</Text>
+          <View style={styles.pillIcon}>
+            <Pills isCompleteDose={beforeBed} />
+          </View>
+        </View>
       </View>
     </View>
   );
@@ -24,13 +70,24 @@ const DoseDays = ({ doseHistories }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    justifyContent: "center",
+    alignItems: "center",
   },
   weekView: {
     flexDirection: "row",
-  }
+  },
+  doseMarkContainer: {
+    flexDirection: "row",
+    height: 20,
+    marginTop: 25,
+  },
+  dosePeriod: {
+    height: 100,
+    marginRight: 30,
+    marginLeft: 30,
+  },
+  pillIcon: {
+    marginTop: 15,
+  },
 });
 
 export default DoseDays;
-
