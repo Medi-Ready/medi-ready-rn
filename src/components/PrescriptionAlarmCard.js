@@ -1,7 +1,10 @@
 import React from "react";
 import dayjs from "dayjs";
+import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/core";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
+
+import { setDoseHistories } from "../redux/features/doseHistorySlice";
 
 import AlarmSwitch from "./AlarmSwitch";
 
@@ -22,18 +25,24 @@ const PrescriptionAlarmCard = ({ prescriptionInfo }) => {
   const expirationDate = dayjs(expirationDateUTC).add(9, "hour").format("YYYY.MM.DD");
   const prescriptionDate = dayjs(prescriptionDateUTC).add(9, "hour").format("YYYY.MM.DD");
 
+  const dispatch = useDispatch();
+
+  const handleOnPressCard = () => {
+    dispatch(setDoseHistories(doseHistories));
+
+    navigation.navigate("Detail", {
+      medicines,
+      description,
+      pharmacyName,
+      expirationDate,
+      prescriptionDate,
+    });
+  };
+
   return (
     <TouchableOpacity
       style={styles.container}
-      onPress={() => navigation.navigate("Detail", {
-        medicines,
-        description,
-        pharmacyName,
-        doseHistories,
-        expirationDate,
-        prescriptionId,
-        prescriptionDate,
-      })}
+      onPress={handleOnPressCard}
     >
       <View>
         <Text style={styles.title}>{pharmacyName}</Text>
@@ -41,7 +50,11 @@ const PrescriptionAlarmCard = ({ prescriptionInfo }) => {
       </View>
 
       <View style={styles.alarmSwitch}>
-        <AlarmSwitch isAlarmOn={isAlarmOn} prescriptionId={prescriptionId} />
+        <AlarmSwitch
+          isAlarmOn={isAlarmOn}
+          doseHistories={doseHistories}
+          prescriptionId={prescriptionId}
+        />
       </View>
     </TouchableOpacity>
   );

@@ -1,6 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 import { StyleSheet, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
+
+import { setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
 
 import DayOfWeek from "./DayOfWeek";
 import DoseChecker from "./DoseChecker";
@@ -9,33 +12,22 @@ const DoseDays = ({ doseHistories }) => {
   const today = dayjs().format("YYYY-MM-DD");
   const todayDoseHistory = doseHistories.find((doseHistory) => doseHistory.date === today);
 
-  const [selectedDoseHistory, setSelectedDoseHistory] = useState(todayDoseHistory);
-
-  const {
-    morning,
-    lunch,
-    dinner,
-    before_bed: beforeBed,
-  } = selectedDoseHistory;
-
-  const [doseStatus, setDoseStatus] = useState({ morning, lunch, dinner, beforeBed });
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    setDoseStatus({ morning, lunch, dinner, beforeBed });
-  }, [selectedDoseHistory]);
+    dispatch(setSelectedDoseHistory(todayDoseHistory));
+  }, [dispatch, todayDoseHistory]);
+
+  const selectedDoseHistory = useSelector((state) => state.doseHistory.selectedDoseHistory);
 
   return (
     <View style={styles.container}>
       <DayOfWeek
         doseHistories={doseHistories}
         selectedDoseHistory={selectedDoseHistory}
-        setSelectedDoseHistory={setSelectedDoseHistory}
       />
 
-      <DoseChecker
-        doseStatus={doseStatus}
-        setDoseStatus={setDoseStatus}
-      />
+      <DoseChecker />
     </View>
   );
 };

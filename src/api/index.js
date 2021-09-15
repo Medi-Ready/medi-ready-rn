@@ -111,6 +111,29 @@ export const deletePrescription = async (prescriptionId) => {
   }
 };
 
+export const updateDoseHistory = async (doseHistoryId, newDoseHistory) => {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/api/doseHistory/${doseHistoryId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify(newDoseHistory),
+    });
+
+    if (response.ok) {
+      return await response.json();
+    }
+
+    const result = await response.json();
+
+    throw new Error(result.message);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const queuePharmacy = async (userId) => {
   try {
     const response = await fetch(`${API_SERVER_URL}/api/queue`, {

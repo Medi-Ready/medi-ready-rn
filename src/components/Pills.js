@@ -1,8 +1,15 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-const Pills = ({ dosePeriod, doseStatus, setDoseStatus }) => {
+import { updateDoseHistories, setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
+
+const Pills = ({ dosePeriod }) => {
+  const selectedDoseHistory = useSelector((state) => state.doseHistory.selectedDoseHistory);
+
+  const { dose_history_id: doseHistoryId } = selectedDoseHistory;
+
   let time = null;
 
   switch (dosePeriod) {
@@ -16,30 +23,34 @@ const Pills = ({ dosePeriod, doseStatus, setDoseStatus }) => {
       time = "dinner";
       break;
     case "취침전":
-      time = "beforeBed";
+      time = "before_bed";
       break;
   }
 
-  const isCompletedDose = doseStatus[time];
+  const [isCompetedDose, setIsCompletedDose] = useState(selectedDoseHistory[time]);
+
+  useEffect(() => {
+    setIsCompletedDose(selectedDoseHistory[time]);
+  }, [selectedDoseHistory]);
+
+  const dispatch = useDispatch();
 
   const handlePillPress = () => {
-    //send fetch
-    setDoseStatus((prev) => {
-      const status = {};
+    const newHistory = {};
 
-      for (const [key, value] of Object.entries(doseStatus)) {
-        if (key === time) {
-          status[key] = !value;
-        }
-      }
+    newHistory[time] = !selectedDoseHistory[time];
 
-      return { ...prev, ...status };
-    });
+    setIsCompletedDose((prev) => !prev);
+
+    const newDoseHistory = { ...selectedDoseHistory, ...newHistory };
+
+    dispatch(setSelectedDoseHistory(newDoseHistory));
+    dispatch(updateDoseHistories({ doseHistoryId, newDoseHistory }));
   };
 
   return (
     <TouchableOpacity onPress={handlePillPress}>
-      {isCompletedDose
+      {isCompetedDose
         ? <MaterialCommunityIcons name="pill" size={30} color="#006FF3" />
         : <MaterialCommunityIcons name="pill" size={30} color="#000" />}
     </TouchableOpacity>

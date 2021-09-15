@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
 
 import DoseDays from "../components/DoseDays";
@@ -6,13 +7,13 @@ import MedicineList from "../components/MedicineList";
 import PrescriptionGuide from "../components/PrescriptionGuide";
 
 const PrescriptionDetailScreen = ({ route }) => {
+  const doseHistories = useSelector((state) => state.doseHistory.doseHistoryList);
+
   const {
     medicines,
     description,
     pharmacyName,
-    doseHistories,
     expirationDate,
-    prescriptionId,
     prescriptionDate,
   } = route.params;
 

@@ -5,7 +5,7 @@ import logger from "redux-logger";
 import { watcherSaga } from "../../sagas/rootSaga";
 
 import userReducer from "../features/userSlice";
-import doseDaysReducer from "../features/doseDaysSlice";
+import doseHistoryReducer from "../features/doseHistorySlice";
 import prescriptionReducer from "../features/prescriptionSlice";
 import alarmSettingReducer from "../features/alarmSettingSlice";
 import pharmacyCheckInReducer from "../features/pharmacyCheckInSlice";
@@ -19,7 +19,7 @@ const middleware = process.env.NODE_ENV === "development"
 const store = configureStore({
   reducer: {
     user: userReducer,
-    doseDays: doseDaysReducer,
+    doseHistory: doseHistoryReducer,
     prescription: prescriptionReducer,
     alarmSetting: alarmSettingReducer,
     pharmacyCheckIn: pharmacyCheckInReducer,

@@ -3,7 +3,7 @@ import { StyleSheet, ScrollView } from "react-native";
 
 import Day from "./Day";
 
-const DayOfWeek = ({ doseHistories, selectedDoseHistory, setSelectedDoseHistory }) => {
+const DayOfWeek = ({ doseHistories, selectedDoseHistory }) => {
   return (
     <ScrollView
       horizontal={true}
@@ -18,7 +18,6 @@ const DayOfWeek = ({ doseHistories, selectedDoseHistory, setSelectedDoseHistory 
             key={doseHistoryId}
             doseHistory={doseHistory}
             selectedDoseHistory={selectedDoseHistory}
-            setSelectedDoseHistory={setSelectedDoseHistory}
           />
         );
       })}
@@ -34,4 +33,3 @@ const styles = StyleSheet.create({
 });
 
 export default DayOfWeek;
-

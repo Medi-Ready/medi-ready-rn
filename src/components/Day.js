@@ -1,8 +1,11 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
-const Day = ({ doseHistory, selectedDoseHistory, setSelectedDoseHistory }) => {
+import { setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
+
+const Day = ({ doseHistory, selectedDoseHistory }) => {
   const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
 
   const { date } = doseHistory;
@@ -12,8 +15,10 @@ const Day = ({ doseHistory, selectedDoseHistory, setSelectedDoseHistory }) => {
   const monthAndDate = dayjs(date).format("MM/DD");
   const isSelected = date === selectedDate;
 
+  const dispatch = useDispatch();
+
   const handleSelectDay = () => {
-    setSelectedDoseHistory(doseHistory);
+    dispatch(setSelectedDoseHistory(doseHistory));
   };
 
   return (
