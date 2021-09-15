@@ -8,6 +8,7 @@ import {
   setUserInfo,
   deleteUserInfo,
 } from "../../redux/features/userSlice";
+import wait from "../../utils/delay";
 
 export function* handleLogin() {
   try {
@@ -19,6 +20,8 @@ export function* handleLogin() {
     }
 
     const { result, data } = yield call(loginRequest, userData);
+
+    yield call(wait, 2000);
 
     result === "success"
       ? yield put(setUserInfo(data))
@@ -32,6 +35,8 @@ export function* handleLogout() {
   try {
     const response = yield call(logoutRequest);
 
+    yield call(wait, 2000);
+
     response.result === "success"
       ? yield put(deleteUserInfo())
       : yield put(cancelLogin());
@@ -43,6 +48,8 @@ export function* handleLogout() {
 export function* handleAuthCheck() {
   try {
     const { result, data } = yield call(authCheck);
+
+    yield call(wait, 2000);
 
     result === "success"
       ? yield put(setUserInfo(data))

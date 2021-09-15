@@ -1,11 +1,24 @@
-import React, { useState } from "react";
+import React from "react";
+import { useDispatch } from "react-redux";
+import dayjs from "dayjs";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
-const Day = ({ day }) => {
-  const [isSelected, setIsSelected] = useState(false);
+import { setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
+
+const Day = ({ doseHistory, selectedDoseHistory }) => {
+  const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+
+  const { date } = doseHistory;
+  const { date: selectedDate } = selectedDoseHistory;
+
+  const dayIndex = dayjs(date).day();
+  const monthAndDate = dayjs(date).format("MM/DD");
+  const isSelected = date === selectedDate;
+
+  const dispatch = useDispatch();
 
   const handleSelectDay = () => {
-    setIsSelected((prev) => !prev);
+    dispatch(setSelectedDoseHistory(doseHistory));
   };
 
   return (
@@ -13,8 +26,12 @@ const Day = ({ day }) => {
       style={isSelected ? styles.selected : styles.default}
       onPress={handleSelectDay}
     >
-      <Text style={isSelected ? styles.selectedText : styles.defaultText}>
-        {day}
+      <Text style={isSelected ? styles.selectedMonthAndDay : styles.defaultMonthAndDay}>
+        {monthAndDate}
+      </Text>
+
+      <Text style={isSelected ? styles.selectedDayOfWeek : styles.defaultDayOfWeek}>
+        {dayOfWeek[dayIndex]}
       </Text>
     </TouchableOpacity>
   );
@@ -26,26 +43,42 @@ const styles = StyleSheet.create({
   default: {
     justifyContent: "center",
     alignItems: "center",
-    height: 50,
-    width: 40,
-    marginLeft: 7,
-    borderWidth: 1,
+    height: 60,
+    width: 50,
+    margin: 7,
     borderRadius: 10,
-    borderColor: "gray",
+    backgroundColor: "#FFF",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.12,
+    shadowRadius: 2,
+    elevation: 2,
   },
-  defaultText: {
+  defaultMonthAndDay: {
+    color: "#000",
+  },
+  defaultDayOfWeek: {
+    marginTop: 5,
     color: "#000",
   },
   selected: {
     justifyContent: "center",
     alignItems: "center",
-    height: 50,
-    width: 40,
+    height: 60,
+    width: 50,
     marginLeft: 7,
+    marginRight: 7,
     borderRadius: 10,
-    backgroundColor: "blue",
+    backgroundColor: "#006FF3",
   },
-  selectedText: {
+  selectedMonthAndDay: {
+    color: "#FFF",
+  },
+  selectedDayOfWeek: {
+    marginTop: 5,
     color: "#FFF",
   },
 });

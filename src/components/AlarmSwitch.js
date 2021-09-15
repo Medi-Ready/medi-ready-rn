@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { StyleSheet, Switch } from "react-native";
+import { Switch } from "react-native";
 
-const AlarmSwitch = ({ isAlarmOn }) => {
+const AlarmSwitch = ({ isAlarmOn, doseHistories, prescriptionId }) => {
   const [isAlarmEnabled, setIsAlarmEnabled] = useState(isAlarmOn);
 
   const toggleSwitch = () => {
@@ -10,20 +10,10 @@ const AlarmSwitch = ({ isAlarmOn }) => {
 
   return (
     <Switch
-      style={styles.alarmSwitch}
       onValueChange={toggleSwitch}
       value={isAlarmEnabled}
     />
   );
 };
 
-const styles = StyleSheet.create({
-  alarmSwitch: {
-    position: "absolute",
-    top: 15,
-    right: 15,
-  },
-});
-
 export default AlarmSwitch;
-

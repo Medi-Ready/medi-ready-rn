@@ -19,9 +19,6 @@ const HistoryStatus = ({ expirationDate }) => {
 
 const styles = StyleSheet.create({
   expired: {
-    position: "absolute",
-    right: 12,
-    top: 15,
     justifyContent: "center",
     alignItems: "center",
     height: 23,
@@ -30,9 +27,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFE5E5",
   },
   progress: {
-    position: "absolute",
-    right: 12,
-    top: 10,
     justifyContent: "center",
     alignItems: "center",
     height: 23,

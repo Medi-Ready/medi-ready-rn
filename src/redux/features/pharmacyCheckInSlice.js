@@ -19,6 +19,8 @@ export const pharmacyCheckInSlice = createSlice({
     },
     checkIn: (state, action) => {
       state.isLoading = true;
+      state.scanned = false;
+      state.error = null;
     },
     setScanned: (state, action) => {
       state.scanned = action.payload;
@@ -29,6 +31,7 @@ export const pharmacyCheckInSlice = createSlice({
       state.isLoading = false;
     },
     setError: (state, action) => {
+      state.isLoading = false;
       state.error = action.payload;
     },
   },

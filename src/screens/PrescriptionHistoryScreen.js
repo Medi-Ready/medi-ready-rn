@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { SafeAreaView, FlatList, StyleSheet } from "react-native";
+import { View, StyleSheet } from "react-native";
 
 import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 
-import PrescriptionHistoryCard from "../components/PrescriptionHistoryCard";
+import NoPrescriptions from "../components/shared/NoPrescriptions";
+import PrescriptionHistoryList from "../components/PrescriptionHistoryList";
 
 const PrescriptionHistoryScreen = ({ navigation }) => {
   const isLoading = useSelector((state) => state.prescription.isLoading);
@@ -22,19 +23,18 @@ const PrescriptionHistoryScreen = ({ navigation }) => {
     dispatch(getPrescriptionList());
   };
 
-  const renderItem = ({ item }) => <PrescriptionHistoryCard prescriptionInfo={item} />;
+  if (!prescriptionList.length) {
+    return <NoPrescriptions />;
+  }
 
   return (
-    <SafeAreaView style={styles.container}>
-      <FlatList
-        style={styles.prescriptionList}
-        data={prescriptionList}
-        renderItem={renderItem}
-        keyExtractor={prescription => `${prescription.prescription_id}history`}
-        refreshing={isLoading}
-        onRefresh={handleRefresh}
+    <View style={styles.container}>
+      <PrescriptionHistoryList
+        isLoading={isLoading}
+        handleRefresh={handleRefresh}
+        prescriptionList={prescriptionList}
       />
-    </SafeAreaView>
+    </View>
   );
 };
 
@@ -42,9 +42,6 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-  },
-  prescriptionList: {
-    flex: 1,
   },
 });
 

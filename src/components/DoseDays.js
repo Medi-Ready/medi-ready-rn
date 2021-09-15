@@ -1,23 +1,33 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { StyleSheet, View } from "react-native";
+import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
-import { StyleSheet, View, Text } from "react-native";
 
-import Day from "./Day";
+import { setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
+
+import DayOfWeek from "./DayOfWeek";
+import DoseChecker from "./DoseChecker";
 
 const DoseDays = ({ doseHistories }) => {
-  const selectedDay = dayjs().format("MM/DD");
+  const today = dayjs().format("YYYY-MM-DD");
+  const todayDoseHistory = doseHistories.find((doseHistory) => doseHistory.date === today);
 
-  const daysInWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(setSelectedDoseHistory(todayDoseHistory));
+  }, [dispatch, todayDoseHistory]);
+
+  const selectedDoseHistory = useSelector((state) => state.doseHistory.selectedDoseHistory);
 
   return (
     <View style={styles.container}>
-      <View>
-        <Text>{selectedDay}</Text>
-      </View>
+      <DayOfWeek
+        doseHistories={doseHistories}
+        selectedDoseHistory={selectedDoseHistory}
+      />
 
-      <View style={styles.weekView}>
-        {daysInWeek.map((day) => <Day day={day} />)}
-      </View>
+      <DoseChecker />
     </View>
   );
 };
@@ -25,12 +35,8 @@ const DoseDays = ({ doseHistories }) => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
+    alignItems: "center",
   },
-  weekView: {
-    flexDirection: "row",
-  }
 });
 
 export default DoseDays;
-
