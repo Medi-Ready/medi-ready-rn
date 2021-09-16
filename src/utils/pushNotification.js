@@ -1,9 +1,9 @@
 import * as Notifications from "expo-notifications";
-import * as SecureStore from "expo-secure-store";
 import Constants from "expo-constants";
 
 export const registerForPushNotificationsAsync = async () => {
   let token;
+
   if (Constants.isDevice) {
     const { status: existingStatus } = await Notifications.getPermissionsAsync();
 
@@ -33,5 +33,5 @@ export const registerForPushNotificationsAsync = async () => {
     });
   }
 
-  await SecureStore.setItemAsync("notificationtoken", token);
+  return token;
 };
