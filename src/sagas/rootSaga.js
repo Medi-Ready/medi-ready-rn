@@ -1,14 +1,16 @@
-import { all, takeLatest } from "@redux-saga/core/effects";
+import { all, takeLatest, throttle } from "@redux-saga/core/effects";
 
 import { updateDoseHistories } from "../redux/features/doseHistorySlice";
 import { getPrescriptionList } from "../redux/features/prescriptionSlice";
 import { openScanner, checkIn } from "../redux/features/pharmacyCheckInSlice";
 import { saveAlarm, getAlarmTime } from "../redux/features/alarmSettingSlice";
 import { login, logout, checkAuthentication } from "../redux/features/userSlice";
+import { registerPushNotification } from "../redux/features/pushNotificationSlice";
 
 import { handlePrescriptionList } from "./handlers/prescriptions";
 import { handleUpdateDoseHistories } from "./handlers/doseHistory";
 import { handleLogin, handleAuthCheck, handleLogout } from "./handlers/auth";
+import { handlePushNotificationPermission } from "./handlers/pushNotification";
 import { handleCameraPermission, handlePharmacyCheckIn } from "./handlers/checkIn";
 import { handleAlarmSetting, handleLoginAlarmSetting } from "./handlers/alarmSetting";
 
@@ -18,7 +20,7 @@ export function* watcherSaga() {
     takeLatest(logout.type, handleLogout),
     takeLatest(checkAuthentication.type, handleAuthCheck),
 
-    takeLatest(saveAlarm.type, handleAlarmSetting),
+    throttle(500, saveAlarm.type, handleAlarmSetting),
     takeLatest(getAlarmTime.type, handleLoginAlarmSetting),
 
     takeLatest(checkIn.type, handlePharmacyCheckIn),
@@ -27,5 +29,7 @@ export function* watcherSaga() {
     takeLatest(getPrescriptionList.type, handlePrescriptionList),
 
     takeLatest(updateDoseHistories, handleUpdateDoseHistories),
+
+    takeLatest(registerPushNotification, handlePushNotificationPermission),
   ]);
 }
