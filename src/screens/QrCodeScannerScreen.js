@@ -1,11 +1,12 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { StyleSheet, Text, View, Button } from "react-native";
+import { StyleSheet, View, Button } from "react-native";
+import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
+
 import { openScanner, checkIn } from "../redux/features/pharmacyCheckInSlice";
 
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import LoadingScreen from "./LoadingScreen";
+import QRLoadingScreen from "../screens/QRLoadingScreen";
 
 const QrCodeScannerScreen = ({ navigation }) => {
   const error = useSelector((state) => state.pharmacyCheckIn.error);
@@ -26,7 +27,7 @@ const QrCodeScannerScreen = ({ navigation }) => {
   };
 
   if (hasPermission === null || isLoading) {
-    return <LoadingScreen />;
+    return <QRLoadingScreen />;
   }
 
   if (hasPermission === false) {
