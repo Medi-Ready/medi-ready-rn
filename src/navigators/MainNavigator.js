@@ -2,6 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import * as Notifications from "expo-notifications";
+import { registerForPushNotificationsAsync } from "../utils/pushNotification";
 import { getAlarmTime } from "../redux/features/alarmSettingSlice";
 
 import ErrorScreen from "../screens/ErrorScreen";
@@ -16,7 +18,16 @@ const Stack = createNativeStackNavigator();
 const MainNavigator = () => {
   const dispatch = useDispatch();
 
+  Notifications.setNotificationHandler({
+    handleNotification: async () => ({
+      shouldShowAlert: true,
+      shouldPlaySound: true,
+      shouldSetBadge: true,
+    }),
+  });
+
   useEffect(() => {
+    registerForPushNotificationsAsync();
     dispatch(getAlarmTime());
   }, []);
 
