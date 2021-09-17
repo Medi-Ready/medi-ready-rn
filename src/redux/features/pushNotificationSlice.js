@@ -3,6 +3,8 @@ import { createSlice } from "@reduxjs/toolkit";
 const initialState = {
   error: null,
   isLoading: false,
+  pushNotificationList: [],
+  pushNotificationBadge: 0,
 };
 
 export const pushNotificationSlice = createSlice({
@@ -22,13 +24,21 @@ export const pushNotificationSlice = createSlice({
       state.isLoading = false;
       state.error = action.payload;
     },
+    savePushNotification: (state, action) => {
+      state.pushNotificationList.push(action.payload);
+      state.pushNotificationBadge++;
+    },
+    deletePushNotification: (state, action) => {
+      state.pushNotificationBadge--;
+    },
   },
 });
 
 export const {
+  savePushNotification,
+  failNotificationRegister,
   registerPushNotification,
   successNotificationRegister,
-  failNotificationRegister,
 } = pushNotificationSlice.actions;
 
 export default pushNotificationSlice.reducer;

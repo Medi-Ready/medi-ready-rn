@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
+import dayjs from "dayjs";
 import { useDispatch } from "react-redux";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import * as Notifications from "expo-notifications";
 import { getAlarmTime } from "../redux/features/alarmSettingSlice";
-import { registerPushNotification } from "../redux/features/pushNotificationSlice";
+import { registerPushNotification, savePushNotification } from "../redux/features/pushNotificationSlice";
 
 import ErrorScreen from "../screens/ErrorScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
@@ -24,6 +25,17 @@ const MainNavigator = () => {
       shouldPlaySound: true,
       shouldSetBadge: true,
     }),
+  });
+
+  useEffect(() => {
+    const subscription = Notifications.addNotificationReceivedListener(notification => {
+      const { content: { body, title }, identifier } = notification.request;
+      const receivedTime = dayjs(notification.date).format("hh시 mm분");
+
+      dispatch(savePushNotification({ body, title, identifier, receivedTime }));
+    });
+
+    return () => subscription.remove();
   });
 
   useEffect(() => {

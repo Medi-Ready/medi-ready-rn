@@ -1,27 +1,29 @@
 import React from "react";
-import { View, Text, StyleSheet } from "react-native";
+import { useSelector } from "react-redux";
+import { View, Text, StyleSheet, FlatList } from "react-native";
 
 import PushNotificationCard from "../components/PushNotificationCard";
 
 const PushAlarmListScreen = () => {
-  const newPushNotificationList = [];
-  const pastPushNotificationList = [];
+  const notificationList = useSelector((state) => state.pushNotification.pushNotificationList);
+  const notificationBadge = useSelector((state) => state.pushNotification.pushNotificationBadge);
+
+  const renderItem = ({ item }) => <PushNotificationCard notificationInfo={item} />;
 
   return (
     <View style={styles.container}>
-      <View style={styles.newNotification}>
-        <Text style={styles.dividerText}>
-          NEW
-        </Text>
+      <View style={styles.notification}>
+        <Text style={styles.dividerText}>💊  알림목록  💊</Text>
       </View>
-      <PushNotificationCard />
 
-      <View style={styles.pastNotification}>
-        <Text style={styles.dividerText}>
-          Past
-        </Text>
-      </View>
-      <PushNotificationCard />
+      <FlatList
+        contentContainerStyle={styles.notificationList}
+        data={notificationList}
+        renderItem={renderItem}
+        keyExtractor={(notification) => `${notification.identifier}-${notificationBadge}`}
+        showsVerticalScrollIndicator={false}
+      />
+
     </View>
   );
 };
@@ -31,21 +33,19 @@ const styles = StyleSheet.create({
     flex: 1,
     alignItems: "center",
   },
-  newNotification: {
+  notification: {
     alignItems: "center",
     width: 150,
-    marginVertical: 30,
-    borderBottomWidth: 1,
-  },
-  pastNotification: {
-    alignItems: "center",
-    width: 150,
-    marginVertical: 30,
-    borderBottomWidth: 1,
+    marginTop: 30,
   },
   dividerText: {
-    fontSize: 15,
+    fontSize: 20,
     marginBottom: 5,
+  },
+  notificationList: {
+    flexGrow: 1,
+    alignItems: "center",
+    padding: 10,
   },
 });
 
