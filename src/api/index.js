@@ -1,4 +1,6 @@
-import { API_SERVER_URL } from "@env";
+import getEnvVars from "../../environment";
+
+const { API_SERVER_URL } = getEnvVars();
 
 export const loginRequest = async (userData) => {
   try {
