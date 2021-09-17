@@ -9,6 +9,7 @@ import doseHistoryReducer from "../features/doseHistorySlice";
 import prescriptionReducer from "../features/prescriptionSlice";
 import alarmSettingReducer from "../features/alarmSettingSlice";
 import pharmacyCheckInReducer from "../features/pharmacyCheckInSlice";
+import pushNotificationReducer from "../features/pushNotificationSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -23,6 +24,7 @@ const store = configureStore({
     prescription: prescriptionReducer,
     alarmSetting: alarmSettingReducer,
     pharmacyCheckIn: pharmacyCheckInReducer,
+    pushNotification: pushNotificationReducer,
   },
   middleware,
 });

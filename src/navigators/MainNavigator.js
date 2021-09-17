@@ -1,10 +1,11 @@
 import React, { useEffect } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import AppLoading from "expo-app-loading";
 import * as Notifications from "expo-notifications";
-import { registerForPushNotificationsAsync } from "../utils/pushNotification";
 import { getAlarmTime } from "../redux/features/alarmSettingSlice";
+import { registerPushNotification } from "../redux/features/pushNotificationSlice";
 
 import ErrorScreen from "../screens/ErrorScreen";
 import BottomTabNavigator from "./BottomTabNavigator";
@@ -16,6 +17,8 @@ import PrescriptionHistoryDetailScreen from "../screens/PrescriptionHistoryDetai
 const Stack = createNativeStackNavigator();
 
 const MainNavigator = () => {
+  const isLoading = useSelector((state) => state.pushNotification.isLoading);
+
   const dispatch = useDispatch();
 
   Notifications.setNotificationHandler({
@@ -27,9 +30,15 @@ const MainNavigator = () => {
   });
 
   useEffect(() => {
-    registerForPushNotificationsAsync();
+    dispatch(registerPushNotification());
     dispatch(getAlarmTime());
   }, []);
+
+  if (isLoading) {
+    return (
+      <AppLoading/>
+    );
+  }
 
   return (
     <Stack.Navigator initialRouteName="BottomTabNavigator">
