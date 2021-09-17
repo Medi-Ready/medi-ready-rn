@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 const NoPrescriptions = () => {
   return (
     <View style={styles.container}>
-      <Text>아직 처방전을 받지 않았습니다!</Text>
+      <Text>유효한 처방전이 없습니다!</Text>
     </View>
   );
 };

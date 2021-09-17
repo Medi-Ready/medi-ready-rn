@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 const MedicineList = ({ medicines }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>처방 약</Text>
+      <Text style={styles.title}>💊 처방 약</Text>
       {medicines.map((medicine) => {
         return (
           <View style={styles.medicineNameBox} key={medicine.medicine_id}>
@@ -20,7 +20,6 @@ const MedicineList = ({ medicines }) => {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
     alignItems: "center",
   },
   title: {

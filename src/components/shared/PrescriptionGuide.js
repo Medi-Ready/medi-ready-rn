@@ -4,7 +4,7 @@ import { StyleSheet, Text, View } from "react-native";
 const PrescriptionGuide = ({ description }) => {
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>복약 지도</Text>
+      <Text style={styles.title}>🩺 복약 지도</Text>
       <View style={styles.descriptionContainer}>
         <Text>{description}</Text>
       </View>

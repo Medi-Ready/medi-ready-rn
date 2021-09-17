@@ -1,12 +1,20 @@
-import React from "react";
-import { useSelector } from "react-redux";
-import { ScrollView, View, Text, TouchableOpacity, StyleSheet } from "react-native";
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { ScrollView, View, Text, StyleSheet } from "react-native";
+import { Button } from "react-native-elements/dist/buttons/Button";
+import { useNavigation } from "@react-navigation/core";
+
+import { deletePrescription } from "../redux/features/prescriptionSlice";
 
 import DoseDays from "../components/DoseDays";
-import MedicineList from "../components/MedicineList";
-import PrescriptionGuide from "../components/PrescriptionGuide";
+import MedicineList from "../components/shared/MedicineList";
+import PrescriptionGuide from "../components/shared/PrescriptionGuide";
+import UserConfirmModal from "../components/shared/UserConfirmModal";
 
 const PrescriptionDetailScreen = ({ route }) => {
+  const [deleteModalVisible, setDeleteModalVisible] = useState(false);
+
+  const isLoading = useSelector((state) => state.prescription.isLoading);
   const doseHistories = useSelector((state) => state.doseHistory.doseHistoryList);
 
   const {
@@ -14,11 +22,21 @@ const PrescriptionDetailScreen = ({ route }) => {
     description,
     pharmacyName,
     expirationDate,
+    prescriptionId,
     prescriptionDate,
   } = route.params;
 
-  const handlePrescriptionDelete = () => {
+  const showDeleteConfirmModal = () => {
+    setDeleteModalVisible(true);
+  };
 
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
+
+  const handlePrescriptionDelete = () => {
+    dispatch(deletePrescription(prescriptionId));
+    setDeleteModalVisible(false);
+    navigation.goBack();
   };
 
   return (
@@ -46,13 +64,22 @@ const PrescriptionDetailScreen = ({ route }) => {
           <MedicineList medicines={medicines} />
         </View>
 
-        <TouchableOpacity
-          style={styles.deleteButton}
-          onPress={handlePrescriptionDelete}
-        >
-          <Text style={styles.deleteButtonText}>Delete this Prescription</Text>
-        </TouchableOpacity>
+        <Button
+          title="처방전 삭제"
+          type="clear"
+          loading={isLoading}
+          onPress={showDeleteConfirmModal}
+          containerStyle={styles.deleteButton}
+          titleStyle={styles.deleteButtonText}
+        />
       </ScrollView>
+
+      <UserConfirmModal
+        isVisible={deleteModalVisible}
+        setIsVisible={setDeleteModalVisible}
+        handleConfirm={handlePrescriptionDelete}
+        description="처방전을 삭제하시겠습니까?"
+      />
     </View>
   );
 };
@@ -80,13 +107,13 @@ const styles = StyleSheet.create({
     marginTop: 25,
   },
   prescriptionGuide: {
-    marginTop: 70,
+    marginTop: 40,
   },
   medicineList: {
     marginTop: 25,
   },
   deleteButton: {
-    marginVertical: 30,
+    marginVertical: 20,
     marginHorizontal: 100,
   },
   deleteButtonText: {
