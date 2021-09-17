@@ -1,30 +1,19 @@
 import React, { useEffect } from "react";
-import { Text } from "react-native";
-import { useSelector, useDispatch } from "react-redux";
-
 import { StatusBar } from "expo-status-bar";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import { useSelector, useDispatch } from "react-redux";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
+import { lightTheme } from "../theme/navigationTheme";
 import { checkAuthentication } from "../redux/features/userSlice";
 
 import MainNavigator from "./MainNavigator";
 import LoginScreen from "../screens/LoginScreen";
 import LoadingScreen from "../screens/LoadingScreen";
 
-const MyTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: "#FFF",
-    border: "#FFF",
-  },
-};
-
 const AppStack = createNativeStackNavigator();
 
 const AppNavigator = () => {
-  const error = useSelector((state) => state.user.error);
   const userInfo = useSelector((state) => state.user.userInfo);
   const isLoading = useSelector((state) => state.user.isLoading);
 
@@ -34,16 +23,12 @@ const AppNavigator = () => {
     dispatch(checkAuthentication());
   }, []);
 
-  if (error) {
-    return <Text>{error.message}</Text>;
-  }
-
   if (isLoading) {
     return <LoadingScreen />;
   }
 
   return (
-    <NavigationContainer theme={MyTheme}>
+    <NavigationContainer theme={lightTheme}>
       <AppStack.Navigator>
         {userInfo ? (
           <AppStack.Screen
