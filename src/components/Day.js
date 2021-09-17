@@ -3,10 +3,19 @@ import { useDispatch } from "react-redux";
 import dayjs from "dayjs";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
+import { DAY_OF_WEEK_KR } from "../constants/dosePeriod";
 import { setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
 
 const Day = ({ doseHistory, selectedDoseHistory }) => {
-  const dayOfWeek = ["일", "월", "화", "수", "목", "금", "토"];
+  const dayOfWeek = [
+    DAY_OF_WEEK_KR.SUN,
+    DAY_OF_WEEK_KR.MON,
+    DAY_OF_WEEK_KR.TUE,
+    DAY_OF_WEEK_KR.WED,
+    DAY_OF_WEEK_KR.TRU,
+    DAY_OF_WEEK_KR.FRI,
+    DAY_OF_WEEK_KR.SAT,
+  ];
 
   const { date } = doseHistory;
   const { date: selectedDate } = selectedDoseHistory;

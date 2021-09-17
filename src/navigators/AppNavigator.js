@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import { lightTheme } from "../theme/navigationTheme";
+import { LIGHT_THEME } from "../theme/navigationTheme";
 import { checkAuthentication } from "../redux/features/userSlice";
 
 import MainNavigator from "./MainNavigator";
@@ -28,7 +28,7 @@ const AppNavigator = () => {
   }
 
   return (
-    <NavigationContainer theme={lightTheme}>
+    <NavigationContainer theme={LIGHT_THEME}>
       <AppStack.Navigator>
         {userInfo ? (
           <AppStack.Screen
