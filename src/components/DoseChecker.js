@@ -27,7 +27,7 @@ const DoseChecker = () => {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    height: 20,
+    height: 50,
     marginTop: 25,
   },
   dosePeriod: {

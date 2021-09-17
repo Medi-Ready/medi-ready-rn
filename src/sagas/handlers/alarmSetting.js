@@ -33,7 +33,7 @@ export function* handleAlarmSetting(action) {
         morning,
         lunch,
         dinner,
-        before_bed: beforeBed,
+        beforeBed,
       } = data;
 
       yield put(completeAlarmSetting({ morning, lunch, dinner, beforeBed }));
