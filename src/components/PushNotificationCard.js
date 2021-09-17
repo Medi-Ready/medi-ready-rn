@@ -1,10 +1,14 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
-const PushNotificationCard = () => {
+const PushNotificationCard = ({ notificationInfo }) => {
+  const { title, body, receivedTime } = notificationInfo;
+
   return (
     <View style={styles.container}>
-      <Text>Push Alarm Card</Text>
+      <Text>{receivedTime}</Text>
+      <Text>{`⏰ ${title} ⏰`}</Text>
+      <Text>{body}</Text>
     </View>
   );
 };
@@ -14,6 +18,7 @@ const styles = StyleSheet.create({
     width: 320,
     minHeight: 80,
     padding: 20,
+    marginTop: 20,
     borderRadius: 10,
     backgroundColor: "#FFF",
     shadowColor: "#000",

@@ -7,7 +7,7 @@ export function* handleCameraPermission() {
   try {
     const status = yield call(requestCameraPermissions);
 
-    yield delay(200);
+    yield delay(500);
 
     yield put(setPermission(status));
   } catch (error) {

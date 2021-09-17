@@ -1,4 +1,5 @@
 import React from "react";
+import { useSelector } from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
@@ -11,6 +12,8 @@ import PushAlarmListScreen from "../screens/PushAlarmListScreen";
 const BottomTab = createBottomTabNavigator();
 
 const BottomTabNavigator = () => {
+  const pushNotificationBadge = useSelector((state) => state.pushNotification.pushNotificationBadge);
+
   return (
     <BottomTab.Navigator
       screenOptions={({ route }) => ({
@@ -39,7 +42,7 @@ const BottomTabNavigator = () => {
     >
       <BottomTab.Screen name="Dashboard" component={DashboardScreen} />
       <BottomTab.Screen name="History" component={PrescriptionHistory} />
-      <BottomTab.Screen name="Alarm" component={PushAlarmListScreen} options={{ tabBarBadge: 3 }} />
+      <BottomTab.Screen name="Alarm" component={PushAlarmListScreen} options={{ tabBarBadge: pushNotificationBadge }} />
       <BottomTab.Screen name="Settings" component={SettingsScreen} />
     </BottomTab.Navigator >
   );
