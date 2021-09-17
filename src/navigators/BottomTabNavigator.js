@@ -42,7 +42,7 @@ const BottomTabNavigator = () => {
     >
       <BottomTab.Screen name="Dashboard" component={DashboardScreen} />
       <BottomTab.Screen name="History" component={PrescriptionHistory} />
-      <BottomTab.Screen name="Alarm" component={PushAlarmListScreen} options={{ tabBarBadge: pushNotificationBadge }} />
+      <BottomTab.Screen name="Alarm" component={PushAlarmListScreen} options={{ tabBarBadge: !pushNotificationBadge ? null : pushNotificationBadge }} />
       <BottomTab.Screen name="Settings" component={SettingsScreen} />
     </BottomTab.Navigator >
   );

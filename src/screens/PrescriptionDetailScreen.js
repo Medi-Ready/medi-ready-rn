@@ -78,7 +78,7 @@ const PrescriptionDetailScreen = ({ route }) => {
         isVisible={deleteModalVisible}
         setIsVisible={setDeleteModalVisible}
         handleConfirm={handlePrescriptionDelete}
-        description="처방전을 삭제하시겠습니까?"
+        description="처방전 알림을 삭제하시겠습니까?"
       />
     </View>
   );

@@ -1,26 +1,32 @@
 import React from "react";
-import { useSelector } from "react-redux";
-import { View, Text, StyleSheet, FlatList } from "react-native";
+import { useSelector, useDispatch } from "react-redux";
+import { View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native";
 
 import PushNotificationCard from "../components/PushNotificationCard";
+import { deleteAllNotification } from "../redux/features/pushNotificationSlice";
 
 const PushAlarmListScreen = () => {
   const notificationList = useSelector((state) => state.pushNotification.pushNotificationList);
-  const notificationBadge = useSelector((state) => state.pushNotification.pushNotificationBadge);
+
+  const dispatch = useDispatch();
+
+  const handleDeleteAll = () => {
+    dispatch(deleteAllNotification());
+  };
 
   const renderItem = ({ item }) => <PushNotificationCard notificationInfo={item} />;
 
   return (
     <View style={styles.container}>
-      <View style={styles.notification}>
-        <Text style={styles.dividerText}>💊  알림목록  💊</Text>
-      </View>
+      <TouchableOpacity style={styles.menu} onPress={handleDeleteAll}>
+        <Text styles={styles.deleteAll}>모두 지우기</Text>
+      </TouchableOpacity>
 
       <FlatList
         contentContainerStyle={styles.notificationList}
         data={notificationList}
         renderItem={renderItem}
-        keyExtractor={(notification) => `${notification.identifier}-${notificationBadge}`}
+        keyExtractor={(notification) => `${notification.id}`}
         showsVerticalScrollIndicator={false}
       />
 
@@ -31,20 +37,16 @@ const PushAlarmListScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  menu: {
+    paddingTop: 10,
     alignItems: "center",
   },
-  notification: {
-    alignItems: "center",
-    width: 150,
-    marginTop: 30,
-  },
-  dividerText: {
+  deleteAll: {
     fontSize: 20,
-    marginBottom: 5,
   },
   notificationList: {
     flexGrow: 1,
-    alignItems: "center",
     padding: 10,
   },
 });
