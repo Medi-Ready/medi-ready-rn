@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { View, StyleSheet } from "react-native";
 
-import { getPrescriptionList } from "../redux/features/prescriptionSlice";
+import { getPrescriptionList } from "../redux/features/prescriptionListSlice";
 
 import NoPrescriptions from "../components/shared/NoPrescriptions";
 import PrescriptionHistoryList from "../components/PrescriptionHistoryList";
 
 const PrescriptionHistoryScreen = ({ navigation }) => {
-  const isLoading = useSelector((state) => state.prescription.isLoading);
-  const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
+  const isLoading = useSelector((state) => state.prescriptionList.isLoading);
+  const prescriptionList = useSelector((state) => state.prescriptionList.prescriptionList);
 
   const dispatch = useDispatch();
 

@@ -1,16 +1,16 @@
 import React from "react";
 import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
 
-import MedicineList from "../components/MedicineList";
+import MedicineList from "../components/shared/MedicineList";
 import HistoryStatus from "../components/shared/HistoryStatus";
-import PrescriptionGuide from "../components/PrescriptionGuide";
+import PrescriptionGuide from "../components/shared/PrescriptionGuide";
 
 const PrescriptionHistoryDetailScreen = ({ route }) => {
   const {
     medicines,
+    isDeleted,
     description,
     pharmacyName,
-    doseHistories,
     pharmacistName,
     expirationDate,
     pharmacyAddress,
@@ -19,7 +19,7 @@ const PrescriptionHistoryDetailScreen = ({ route }) => {
   } = route.params;
 
   return (
-    <ScrollView style={styles.container}>
+    <ScrollView contentContainerStyle={styles.container}>
       <View style={styles.pharmacyInfo}>
         <Text style={styles.name}>{pharmacyName}</Text>
         <Text style={styles.address}>{pharmacyAddress}</Text>
@@ -36,11 +36,16 @@ const PrescriptionHistoryDetailScreen = ({ route }) => {
         <Text>{`${pharmacistName} 약사`}</Text>
       </View>
 
-      <MedicineList medicines={medicines} />
-      <PrescriptionGuide description={description} />
+      <View style={styles.medicineList}>
+        <MedicineList medicines={medicines} />
+      </View>
+
+      <View style={styles.prescriptionGuide}>
+        <PrescriptionGuide description={description} />
+      </View>
 
       <View style={styles.historyStatus}>
-        <HistoryStatus expirationDate={expirationDate} />
+        <HistoryStatus expirationDate={expirationDate} isDeleted={isDeleted}/>
       </View>
     </ScrollView>
   );
@@ -49,12 +54,12 @@ const PrescriptionHistoryDetailScreen = ({ route }) => {
 const styles = StyleSheet.create({
   container: {
     position: "relative",
-    flex: 1,
-    marginHorizontal: 20,
+    flexGrow: 1,
+    alignItems: "center",
     marginTop: 20,
   },
   pharmacyInfo: {
-    marginLeft: 5,
+    width: 320,
   },
   name: {
     fontSize: 30,
@@ -70,6 +75,7 @@ const styles = StyleSheet.create({
   pharmacistInfo: {
     flexDirection: "row",
     alignItems: "center",
+    width: 320,
     marginTop: 30,
     marginBottom: 20,
     paddingBottom: 10,
@@ -84,8 +90,12 @@ const styles = StyleSheet.create({
   },
   historyStatus: {
     position: "absolute",
-    right: 0,
+    right: 20,
     top: 8,
+  },
+  medicineList: {
+    marginTop: 20,
+    marginBottom: 30,
   },
 });
 
