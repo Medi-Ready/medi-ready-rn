@@ -6,10 +6,11 @@ import { watcherSaga } from "../../sagas/rootSaga";
 
 import userReducer from "../features/userSlice";
 import doseHistoryReducer from "../features/doseHistorySlice";
-import prescriptionReducer from "../features/prescriptionSlice";
 import alarmSettingReducer from "../features/alarmSettingSlice";
+import prescriptionReducer from "../features/prescriptionSlice";
 import pharmacyCheckInReducer from "../features/pharmacyCheckInSlice";
 import pushNotificationReducer from "../features/pushNotificationSlice";
+import prescriptionListReducer from "../features/prescriptionListSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 
@@ -24,6 +25,7 @@ const store = configureStore({
     prescription: prescriptionReducer,
     alarmSetting: alarmSettingReducer,
     pharmacyCheckIn: pharmacyCheckInReducer,
+    prescriptionList: prescriptionListReducer,
     pushNotification: pushNotificationReducer,
   },
   middleware,
