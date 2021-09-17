@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 import dayjs from "dayjs";
+import { nanoid } from "nanoid";
 import { useDispatch } from "react-redux";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
@@ -29,10 +30,12 @@ const MainNavigator = () => {
 
   useEffect(() => {
     const subscription = Notifications.addNotificationReceivedListener(notification => {
-      const { content: { body, title }, identifier } = notification.request;
+      const id = nanoid();
+
+      const { content: { body, title } } = notification.request;
       const receivedTime = dayjs(notification.date).format("hh시 mm분");
 
-      dispatch(savePushNotification({ body, title, identifier, receivedTime }));
+      dispatch(savePushNotification({ body, title, id, receivedTime }));
     });
 
     return () => subscription.remove();

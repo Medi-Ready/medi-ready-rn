@@ -1,24 +1,42 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { useDispatch } from "react-redux";
+import Feather from "@expo/vector-icons/Feather";
+import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+
+import { deletePushNotification } from "../redux/features/pushNotificationSlice";
 
 const PushNotificationCard = ({ notificationInfo }) => {
-  const { title, body, receivedTime } = notificationInfo;
+  const { title, body, receivedTime, id } = notificationInfo;
+
+  const dispatch = useDispatch();
+
+  const handleDeleteButton = () => {
+    dispatch(deletePushNotification(id));
+  };
 
   return (
     <View style={styles.container}>
-      <Text>{receivedTime}</Text>
-      <Text>{`⏰ ${title} ⏰`}</Text>
-      <Text>{body}</Text>
+      <View>
+        <Text>
+          {`⏰  ${receivedTime}`}
+        </Text>
+        <Text>{body}</Text>
+      </View>
+
+      <TouchableOpacity style={styles.deleteButton} onPress={handleDeleteButton}>
+        <Feather name="x" size={18} color="black" />
+      </TouchableOpacity>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   container: {
-    width: 320,
+    position: "relative",
+    justifyContent: "center",
     minHeight: 80,
-    padding: 20,
-    marginTop: 20,
+    paddingHorizontal: 30,
+    marginTop: 10,
     borderRadius: 10,
     backgroundColor: "#FFF",
     shadowColor: "#000",
@@ -29,6 +47,11 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.12,
     shadowRadius: 8,
     elevation: 5,
+  },
+  deleteButton: {
+    position: "absolute",
+    top: 13,
+    right: 15,
   },
 });
 

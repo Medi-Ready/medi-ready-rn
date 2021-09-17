@@ -28,7 +28,16 @@ export const pushNotificationSlice = createSlice({
       state.pushNotificationList.push(action.payload);
       state.pushNotificationBadge++;
     },
+    deleteAllNotification: (state, action) => {
+      state.pushNotificationBadge = 0;
+      state.pushNotificationList = [];
+    },
     deletePushNotification: (state, action) => {
+      const index = state.pushNotificationList.findIndex((notification) => {
+        return notification.id === action.payload;
+      });
+
+      state.pushNotificationList.splice(index, 1);
       state.pushNotificationBadge--;
     },
   },
@@ -36,8 +45,10 @@ export const pushNotificationSlice = createSlice({
 
 export const {
   savePushNotification,
-  failNotificationRegister,
+  deleteAllNotification,
+  deletePushNotification,
   registerPushNotification,
+  failNotificationRegister,
   successNotificationRegister,
 } = pushNotificationSlice.actions;
 
