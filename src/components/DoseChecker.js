@@ -1,10 +1,16 @@
 import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 
+import { DOSE_PERIOD_KR } from "../constants/dosePeriod";
 import Pills from "./Pills";
 
 const DoseChecker = () => {
-  const dosePeriodList = ["아침", "점심", "저녁", "취침전"];
+  const dosePeriodList = [
+    DOSE_PERIOD_KR.MORNING,
+    DOSE_PERIOD_KR.LUNCH,
+    DOSE_PERIOD_KR.DINNER,
+    DOSE_PERIOD_KR.BEFORE_BED,
+  ];
 
   return (
     <View style={styles.container}>

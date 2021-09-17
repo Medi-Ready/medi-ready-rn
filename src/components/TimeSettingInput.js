@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Text, StyleSheet, View, TextInput } from "react-native";
 
+import { WARNING } from "../constants/alarm";
 import { setAlarm } from "../redux/features/alarmSettingSlice";
 
 const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
@@ -24,7 +25,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
   const handleHourChange = (hourInput) => {
     if (Number(hourInput[0]) > 2 || Number(hourInput) > 23) {
       setError(true);
-      setErrorMessage("24시 이전만 입력해 주세요");
+      setErrorMessage(WARNING.BEFORE_24_HOUR);
     } else {
       setError(false);
       setHour(hourInput);
@@ -34,7 +35,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
   const handleMinuteChange = (minuteInput) => {
     if (Number(minuteInput[0]) > 6 || Number(minuteInput) >= 60) {
       setError(true);
-      setErrorMessage("60분 이전만 입력해 주세요");
+      setErrorMessage(WARNING.BEFORE_60_MINUTE);
     } else {
       setError(false);
       setMinute(minuteInput);

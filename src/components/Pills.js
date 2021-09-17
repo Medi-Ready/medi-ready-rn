@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
+import { DOSE_PERIOD_EN, DOSE_PERIOD_KR } from "../constants/dosePeriod";
 import { updateDoseHistories, setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
 
 const Pills = ({ dosePeriod }) => {
@@ -13,17 +14,17 @@ const Pills = ({ dosePeriod }) => {
   let time = null;
 
   switch (dosePeriod) {
-    case "아침":
-      time = "morning";
+    case DOSE_PERIOD_KR.MORNING:
+      time = DOSE_PERIOD_EN.MORNING;
       break;
-    case "점심":
-      time = "lunch";
+    case DOSE_PERIOD_KR.LUNCH:
+      time = DOSE_PERIOD_EN.LUNCH;
       break;
-    case "저녁":
-      time = "dinner";
+    case DOSE_PERIOD_KR.DINNER:
+      time = DOSE_PERIOD_EN.DINNER;
       break;
-    case "취침전":
-      time = "before_bed";
+    case DOSE_PERIOD_KR.BEFORE_BED:
+      time = DOSE_PERIOD_EN.BEFORE_UNDERSCORE_BED;
       break;
   }
 

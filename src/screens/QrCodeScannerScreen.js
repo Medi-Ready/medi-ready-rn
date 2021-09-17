@@ -4,6 +4,7 @@ import { BarCodeScanner } from "expo-barcode-scanner";
 import { StyleSheet, View, Button } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
+import { WARNING } from "../constants/device";
 import { openScanner, checkIn } from "../redux/features/pharmacyCheckInSlice";
 
 import QRLoadingScreen from "../screens/QRLoadingScreen";
@@ -31,7 +32,7 @@ const QrCodeScannerScreen = ({ navigation }) => {
   }
 
   if (hasPermission === false) {
-    navigation.navigate("Error", { errorMessage: "No Permission" });
+    navigation.navigate("Error", { errorMessage: WARNING.NO_CAMERA_PERMISSION });
   }
 
   if (error) {

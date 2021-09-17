@@ -8,13 +8,25 @@ import {
   ScrollView,
 } from "react-native";
 
+import { WARNING } from "../constants/alarm";
+import { DOSE_PERIOD_EN, DOSE_PERIOD_KR } from "../constants/dosePeriod";
 import { saveAlarm, failAlarmSetting } from "../redux/features/alarmSettingSlice";
 
 import TimeSettingInput from "../components/TimeSettingInput";
 
 const AlarmTimeSettingScreen = () => {
-  const dosePeriodTitleList = ["아침", "점심", "저녁", "취침전"];
-  const dosePeriodList = ["morning", "lunch", "dinner", "beforeBed"];
+  const dosePeriodTitleList = [
+    DOSE_PERIOD_KR.MORNING,
+    DOSE_PERIOD_KR.LUNCH,
+    DOSE_PERIOD_KR.DINNER,
+    DOSE_PERIOD_KR.BEFORE_BED,
+  ];
+  const dosePeriodList = [
+    DOSE_PERIOD_EN.MORNING,
+    DOSE_PERIOD_EN.LUNCH,
+    DOSE_PERIOD_EN.DINNER,
+    DOSE_PERIOD_EN.BEFORE_BED,
+  ];
 
   const error = useSelector((state) => state.alarmSetting.error);
   const isLoading = useSelector((state) => state.alarmSetting.isLoading);
@@ -29,7 +41,7 @@ const AlarmTimeSettingScreen = () => {
 
     !isEmpty
       ? dispatch(saveAlarm(alarmTimes))
-      : dispatch(failAlarmSetting("새로운 알람 시간을 모두 입력해 주십시요"));
+      : dispatch(failAlarmSetting(WARNING.PUT_ALL_ALARM_TIME));
   };
 
   return (
