@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 
 import { requestPrescriptionList } from "../../api/index";
-import { failGettingPrescriptionList, savePrescriptionList } from "../../redux/features/prescriptionSlice";
+import { failGettingPrescriptionList, savePrescriptionList } from "../../redux/features/prescriptionListSlice";
 
 export function* handlePrescriptionList() {
   try {

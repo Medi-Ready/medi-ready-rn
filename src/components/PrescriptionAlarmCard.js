@@ -35,6 +35,7 @@ const PrescriptionAlarmCard = ({ prescriptionInfo }) => {
       description,
       pharmacyName,
       expirationDate,
+      prescriptionId,
       prescriptionDate,
     });
   };

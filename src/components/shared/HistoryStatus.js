@@ -2,16 +2,16 @@ import React from "react";
 import dayjs from "dayjs";
 import { StyleSheet, Text, View } from "react-native";
 
-const HistoryStatus = ({ expirationDate }) => {
-  const currentDate = dayjs();
+const HistoryStatus = ({ expirationDate, isDeleted }) => {
+  const currentDate = dayjs().format("YYYY.MM.DD");
   const isExpired = currentDate > expirationDate;
 
-  const fontColor = isExpired ? "#FF0000" : "#4BDE97";
+  const fontColor = isExpired || isDeleted ? "#FF0000" : "#4BDE97";
 
   return (
-    <View style={isExpired ? styles.expired : styles.progress}>
+    <View style={isExpired || isDeleted ? styles.expired : styles.progress}>
       <Text style={{ color: fontColor }}>
-        {isExpired ? "Expired" : "Progress"}
+        {isExpired || isDeleted ? "Expired" : "Progress"}
       </Text>
     </View>
   );

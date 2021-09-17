@@ -1,18 +1,28 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { View, StyleSheet } from "react-native";
+import dayjs from "dayjs";
 
-import { getPrescriptionList } from "../redux/features/prescriptionSlice";
+import { getPrescriptionList } from "../redux/features/prescriptionListSlice";
 
 import NoPrescriptions from "../components/shared/NoPrescriptions";
 import PrescriptionAlarmList from "../components/PrescriptionAlarmList";
 
 const DashboardScreen = ({ navigation }) => {
-  const error = useSelector((state) => state.prescription.error);
-  const isLoading = useSelector(state => state.prescription.isLoading);
-  const prescriptionList = useSelector((state) => state.prescription.prescriptionList);
+  const error = useSelector((state) => state.prescriptionList.error);
+  const isLoading = useSelector(state => state.prescriptionList.isLoading);
+  const prescriptionList = useSelector((state) => state.prescriptionList.prescriptionList);
 
   const dispatch = useDispatch();
+
+  const activePrescriptionList = prescriptionList.filter((prescription) => {
+    const currentDate = dayjs().format("YYYY.MM.DD");
+    const expirationDate = dayjs(prescription.expiration_date).add(9, "hour").format("YYYY.MM.DD");
+    const isExpired = currentDate > expirationDate;
+    const isDeleted = prescription.is_deleted;
+
+    return !isExpired && !isDeleted;
+  });
 
   useEffect(() => {
     navigation.addListener("focus", () => {
@@ -28,7 +38,7 @@ const DashboardScreen = ({ navigation }) => {
     navigation.navigate("Error", { errorMessage: error.message });
   }
 
-  if (!prescriptionList.length) {
+  if (!activePrescriptionList.length) {
     return <NoPrescriptions />;
   }
 
@@ -37,7 +47,7 @@ const DashboardScreen = ({ navigation }) => {
       <PrescriptionAlarmList
         isLoading={isLoading}
         handleRefresh={handleRefresh}
-        prescriptionList={prescriptionList}
+        prescriptionList={activePrescriptionList}
       />
     </View>
   );

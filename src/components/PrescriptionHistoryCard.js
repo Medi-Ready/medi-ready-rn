@@ -11,10 +11,10 @@ const PrescriptionHistoryCard = ({ prescriptionInfo }) => {
   const {
     medicines,
     description,
+    is_deleted: isDeleted,
     created_at: prescriptionDateUTC,
     expiration_date: expirationDateUTC,
     dose_histories: doseHistories,
-    is_alarm_on: isAlarmOn,
     pharmacist: {
       pharmacy_name: pharmacyName,
       pharmacy_address: pharmacyAddress,
@@ -36,6 +36,7 @@ const PrescriptionHistoryCard = ({ prescriptionInfo }) => {
       style={styles.container}
       onPress={() => navigation.navigate("History Detail", {
         medicines,
+        isDeleted,
         description,
         pharmacyName,
         doseHistories,
@@ -69,7 +70,7 @@ const PrescriptionHistoryCard = ({ prescriptionInfo }) => {
       </View>
 
       <View style={styles.historyStatus}>
-        <HistoryStatus expirationDate={expirationDate} />
+        <HistoryStatus expirationDate={expirationDate} isDeleted={isDeleted} />
       </View>
     </TouchableOpacity>
   );
