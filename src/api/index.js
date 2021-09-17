@@ -201,3 +201,48 @@ export const setAlarmTime = async (alarmTime) => {
     throw new Error(error.message);
   }
 };
+
+export const toggleAlarm = async (prescriptionId) => {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/api/alarms/${prescriptionId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+    });
+
+    if (response.ok) {
+      return await response.json();
+    }
+
+    const result = await response.json();
+
+    throw new Error(result.message);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const setNotificationToken = async (notificationToken) => {
+  try {
+    const response = await fetch(`${API_SERVER_URL}/api/notification`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Accept: "application/json",
+      },
+      body: JSON.stringify({ notificationToken }),
+    });
+
+    if (response.ok) {
+      return await response.json();
+    }
+
+    const result = await response.json();
+
+    throw new Error(result.message);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};

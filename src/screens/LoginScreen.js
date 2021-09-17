@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import Ionicons from "react-native-vector-icons/Ionicons";
 
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -8,6 +8,7 @@ import { StyleSheet, View, Text, TouchableOpacity, Image } from "react-native";
 import { login } from "../redux/features/userSlice";
 
 const LoginScreen = () => {
+  const error = useSelector((state) => state.user.error);
   const dispatch = useDispatch();
 
   const signInWithGoogle = () => {
@@ -24,10 +25,11 @@ const LoginScreen = () => {
       </View>
 
       <TouchableOpacity style={styles.loginButton} onPress={(signInWithGoogle)}>
-        <Ionicons name="logo-google" size={24} color="#FFF" />
+        <Ionicons name="logo-google" size={25} color="#006FF3" />
         <Text style={styles.loginButtonText}>Google Login</Text>
       </TouchableOpacity>
 
+      {error && <Text style={styles.errorMessage}>{error.message}</Text>}
     </SafeAreaView >
   );
 };
@@ -36,12 +38,12 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignItems: "center",
-    backgroundColor: "#006FF3",
+    backgroundColor: "#FFF",
   },
   logo: {
-    marginTop: 200,
-    width: 150,
-    height: 150,
+    marginTop: 282,
+    width: 125,
+    height: 125,
   },
   loginButton: {
     flexDirection: "row",
@@ -49,14 +51,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
     height: 50,
     width: 200,
-    marginTop: 200,
-    borderRadius: 5,
-    backgroundColor: "#000",
+    marginTop: 150,
   },
   loginButtonText: {
-    fontSize: 20,
+    fontSize: 25,
     marginLeft: 20,
-    color: "#FFFF",
+    color: "#006FF3",
+  },
+  errorMessage: {
+    marginTop: 20,
+    color: "red",
   },
 });
 

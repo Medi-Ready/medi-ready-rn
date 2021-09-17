@@ -8,7 +8,7 @@ const ErrorScreen = ({ route }) => {
   return (
     <View style={styles.container}>
       <LottieView
-        source={require("../../assets/errorAnimation.json")}
+        source={require("../../assets/animation/errorAnimation.json")}
         style={styles.animationContainer}
         autoPlay
         loop={true}
