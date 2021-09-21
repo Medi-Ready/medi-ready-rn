@@ -1,10 +1,10 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const NoPrescriptions = () => {
   return (
     <View style={styles.container}>
-      <Text>유효한 처방전이 없습니다!</Text>
+      <Text>아직 유효한 처방전이 없습니다! 😥</Text>
     </View>
   );
 };

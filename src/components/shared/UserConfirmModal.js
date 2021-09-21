@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, View, Modal, TouchableOpacity } from "react-native";
+import { View, Text, Modal, TouchableOpacity, StyleSheet } from "react-native";
 import { Button } from "react-native-elements";
 
 const UserConfirmModal = ({ isVisible, setIsVisible, handleConfirm, description }) => {
