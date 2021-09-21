@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { ScrollView, View, Text, StyleSheet } from "react-native";
+import { View, ScrollView, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-elements/dist/buttons/Button";
 import { useNavigation } from "@react-navigation/core";
 

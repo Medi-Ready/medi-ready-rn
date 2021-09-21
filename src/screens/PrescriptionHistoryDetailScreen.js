@@ -1,5 +1,5 @@
 import React from "react";
-import { View, ScrollView, Text, StyleSheet, Image } from "react-native";
+import { View, ScrollView, Text, Image, StyleSheet } from "react-native";
 
 import MedicineList from "../components/shared/MedicineList";
 import HistoryStatus from "../components/shared/HistoryStatus";

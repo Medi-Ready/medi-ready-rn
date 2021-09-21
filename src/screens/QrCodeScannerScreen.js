@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { BarCodeScanner } from "expo-barcode-scanner";
-import { StyleSheet, View, Button } from "react-native";
+import { View, Button, StyleSheet } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 import { WARNING } from "../constants/device";

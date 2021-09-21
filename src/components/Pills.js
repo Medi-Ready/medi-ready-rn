@@ -41,7 +41,7 @@ const Pills = ({ dosePeriod }) => {
 
     newHistory[time] = !selectedDoseHistory[time];
 
-    setIsCompletedDose((prev) => !prev);
+    setIsCompletedDose((previousState) => !previousState);
 
     const newDoseHistory = { ...selectedDoseHistory, ...newHistory };
 

@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { View, Text, Image, StyleSheet, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 import { logout } from "../redux/features/userSlice";
