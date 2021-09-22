@@ -1,4 +1,4 @@
-import { call, put, delay } from "redux-saga/effects";
+import { call, put } from "redux-saga/effects";
 
 import signInWithGoogle from "../../utils/signInWithGoogle";
 import { loginRequest, logoutRequest, authCheck } from "../../api/index";
@@ -20,8 +20,6 @@ export function* handleLogin() {
 
     const { result, data } = yield call(loginRequest, userData);
 
-    yield delay(500);
-
     result === "success"
       ? yield put(setUserInfo(data))
       : yield put(cancelLogin());
@@ -34,8 +32,6 @@ export function* handleLogout() {
   try {
     const response = yield call(logoutRequest);
 
-    yield delay(500);
-
     response.result === "success"
       ? yield put(deleteUserInfo())
       : yield put(cancelLogin());
@@ -47,8 +43,6 @@ export function* handleLogout() {
 export function* handleAuthCheck() {
   try {
     const { result, data } = yield call(authCheck);
-
-    yield delay(500);
 
     result === "success"
       ? yield put(setUserInfo(data))
