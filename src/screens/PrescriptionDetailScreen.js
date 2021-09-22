@@ -4,7 +4,7 @@ import { View, ScrollView, Text, StyleSheet } from "react-native";
 import { Button } from "react-native-elements/dist/buttons/Button";
 import { useNavigation } from "@react-navigation/core";
 
-import { deletePrescription } from "../redux/features/prescriptionSlice";
+import { deletePrescription } from "../redux/reducers/prescriptionSlice";
 
 import DoseDays from "../components/DoseDays";
 import MedicineList from "../components/shared/MedicineList";

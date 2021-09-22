@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 
 import { getAlarmTime, setAlarmTime } from "../../api/index";
-import { failAlarmSetting, completeAlarmSetting } from "../../redux/features/alarmSettingSlice";
+import { failAlarmSetting, completeAlarmSetting } from "../../redux/reducers/alarmSettingSlice";
 
 export function* handleLoginAlarmSetting() {
   try {

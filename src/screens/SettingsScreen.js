@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-import { logout } from "../redux/features/userSlice";
+import { logout } from "../redux/reducers/userSlice";
 
 const SettingsScreen = ({ navigation }) => {
   const userInfo = useSelector((state) => state.user.userInfo);

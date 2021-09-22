@@ -4,7 +4,7 @@ import dayjs from "dayjs";
 import { TouchableOpacity, StyleSheet, Text } from "react-native";
 
 import { DAY_OF_WEEK_KR } from "../constants/dosePeriod";
-import { setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
+import { setSelectedDoseHistory } from "../redux/reducers/doseHistorySlice";
 
 const Day = ({ doseHistory, selectedDoseHistory }) => {
   const dayOfWeek = [

@@ -3,7 +3,7 @@ import { StyleSheet, View } from "react-native";
 import { useDispatch, useSelector } from "react-redux";
 import dayjs from "dayjs";
 
-import { setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
+import { setSelectedDoseHistory } from "../redux/reducers/doseHistorySlice";
 
 import DayOfWeek from "./DayOfWeek";
 import DoseChecker from "./DoseChecker";

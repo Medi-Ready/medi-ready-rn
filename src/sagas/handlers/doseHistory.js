@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 
 import { updateDoseHistory } from "../../api";
-import { failDoseHistoryUpdate } from "../../redux/features/doseHistorySlice";
+import { failDoseHistoryUpdate } from "../../redux/reducers/doseHistorySlice";
 
 export function* handleUpdateDoseHistories(action) {
   try {

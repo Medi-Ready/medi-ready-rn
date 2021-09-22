@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { View, StyleSheet } from "react-native";
 import dayjs from "dayjs";
 
-import { getPrescriptionList } from "../redux/features/prescriptionListSlice";
+import { getPrescriptionList } from "../redux/reducers/prescriptionListSlice";
 
 import NoPrescriptions from "../components/shared/NoPrescriptions";
 import PrescriptionAlarmList from "../components/PrescriptionAlarmList";

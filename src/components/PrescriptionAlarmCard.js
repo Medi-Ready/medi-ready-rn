@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/core";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 
-import { setDoseHistories } from "../redux/features/doseHistorySlice";
+import { setDoseHistories } from "../redux/reducers/doseHistorySlice";
 
 import AlarmSwitch from "./AlarmSwitch";
 
