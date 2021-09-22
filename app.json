@@ -30,13 +30,16 @@
       "supportsTablet": true
     },
     "android": {
-      "package": "com.expo.medi_ready",
+      "package": "com.medi.ready",
       "googleServicesFile": "./google-services.json",
       "versionCode": 1,
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFF"
-      }
+      },
+      "permissions": [
+        "CAMERA"
+      ]
     },
     "web": {
       "favicon": "./assets/favicon.png"

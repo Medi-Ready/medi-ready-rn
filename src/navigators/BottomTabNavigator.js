@@ -38,6 +38,8 @@ const BottomTabNavigator = () => {
           return <Ionicons name={iconName} size={size} color={color} />;
         },
         headerRight: () => <QrCodeIcon />,
+        tabBarShowLabel: false,
+        tabBarStyle: { height: 65, borderTopLeftRadius: 10, borderTopRightRadius: 10 },
       })}
     >
       <BottomTab.Screen name="Dashboard" component={DashboardScreen} />
