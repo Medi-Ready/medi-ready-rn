@@ -2,7 +2,6 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   error: null,
-  isLoading: false,
   doseHistoryList: [],
   selectedDoseHistory: {},
 };
