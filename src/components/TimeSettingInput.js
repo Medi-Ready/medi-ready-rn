@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import { Text, StyleSheet, View, TextInput } from "react-native";
 
-import { WARNING } from "../constants/alarm";
+import { WARNING, TIME_LIMIT } from "../constants/alarm";
 import { setAlarm } from "../redux/features/alarmSettingSlice";
 
 const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
@@ -15,7 +15,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (hour.length === 2 && minute.length === 2) {
+    if (hour.length === TIME_LIMIT.MAX_INPUT_LENGTH && minute.length === TIME_LIMIT.MAX_INPUT_LENGTH) {
       const alarmTime = `${hour}:${minute}`;
 
       dispatch(setAlarm({ dosePeriod, alarmTime }));
@@ -23,7 +23,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
   }, [hour, minute, dispatch]);
 
   const handleHourChange = (hourInput) => {
-    if (Number(hourInput[0]) > 2 || Number(hourInput) > 23) {
+    if (Number(hourInput[0]) > TIME_LIMIT.MAX_HOUR_FIRST_DIGIT || Number(hourInput) > TIME_LIMIT.MAX_HOUR) {
       setError(true);
       setErrorMessage(WARNING.BEFORE_24_HOUR);
     } else {
@@ -33,7 +33,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
   };
 
   const handleMinuteChange = (minuteInput) => {
-    if (Number(minuteInput[0]) > 6 || Number(minuteInput) >= 60) {
+    if (Number(minuteInput[0]) > TIME_LIMIT.MAX_MINUTE_FIRST_DIGIT || Number(minuteInput) >= TIME_LIMIT.MAX_MINUTE) {
       setError(true);
       setErrorMessage(WARNING.BEFORE_60_MINUTE);
     } else {

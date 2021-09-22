@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { View, StyleSheet, FlatList, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 
 import PushNotificationCard from "../components/PushNotificationCard";
 import { deleteAllNotification } from "../redux/features/pushNotificationSlice";

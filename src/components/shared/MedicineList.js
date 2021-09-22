@@ -1,13 +1,13 @@
 import React from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const MedicineList = ({ medicines }) => {
   return (
     <View style={styles.container}>
       <Text style={styles.title}>💊 처방 약</Text>
-      {medicines.map((medicine) => {
+      {medicines.map((medicine, index) => {
         return (
-          <View style={styles.medicineNameBox} key={medicine.medicine_id}>
+          <View style={styles.medicineNameBox} key={`${medicine.medicine_id}-${index}`}>
             <Text numberOfLines={1}>
               {medicine.medicine_detail.itemName}
             </Text>

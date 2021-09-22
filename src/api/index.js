@@ -4,7 +4,7 @@ const { API_SERVER_URL } = getEnvVars();
 
 export const loginRequest = async (userData) => {
   try {
-    const response = await fetch(`${API_SERVER_URL}/api/login`, {
+    const response = await fetch(`${API_SERVER_URL}/api/auth/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -27,7 +27,7 @@ export const loginRequest = async (userData) => {
 
 export const logoutRequest = async () => {
   try {
-    const response = await fetch(`${API_SERVER_URL}/api/logout`, {
+    const response = await fetch(`${API_SERVER_URL}/api/auth/logout`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -49,7 +49,7 @@ export const logoutRequest = async () => {
 
 export const authCheck = async () => {
   try {
-    const response = await fetch(`${API_SERVER_URL}/api/auth-check`, {
+    const response = await fetch(`${API_SERVER_URL}/api/auth/check`, {
       method: "GET",
       headers: {
         "Content-Type": "application/json",

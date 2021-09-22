@@ -39,7 +39,7 @@ const MainNavigator = () => {
     });
 
     return () => subscription.remove();
-  });
+  }, []);
 
   useEffect(() => {
     dispatch(registerPushNotification());

@@ -1,12 +1,7 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { Button } from "react-native-elements";
-import {
-  View,
-  Text,
-  StyleSheet,
-  ScrollView,
-} from "react-native";
+import { View, ScrollView, Text, StyleSheet} from "react-native";
 
 import { WARNING } from "../constants/alarm";
 import { DOSE_PERIOD_EN, DOSE_PERIOD_KR } from "../constants/dosePeriod";
@@ -48,7 +43,7 @@ const AlarmTimeSettingScreen = () => {
     <ScrollView keyboardShouldPersistTaps="never" contentContainerStyle={styles.contentContainer}>
       <View style={styles.container}>
         <Text style={styles.title}>알림 설정</Text>
-        <Text>원하는 시간대에 알림을 설정해 주세요!</Text>
+        <Text>원하는 시간에 알림을 설정해 주세요!</Text>
 
         <View style={styles.setAlarmContainer}>
           {dosePeriodList.map((dosePeriod, index) => {

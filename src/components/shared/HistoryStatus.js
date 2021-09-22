@@ -1,6 +1,6 @@
 import React from "react";
 import dayjs from "dayjs";
-import { StyleSheet, Text, View } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 
 const HistoryStatus = ({ expirationDate, isDeleted }) => {
   const currentDate = dayjs().format("YYYY.MM.DD");
