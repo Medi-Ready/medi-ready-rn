@@ -5,7 +5,12 @@
     "android": "expo start --android",
     "ios": "expo start --ios",
     "web": "expo start --web",
-    "eject": "expo eject"
+    "eject": "expo eject",
+    "test": "jest --watch --coverage=false --changedSince=origin/master",
+    "testFinal": "jest"
+  },
+  "jest": {
+    "preset": "jest-expo"
   },
   "dependencies": {
     "@react-navigation/bottom-tabs": "^6.0.5",
@@ -38,9 +43,12 @@
   },
   "devDependencies": {
     "@babel/core": "^7.9.0",
+    "@testing-library/react-native": "^7.2.0",
     "eslint": "^7.32.0",
     "eslint-plugin-react": "^7.25.1",
-    "redux-logger": "^3.0.6"
+    "jest-expo": "^42.1.0",
+    "redux-logger": "^3.0.6",
+    "redux-saga-test-plan": "^4.0.3"
   },
   "private": true
 }
