@@ -5,7 +5,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import { LIGHT_THEME } from "../theme/navigationTheme";
-import { checkAuthentication } from "../redux/features/userSlice";
+import { checkAuthentication } from "../redux/reducers/userSlice";
 
 import MainNavigator from "./MainNavigator";
 import LoginScreen from "../screens/LoginScreen";

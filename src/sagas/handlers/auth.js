@@ -7,7 +7,7 @@ import {
   cancelLogin,
   setUserInfo,
   deleteUserInfo,
-} from "../../redux/features/userSlice";
+} from "../../redux/reducers/userSlice";
 
 export function* handleLogin() {
   try {

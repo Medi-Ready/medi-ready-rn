@@ -5,7 +5,7 @@ import Ionicons from "react-native-vector-icons/Ionicons";
 import { SafeAreaView } from "react-native-safe-area-context";
 import { View, Text, TouchableOpacity, Image, StyleSheet } from "react-native";
 
-import { login } from "../redux/features/userSlice";
+import { login } from "../redux/reducers/userSlice";
 
 const LoginScreen = () => {
   const error = useSelector((state) => state.user.error);

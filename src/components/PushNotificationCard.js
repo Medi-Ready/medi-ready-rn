@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import Feather from "@expo/vector-icons/Feather";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
-import { deletePushNotification } from "../redux/features/pushNotificationSlice";
+import { deletePushNotification } from "../redux/reducers/pushNotificationSlice";
 
 const PushNotificationCard = ({ notificationInfo }) => {
   const { title, body, receivedTime, id } = notificationInfo;

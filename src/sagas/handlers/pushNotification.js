@@ -2,7 +2,7 @@ import { call, put } from "redux-saga/effects";
 
 import { setNotificationToken } from "../../api";
 import { registerForPushNotificationsAsync } from "../../utils/pushNotification";
-import { successNotificationRegister, failNotificationRegister, registerPushNotification } from "../../redux/features/pushNotificationSlice";
+import { successNotificationRegister, failNotificationRegister } from "../../redux/reducers/pushNotificationSlice";
 
 export function* handlePushNotificationPermission() {
   try {

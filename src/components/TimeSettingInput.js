@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { Text, StyleSheet, View, TextInput } from "react-native";
 
 import { WARNING, TIME_LIMIT } from "../constants/alarm";
-import { setAlarm } from "../redux/features/alarmSettingSlice";
+import { setAlarm } from "../redux/reducers/alarmSettingSlice";
 
 const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
   const [hour, setHour] = useState(alarmTime?.split(":")[0]);

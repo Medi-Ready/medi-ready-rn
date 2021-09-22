@@ -4,7 +4,7 @@ import { TouchableOpacity } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 import { DOSE_PERIOD_EN, DOSE_PERIOD_KR } from "../constants/dosePeriod";
-import { updateDoseHistories, setSelectedDoseHistory } from "../redux/features/doseHistorySlice";
+import { updateDoseHistories, setSelectedDoseHistory } from "../redux/reducers/doseHistorySlice";
 
 const Pills = ({ dosePeriod }) => {
   const selectedDoseHistory = useSelector((state) => state.doseHistory.selectedDoseHistory);

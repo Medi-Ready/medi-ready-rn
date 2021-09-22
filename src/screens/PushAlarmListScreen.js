@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { View, Text, TouchableOpacity, FlatList, StyleSheet } from "react-native";
 
 import PushNotificationCard from "../components/PushNotificationCard";
-import { deleteAllNotification } from "../redux/features/pushNotificationSlice";
+import { deleteAllNotification } from "../redux/reducers/pushNotificationSlice";
 
 const PushAlarmListScreen = () => {
   const notificationList = useSelector((state) => state.pushNotification.pushNotificationList);

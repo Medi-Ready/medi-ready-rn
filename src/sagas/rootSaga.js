@@ -1,12 +1,12 @@
 import { all, takeLatest, throttle } from "@redux-saga/core/effects";
 
-import { deletePrescription } from "../redux/features/prescriptionSlice";
-import { updateDoseHistories } from "../redux/features/doseHistorySlice";
-import { getPrescriptionList } from "../redux/features/prescriptionListSlice";
-import { openScanner, checkIn } from "../redux/features/pharmacyCheckInSlice";
-import { saveAlarm, getAlarmTime } from "../redux/features/alarmSettingSlice";
-import { login, logout, checkAuthentication } from "../redux/features/userSlice";
-import { registerPushNotification } from "../redux/features/pushNotificationSlice";
+import { deletePrescription } from "../redux/reducers/prescriptionSlice";
+import { updateDoseHistories } from "../redux/reducers/doseHistorySlice";
+import { getPrescriptionList } from "../redux/reducers/prescriptionListSlice";
+import { openScanner, checkIn } from "../redux/reducers/pharmacyCheckInSlice";
+import { saveAlarm, getAlarmTime } from "../redux/reducers/alarmSettingSlice";
+import { login, logout, checkAuthentication } from "../redux/reducers/userSlice";
+import { registerPushNotification } from "../redux/reducers/pushNotificationSlice";
 
 import { handlePrescriptionList } from "./handlers/prescriptionList";
 import { handleUpdateDoseHistories } from "./handlers/doseHistory";

@@ -5,8 +5,8 @@ import { useDispatch } from "react-redux";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import * as Notifications from "expo-notifications";
-import { getAlarmTime } from "../redux/features/alarmSettingSlice";
-import { registerPushNotification, savePushNotification } from "../redux/features/pushNotificationSlice";
+import { getAlarmTime } from "../redux/reducers/alarmSettingSlice";
+import { registerPushNotification, savePushNotification } from "../redux/reducers/pushNotificationSlice";
 
 import ErrorScreen from "../screens/ErrorScreen";
 import BottomTabNavigator from "./BottomTabNavigator";

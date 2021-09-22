@@ -4,13 +4,13 @@ import logger from "redux-logger";
 
 import { watcherSaga } from "../../sagas/rootSaga";
 
-import userReducer from "../features/userSlice";
-import doseHistoryReducer from "../features/doseHistorySlice";
-import alarmSettingReducer from "../features/alarmSettingSlice";
-import prescriptionReducer from "../features/prescriptionSlice";
-import pharmacyCheckInReducer from "../features/pharmacyCheckInSlice";
-import pushNotificationReducer from "../features/pushNotificationSlice";
-import prescriptionListReducer from "../features/prescriptionListSlice";
+import userReducer from "../reducers/userSlice";
+import doseHistoryReducer from "../reducers/doseHistorySlice";
+import alarmSettingReducer from "../reducers/alarmSettingSlice";
+import prescriptionReducer from "../reducers/prescriptionSlice";
+import pharmacyCheckInReducer from "../reducers/pharmacyCheckInSlice";
+import pushNotificationReducer from "../reducers/pushNotificationSlice";
+import prescriptionListReducer from "../reducers/prescriptionListSlice";
 
 const sagaMiddleware = createSagaMiddleware();
 

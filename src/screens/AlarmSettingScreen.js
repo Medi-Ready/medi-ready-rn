@@ -5,7 +5,7 @@ import { View, ScrollView, Text, StyleSheet} from "react-native";
 
 import { WARNING } from "../constants/alarm";
 import { DOSE_PERIOD_EN, DOSE_PERIOD_KR } from "../constants/dosePeriod";
-import { saveAlarm, failAlarmSetting } from "../redux/features/alarmSettingSlice";
+import { saveAlarm, failAlarmSetting } from "../redux/reducers/alarmSettingSlice";
 
 import TimeSettingInput from "../components/TimeSettingInput";
 

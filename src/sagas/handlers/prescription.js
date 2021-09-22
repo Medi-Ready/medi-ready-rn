@@ -1,7 +1,7 @@
 import { call, put } from "redux-saga/effects";
 
 import { deletePrescription } from "../../api/index";
-import { prescriptionDeleteFail, prescriptionDeleteSuccess } from "../../redux/features/prescriptionSlice";
+import { prescriptionDeleteFail, prescriptionDeleteSuccess } from "../../redux/reducers/prescriptionSlice";
 
 export function* handlePrescriptionDelete(action) {
   try {

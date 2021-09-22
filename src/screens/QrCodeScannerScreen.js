@@ -5,7 +5,7 @@ import { View, Button, StyleSheet } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
 import { WARNING } from "../constants/device";
-import { openScanner, checkIn } from "../redux/features/pharmacyCheckInSlice";
+import { openScanner, checkIn } from "../redux/reducers/pharmacyCheckInSlice";
 
 import QRLoadingScreen from "../screens/QRLoadingScreen";
 
