@@ -1,14 +1,14 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react-native";
 
-import PrescriptionGuide from "./PrescriptionGuide";
+import PrescriptionGuide from "../../components/shared/PrescriptionGuide";
 
-describe(">>> COMPONENT --- PRESCRIPTION GUIDE", () => {
+describe("Prescription Guide test", () => {
   afterEach(() => {
     cleanup();
   });
 
-  it("+++ renders prescription guide", () => {
+  it("renders prescription guide", () => {
     const props = {
       description: "약 잘 먹고 잘 쉬세요!",
     };
