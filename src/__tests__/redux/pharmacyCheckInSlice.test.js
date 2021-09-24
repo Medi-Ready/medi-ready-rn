@@ -1,11 +1,11 @@
-import pharmacyCheckInReducer from "./pharmacyCheckInSlice";
+import pharmacyCheckInReducer from "../../redux/reducers/pharmacyCheckInSlice";
 import {
   setError,
   checkIn,
   setScanned,
   openScanner,
   setPermission,
-} from "./pharmacyCheckInSlice";
+} from "../../redux/reducers/pharmacyCheckInSlice";
 
 describe("Pharmacy Check In Slice Test", () => {
   it("set error", () => {

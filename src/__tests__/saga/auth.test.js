@@ -4,7 +4,7 @@ import { expectSaga } from "redux-saga-test-plan";
 import userReducer from "../../redux/reducers/userSlice";
 
 import { logoutRequest, authCheck } from "../../api/index";
-import { handleLogout, handleAuthCheck } from "./auth";
+import { handleLogout, handleAuthCheck } from "../../sagas/handlers/auth";
 
 describe("auth saga test", () => {
   it("logout => ", () => {

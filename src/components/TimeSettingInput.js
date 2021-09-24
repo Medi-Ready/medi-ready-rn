@@ -57,6 +57,7 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
           style={styles.timeInput}
           keyboardType="number-pad"
           onChangeText={handleHourChange}
+          testID="hour-input"
         />
 
         <Text>:</Text>
@@ -69,10 +70,11 @@ const TimeSettingInput = ({ dosePeriod, dosePeriodTitle, alarmTime }) => {
           style={styles.timeInput}
           keyboardType="number-pad"
           onChangeText={handleMinuteChange}
+          testID="minute-input"
         />
       </View>
 
-      {error && <Text style={styles.errorMessage}>{errorMessage}</Text>}
+      {error && <Text style={styles.errorMessage} testID="error-text">{errorMessage}</Text>}
     </View>
   );
 };

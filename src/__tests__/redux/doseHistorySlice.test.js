@@ -1,10 +1,10 @@
-import doseHistoryReducer from "./doseHistorySlice";
+import doseHistoryReducer from "../../redux/reducers/doseHistorySlice";
 import {
   setDoseHistories,
   updateDoseHistories,
   failDoseHistoryUpdate,
   setSelectedDoseHistory,
-} from "./doseHistorySlice";
+} from "../../redux/reducers/doseHistorySlice";
 
 describe("Dose History Slice Test", () => {
   it("set dose histories", () => {
@@ -94,7 +94,7 @@ describe("Dose History Slice Test", () => {
         fk_prescription_id: "ba8b7006-4a96-46b9-94f8-16d6cb754f6b",
         lunch: false,
         morning: true,
-      }
+      },
     }));
 
     expect(result.doseHistoryList).toEqual([

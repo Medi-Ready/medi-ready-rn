@@ -1,14 +1,14 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react-native";
 
-import MedicineList from "./MedicineList";
+import MedicineList from "../../components/shared/MedicineList";
 
-describe(">>> COMPONENT --- MEDICINE LIST", () => {
+describe("Medicine List Component Test", () => {
   afterEach(() => {
     cleanup();
   });
 
-  it("+++ renders all medicine List", () => {
+  it("renders all medicine List", () => {
     const props = {
       medicines: [
         {

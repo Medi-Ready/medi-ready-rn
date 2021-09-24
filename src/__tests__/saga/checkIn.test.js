@@ -4,7 +4,7 @@ import { expectSaga } from "redux-saga-test-plan";
 import pharmacyCheckInReducer from "../../redux/reducers/pharmacyCheckInSlice";
 
 import { queuePharmacy } from "../../api";
-import { handlePharmacyCheckIn } from "./checkIn";
+import { handlePharmacyCheckIn } from "../../sagas/handlers/checkIn";
 
 describe("pharmacy check in saga test", () => {
   it("pharmacy check in => ", () => {

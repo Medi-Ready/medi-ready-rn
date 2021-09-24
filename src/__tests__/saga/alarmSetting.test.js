@@ -5,7 +5,7 @@ import { throwError } from 'redux-saga-test-plan/providers';
 import alarmSettingReducer from "../../redux/reducers/alarmSettingSlice";
 
 import { getAlarmTime, setAlarmTime } from "../../api/index";
-import { handleLoginAlarmSetting, handleAlarmSetting } from "./alarmSetting";
+import { handleLoginAlarmSetting, handleAlarmSetting } from "../../sagas/handlers/alarmSetting";
 
 describe("alarm setting saga test", () => {
   it("alarm setting upon login => ", () => {
@@ -47,7 +47,7 @@ describe("alarm setting saga test", () => {
           morning: "09:30",
           lunch: "12:00",
           dinner: "18:00",
-          beforeBed: "22:00"
+          beforeBed: "22:00",
         },
       })
       .silentRun();
@@ -70,7 +70,7 @@ describe("alarm setting saga test", () => {
           morning: "08:00",
           lunch: "12:00",
           dinner: "18:00",
-          beforeBed: "22:00"
+          beforeBed: "22:00",
         },
       })
       .silentRun();
@@ -108,7 +108,7 @@ describe("alarm setting saga test", () => {
           morning: "09:30",
           lunch: "12:00",
           dinner: "18:00",
-          beforeBed: "22:00"
+          beforeBed: "22:00",
         },
       })
       .silentRun();
@@ -138,7 +138,7 @@ describe("alarm setting saga test", () => {
           morning: "08:00",
           lunch: "12:00",
           dinner: "18:00",
-          beforeBed: "22:00"
+          beforeBed: "22:00",
         },
       })
       .silentRun();

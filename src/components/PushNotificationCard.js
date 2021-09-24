@@ -6,7 +6,7 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import { deletePushNotification } from "../redux/reducers/pushNotificationSlice";
 
 const PushNotificationCard = ({ notificationInfo }) => {
-  const { title, body, receivedTime, id } = notificationInfo;
+  const { body, receivedTime, id } = notificationInfo;
 
   const dispatch = useDispatch();
 

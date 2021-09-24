@@ -1,14 +1,14 @@
 import React from "react";
 import { render, cleanup } from "@testing-library/react-native";
 
-import NoPrescriptions from "./NoPrescriptions";
+import NoPrescriptions from "../../components/shared/NoPrescriptions";
 
-describe(">>> COMPONENT --- NO PRESCRIPTION", () => {
+describe("No Prescriptions Test", () => {
   afterEach(() => {
     cleanup();
   });
 
-  it("+++ render default text", () => {
+  it("render default text", () => {
     const { getByText } = render(<NoPrescriptions />);
 
     const text = getByText("아직 유효한 처방전이 없습니다! 😥");

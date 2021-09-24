@@ -1,11 +1,11 @@
-import alarmSettingReducer from "./alarmSettingSlice";
+import alarmSettingReducer from "../../redux/reducers/alarmSettingSlice";
 import {
   setAlarm,
   saveAlarm,
   getAlarmTime,
   failAlarmSetting,
   completeAlarmSetting,
-} from "./alarmSettingSlice";
+} from "../../redux/reducers/alarmSettingSlice";
 
 describe("alarm setting slice test", () => {
   it("set alarm", () => {
