@@ -1,59 +1,78 @@
 # 💊 MEDI READY 💊
 
-약사 와 환자간의 커뮤니케이션을 원활하게 해주기 위한 서비스 메디레디 입니다!
-약사가 처방한 약과 복약지도를 환자 본인의 핸드폰으로 확인이 가능하며 약 먹을 시간에 알림이 울리는 서비스 입니다.
+<code>#Medicine</code>
+<code>#푸시알림</code>
+<code>#복용이력관리</code>
+<code>#고객관리</code>
+
+약 먹을 시간을 자동으로 관리해주는 서비스, Medi Ready 입니다!
+
+![prescription](./readme-assets/prescription.png)
 
 <br>
 
-## 🔗 관련 링크
+약을 언제 먹었는지 기억하지 못해 고민하고 계신가요?  
+이제는 Medi Ready를 통해 손쉽게 관리하세요!
 
-- [Frontend](https://github.com/Medi-Ready/medi-ready-frontend)
-- [React-Native](https://github.com/Medi-Ready/medi-ready-rn)
-- [Backend](https://github.com/Medi-Ready/medi-ready-backend)
-- [Push-Notification-Server](https://github.com/Medi-Ready/medi-ready-push-notification)
+복잡한 복약 일정 때문에 고민이라면, 하루도 빠짐없이 제 시간에 약을 챙겨야 한다면, Medi Ready를 이용해주세요.  
+Medi Ready는 **자동으로** 알림이 등록되기 때문에 간단하게 이용하실 수 있어요.  
+무엇보다 약을 잊고 건너뛰는 일이 없도록 도와드릴게요.
 
 <br>
 
-# 📚 Table of Contents
+# 📚 Contents
 
 - [💊 MEDI READY 💊](#-medi-ready-)
-  - [🔗 관련 링크](#-관련-링크)
-- [📚 Table of Contents](#-table-of-contents)
+- [📚 Contents](#-contents)
+- [🔗 Links](#-links)
+- [🔍 Preview](#-preview)
 - [👨‍⚕️ Motivation](#️-motivation)
 - [🎬 Getting Started](#-getting-started)
-  - [Client](#client)
-    - [Web](#web)
-    - [Mobile Application](#mobile-application)
-  - [Server](#server)
-    - [Main Server](#main-server)
-    - [Notification Server](#notification-server)
-- [📅 Schedule](#-schedule)
 - [🖥 Tech Stacks](#-tech-stacks)
-  - [Client](#client-1)
-    - [Web](#web-1)
-    - [Mobile Application](#mobile-application-1)
-    - [Testing](#testing)
-  - [Server](#server-1)
-    - [Main Server](#main-server-1)
-    - [Push Notification Server](#push-notification-server)
-    - [Testing](#testing-1)
-- [❓ Why?](#-why)
-    - [React Native (Expo)](#react-native-expo)
-    - [Redux Saga](#redux-saga)
-    - [React query](#react-query)
-    - [SQL](#sql)
-    - [Crone](#crone)
-- [🤯 Issues && Solutions](#-issues--solutions)
-    - [Push Notification](#push-notification)
-    - [Search Algorithms](#search-algorithms)
+- [🤯 Challenges](#-challenges)
+
+<br>
+
+# 🔗 Links
+
+### deploy
+
+- [Medi-Ready Web](https://www.mediready.kr)
+
+### Github Repositories
+
+- [Frontend Repo](https://github.com/Medi-Ready/medi-ready-frontend)
+- [React-Native Repo](https://github.com/Medi-Ready/medi-ready-rn)
+- [Backend Repo](https://github.com/Medi-Ready/medi-ready-backend)
+- [Push-Notification-Server Repo](https://github.com/Medi-Ready/medi-ready-push-notification)
+
+<br>
+
+# 🔍 Preview
+
+![prescription](./readme-assets/prescription.png)
 
 <br>
 
 # 👨‍⚕️ Motivation
 
-약국에서 약을 처방 받는 환자들이 제시간에 약을 먹을 수 있도록 지정된 시간에 알림을 받을 수 있으면 좋겠다고 생각해서 시작된 아이디어 입니다.
+매일 챙겨먹어야 하는 약을 먹었는지 안먹었는지 기억이 나지 않을 때가 종종 있습니다. 그 때마다 약 알림 어플을 찾아보곤 했는데요. 대부분의 어플들은 매번 직접 약을 등록해야 하는 번거로움이 있어 잘 사용하지 않게 되었습니다. 이런 불편함을 개선해보고자 Medi-Ready 프로젝트를 기획해 보았습니다.
 
-단순한 약 알림 어플이 아닌 약국에서 약을 처방 받을때 직접 약사에게 약과 복약지도 등 유용한 정보들이 담긴 카드를 어플로 받아 복약시간에 알림을 받고 복약 기록을 할 수 있는 서비스 입니다.
+<br>
+
+# Features
+
+### 약사용 CRM (웹)
+
+- 환자는 QR 체크인을 통해, 대기명단에 이름을 올릴 수 있습니다.
+- 약사는 처방전과 복약 지도를 환자의 어플로 전송합니다.
+- 과거 처방 이력을 확인할 수 있습니다.
+
+### 환자용 앱
+
+- 복용 여부를 체크할 수 있습니다.
+- 설정한 시간에 푸시 알림을 받습니다.
+- 지난 처방 이력을 확인할 수 있으며, 약 정보를 확인할 수 있습니다.
 
 <br>
 
@@ -61,19 +80,22 @@
 
 Local 환경에서 실행시 아래와 같이 준비가 필요합니다.
 
-## Client
-
-### Web
-
-Root 디렉토리에 .env 파일을 만들고 다음과 같이 설정해주세요
+<details>
+  <summary>Client (Web)</summary>
 
 ```
+REACT_APP_API_KEY=<Firebase API Key>
+REACT_APP_AUTH_DOMAIN=<Firebase Auth Domain>
+REACT_APP_PROJECT_ID=<Firebase Project ID>
+REACT_APP_APP_ID=<Firebase App ID>
 
+REACT_APP_BASE_URL=<default = http://localhost:8080>
 ```
 
-### Mobile Application
+</details>
 
-Root 디렉토리에 environment.js 파일을 만들고 다음과 같이 설정해주세요
+<details>
+  <summary>Client (Mobile App)</summary>
 
 ```
 import Constants from "expo-constants";
@@ -95,117 +117,74 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
 export default getEnvVars;
 ```
 
-## Server
+</details>
 
-### Main Server
+<details>
+  <summary>Main Server</summary>
 
-### Notification Server
+```
+ORIGIN_URI_DEV=<origin uri: default = "http://localhost:3000">
+PUSH_NOTIFICATION_URI=<origin uri: default = http://localhost:8081>
+
+MYSQL_USERNAME=<mysql username: default = root>
+MYSQL_PASSWORD=<mysql password>
+MYSQL_DATABASE=mediready
+MYSQL_HOST=<my sql host: default = "127.0.0.1">
+
+JWT_SECRET_KEY=<jwt secret key>
+COOKIE_SECRET_KEY=<cookie secret key>
+```
+
+</details>
+
+<details>
+<summary>Push Notification Server</summary>
+
+```
+EXPO_ACCESS_TOKEN=<Expo Access Token>
+```
+
+</details>
 
 <br>
 
-# 📅 Schedule
-
-  <details>
-    <summary>
-      1 주차
-    </summary>
-
-    - 아이디어 기획 & 목업
-    - 기술 스택 학습 (React Native & SQL)
-
-  </details>
-
-  <br>
-
-  <details>
-    <summary>
-      2주차
-    </summary>
-
-    - 개발 진행
-
-  </details>
-
-  <br>
-
-  <details>
-    <summary>
-      3주차
-    </summary>
-
-    - 배포
-    - readme 작성
-    - 테스트 코드 작성
-    - 코드 refactoring
-
-  </details>
-
-  <br>
-  <br>
+<br>
 
 # 🖥 Tech Stacks
 
 ## Client
 
-### Web
-
 - React
-- React Query
-- Styled-Component
-
-### Mobile Application
-
 - React Native (Expo)
+- Styled-Component
 - Redux Toolkit
 - Redux Saga
-
-### Testing
-
-- Jest
-- React Testing Library
+- React Query
 
 ## Server
 
-### Main Server
-
 - Node JS
 - Express
-- MySQL
-- Json Web Token Authentication
+- MySQL, Sequelize
+- Node Schedule
+- Firebase Cloud Messaging(FCM)
 
-### Push Notification Server
+## Testing
 
-- Express
-- Crone (scheduling)
+- Jest
+- React Testing Library
+- Mocha, Chai
 
-### Testing
+## Deployment
 
-- Mocha + Chai
+- Netlify
+- AWS Elastic Beanstalk
 
-# ❓ Why?
+<br>
 
-### React Native (Expo)
+# 🤯 Challenges
 
-- Learning curve 가 낮아 비교적 개발시간이 많이 없었던 해당 프로젝트에 쓰기 적합하다고 판단했습니다.
-- 초기설정시간을 절약하고 배포가 용이하다는점에서 Expo 를 사용하였습니다.
-
-### Redux Saga
-
-- Generator 와 같은 어려운 개념 때문에 Learning Curve 가 높다는 장벽이 있었지만, Data Fetching 같은 여러 Side Effect 를 효율적으로 관리하고 에러핸들링 및 testing 이 비교적 쉽다는 장점 때문에 사용하기로 했습니다.
-
-### React query
-
-- 비동기 처리 및 캐싱기능
-
-### SQL
-
-- Database
-
-### Crone
-
-- Push Notification 을 설정된 시간에 동작시키기 위해서 사용하였습니다.
-
-# 🤯 Issues && Solutions
+### 협업
 
 ### Push Notification
 
