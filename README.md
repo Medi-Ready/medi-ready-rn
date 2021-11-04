@@ -7,10 +7,10 @@
 <code>#고객관리</code>
 <code>#푸시알림</code>
 
-약 먹을 시간을 자동으로 관리해주는 서비스, Medi Ready 입니다!
+약 먹을 시간을 자동으로 관리해 주는 서비스, Medi Ready입니다!
 
-약을 언제 먹었는지 기억하지 못해 고민하고 계신가요?  
-이제는 Medi Ready를 통해 복용 이력을 손쉽게 관리해보세요.  
+약을 언제 먹었는지 기억하지 못해 고민하고 계시나요?
+이제는 Medi Ready를 통해 복용 이력을 손쉽게 관리해 보세요.
 Medi Ready는 **자동으로** 알림이 등록되기 때문에 간단하게 이용하실 수 있어요.
 
 <br>
@@ -30,7 +30,7 @@ Medi Ready는 **자동으로** 알림이 등록되기 때문에 간단하게 이
 
 ## 🔗 Links
 
-> RN 앱은 배포가 되지않아, Expo를 통해 로컬에서 실행해야 합니다.
+> RN 앱은 배포가 되지 않아, Expo를 통해 로컬에서 실행해야 합니다.
 
 ### deploy
 
@@ -68,7 +68,7 @@ https://user-images.githubusercontent.com/68883173/140314350-f6c548d1-dfda-4c24-
 
 ## 👨‍⚕️ Motivation
 
-매일 챙겨먹어야 하는 약을 먹었는지 안먹었는지 기억이 나지 않을 때가 종종 있습니다. 그때마다 알림 어플을 찾아보곤 하는데요. 대부분의 어플들은 매번 직접 약을 등록해야 하거나 복용 이력을 관리할 수 없는 단점이 있어 잘 사용하지 않게 되었습니다. 그런데, 만약 **자동으로** 알림이 설정되고, 또 약 먹을 시간에 알림까지 울린다면 정말 편리하지 않을까? 라고 생각하게 되어 이 프로젝트를 기획하게 되었습니다.
+매일 챙겨 먹어야 하는 약을 먹었는지 안 먹었는지 기억이 나지 않을 때가 종종 있습니다. 그때마다 알림 앱을 찾아보곤 하는데요. 대부분의 앱들은 매번 직접 약을 등록해야 하거나 복용 이력을 관리할 수 없는 단점이 있어 잘 사용하지 않게 되었습니다. 그런데, 만약 **자동으로** 알림이 설정되고, 또 약 먹을 시간에 알림까지 울린다면 정말 편리하지 않을까? 라고 생각하게 되어 이 프로젝트를 기획하게 되었습니다.
 
 어떻게 자동으로 알림을 등록할 수 있을까 고민을 하였는데요. 최근 코로나로 인해 모든 장소에서 QR 체크인을 사용하는 것에서 영감을 얻어, 환자가 약국에서 QR 체크인을 하면 시스템상에 등록되도록 프로젝트를 진행했습니다.
 
@@ -80,9 +80,9 @@ https://user-images.githubusercontent.com/68883173/140314350-f6c548d1-dfda-4c24-
 
 ### 약사용 CRM (웹)
 
-- 환자는 QR 체크인을 통해, 대기명단에 이름을 올릴 수 있습니다.
-- 약사는 처방전과 복약 지도를 환자의 어플로 전송합니다.
-- 환자의 어플에 약 알림이 등록됩니다. ex) 3일간 아침,점심,저녁
+- 환자는 QR 체크인을 통해, 대기 명단에 이름을 올릴 수 있습니다.
+- 약사는 처방전과 복약 지도를 환자의 앱으로 전송합니다.
+- 환자의 앱에 약 알림이 등록됩니다. ex) 3일간 아침, 점심, 저녁
 - 과거 처방 이력을 확인할 수 있습니다.
 
 ### 환자용 앱
@@ -96,11 +96,11 @@ https://user-images.githubusercontent.com/68883173/140314350-f6c548d1-dfda-4c24-
 
 ## 🎬 Getting Started
 
-Local 환경에서 실행시 아래와 같이 환경변수를 설정해야 합니다.
+Local 환경에서 실행 시 아래와 같이 환경 변수를 설정해야 합니다.
 
 <details>
   <summary>Client (Web)</summary>
-.env 파일에 아래와 같이 환경변수를 입력해 주세요.
+.env 파일에 아래와 같이 환경 변수를 입력해 주세요.
 
 ```
 REACT_APP_API_KEY=<Firebase API Key>
@@ -115,7 +115,7 @@ REACT_APP_BASE_URL=<default = http://localhost:8080>
 
 <details>
   <summary>Client (React Native Mobile App)</summary>
-environment.js 파일에 아래와 같이 환경변수를 입력해 주세요.
+environment.js 파일에 아래와 같이 환경 변수를 입력해 주세요.
 
 ```
 import Constants from "expo-constants";
@@ -141,7 +141,7 @@ export default getEnvVars;
 
 <details>
   <summary>Main Server</summary>
-.env 파일에 아래와 같이 환경변수를 입력해 주세요.
+.env 파일에 아래와 같이 환경 변수를 입력해 주세요.
 
 ```
 ORIGIN_URI_DEV=<origin uri: default = "http://localhost:3000">
@@ -160,7 +160,7 @@ COOKIE_SECRET_KEY=<cookie secret key>
 
 <details>
 <summary>Push Notification Server</summary>
-.env 파일에 아래와 같이 환경변수를 입력해 주세요.
+.env 파일에 아래와 같이 환경 변수를 입력해 주세요.
 
 ```
 EXPO_ACCESS_TOKEN=<Expo Access Token>
@@ -195,7 +195,7 @@ EXPO_ACCESS_TOKEN=<Expo Access Token>
 - Jest
 - React Testing Library
 - Mocha, Chai
-  > Test Case Coverage  
+  > Test Case Coverage
   > Client 54%, React Native 46%, Server 73%
 
 ### Deployment
@@ -215,7 +215,7 @@ EXPO_ACCESS_TOKEN=<Expo Access Token>
 
 ### React Native Life Cycle 이해
 
-브라우저에서 실행되는 React와는 다르게, 모바일 애플리케이션에서 실행되는 React native는 다른 화면으로 이동했을 때 component가 unmount되지 않고 stack 구조로 쌓이기 때문에 life cycle을 이용하여 전역 상태를 관리하는 데 어려움을 겪었습니다. 이 문제를 해결하기 위해 React Navigation의 "focus" 이벤트를 사용하여 상태를 업데이트 하는 방식을 사용하였습니다.
+브라우저에서 실행되는 React와는 다르게, 모바일 애플리케이션에서 실행되는 React native는 다른 화면으로 이동했을 때 component가 unmount 되지 않고 stack 구조로 쌓이기 때문에 life cycle을 이용하여 전역 상태를 관리하는 데 어려움을 겪었습니다. 이 문제를 해결하기 위해 React Navigation의 "focus" 이벤트를 사용하여 상태를 업데이트하는 방식을 사용하였습니다.
 
 ```js
 navigation.addListener("focus", () => {
@@ -229,7 +229,7 @@ navigation.addListener("focus", () => {
 
 Generator와 같은 새로운 개념들을 이해하고 적용하는 데 시간이 소요되었지만, 결과적으로 효율적인 에러 핸들링이 가능하다는 점을 느꼈습니다. 특히 비동기 처리를 단순히 기다리는 것이 아니라, 주도적으로 액션을 모니터링하고 컨트롤할 수 있다는 점에서 Redux-Saga의 장점을 느낄 수 있었습니다.
 
-다만, Toolkit과 Redux-Saga를 분리하여 파일 구조를 설계했다는 점에서 아쉬움이 남습니다. 다음 번에는 Slice와 Redux-Saga가 하나의 파일이 한가지 기능을 담당하는 Ducks 패턴을 이용해 더욱 직관적인 구조를 설계해보고 싶습니다.
+다만, Toolkit과 Redux-Saga를 분리하여 파일 구조를 설계했다는 점에서 아쉬움이 남습니다. 다음번에는 Slice와 Redux-Saga가 하나의 파일이 한 가지 기능을 담당하는 Ducks 패턴을 이용해 더욱 직관적인 구조를 설계해 보고 싶습니다.
 
 <details>
   <summary>예시</summary>
@@ -262,9 +262,9 @@ src/
 
 ### Push Notification
 
-초기에는 Firebase Cloud Messaging과 직접 통신하여 푸시알림 기능을 구현하려고 기획했습니다. 그러나 해당 방식은 안드로이드/IOS를 구분하여 개발해야 한다는 점과 비용을 지불해야 한다는 단점이 있어 Expo SDK 서버를 통해 우회적으로 FCM을 이용하는 방식을 도입했습니다.
+초기에는 Firebase Cloud Messaging과 직접 통신하여 푸시 알림 기능을 구현하려고 기획했습니다. 그러나 해당 방식은 안드로이드/IOS를 구분하여 개발해야 한다는 점과 비용을 지불해야 한다는 단점이 있어 Expo SDK 서버를 통해 우회적으로 FCM을 이용하는 방식을 도입했습니다.
 
-하지만, FCM 서버와 직접 통신하지 않는 탓에 설정한 알림을 관리하기가 어렵다는 점이 아쉽게 느껴집니다. 현재로서는 알림을 위한 별도 서버를 구축 하였지만, DB에 알림 정보를 모두 저장한 뒤 Node schedule과 Expo SDK 서버를 통해 우회적으로 알림을 관리해야 하는 비효율적인 구조를 갖고있습니다. 추후에는 이러한 점을 개선하여 알림 서비스를 더욱 효율적으로 관리해보고 싶은 마음입니다.
+하지만, FCM 서버와 직접 통신하지 않는 탓에 설정한 알림을 관리하기가 어렵다는 점이 아쉽게 느껴집니다. 현재로서는 알림을 위한 별도 서버를 구축하였지만, DB에 알림 정보를 모두 저장한 뒤 Node schedule과 Expo SDK 서버를 통해 우회적으로 알림을 관리해야 하는 비효율적인 구조를 갖고 있습니다. 추후에는 이러한 점을 개선하여 알림 서비스를 더욱 효율적으로 관리해 보고 싶은 마음입니다.
 
 ### Search Algorithms
 
@@ -276,4 +276,4 @@ CRM 목적에 부합하기 위해, 환자 정보에 기반하여 검색어를 �
 
 ![database](./readme-assets/database.png)
 
-DB Modeling 과정에서 복잡한 관계가 예상되어 관계형 데이터베이스를 처음으로 다루어 보았습니다. NoSQL의 Nested 형태에 익숙한 탓에, 사고를 전환하는데 시간이 많이 소요되었습니다. 하지만 복잡한 관계를 연결짓고, Join과 Cascade를 이용하여 데이터를 다루면서 SQL의 장점을 느끼게 되었습니다. 특히 복잡한 관계 때문에 데이터를 잘못 입력한 경우가 있었는데, 그 때마다 올바른 데이터 구조가 아니라는 오류 메시지로 인해 쉽게 오류를 잡아낼 수 있었습니다. 아직은 관계형 데이터베이스가 익숙하지 않은 탓에, 쿼리문 최적화를 시도하지 못했는데, 추후에 꼭 한번 시도해보고 싶습니다.
+DB Modeling 과정에서 복잡한 관계가 예상되어 관계형 데이터베이스를 처음으로 다루어 보았습니다. NoSQL의 Nested 형태에 익숙한 탓에, 사고를 전환하는데 시간이 많이 소요되었습니다. 하지만 복잡한 관계를 연결 짓고, Join과 Cascade를 이용하여 데이터를 다루면서 SQL의 장점을 느끼게 되었습니다. 특히 복잡한 관계 때문에 데이터를 잘못 입력한 경우가 있었는데, 그때마다 올바른 데이터 구조가 아니라는 오류 메시지로 인해 쉽게 오류를 잡아낼 수 있었습니다. 아직은 관계형 데이터베이스가 익숙하지 않은 탓에, 쿼리문 최적화를 시도하지 못했는데, 추후에 꼭 한번 시도해 보고 싶습니다.
