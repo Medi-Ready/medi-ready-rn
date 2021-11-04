@@ -1,79 +1,109 @@
-# 💊 MEDI READY 💊
+# 💊 MEDI READY
 
-약사 와 환자간의 커뮤니케이션을 원활하게 해주기 위한 서비스 메디레디 입니다!
-약사가 처방한 약과 복약지도를 환자 본인의 핸드폰으로 확인이 가능하며 약 먹을 시간에 알림이 울리는 서비스 입니다.
+![prescription](./readme-assets/logo.png)
+
+<code>#Medicine</code>
+<code>#복용이력관리</code>
+<code>#고객관리</code>
+<code>#푸시알림</code>
+
+약 먹을 시간을 자동으로 관리해주는 서비스, Medi Ready 입니다!
+
+약을 언제 먹었는지 기억하지 못해 고민하고 계신가요?  
+이제는 Medi Ready를 통해 복용 이력을 손쉽게 관리해보세요.  
+Medi Ready는 **자동으로** 알림이 등록되기 때문에 간단하게 이용하실 수 있어요.
 
 <br>
 
-## 🔗 관련 링크
+## 📚 Contents
 
-- [Frontend](https://github.com/Medi-Ready/medi-ready-frontend)
-- [React-Native](https://github.com/Medi-Ready/medi-ready-rn)
-- [Backend](https://github.com/Medi-Ready/medi-ready-backend)
-- [Push-Notification-Server](https://github.com/Medi-Ready/medi-ready-push-notification)
-
-<br>
-
-# 📚 Table of Contents
-
-- [💊 MEDI READY 💊](#-medi-ready-)
-  - [🔗 관련 링크](#-관련-링크)
-- [📚 Table of Contents](#-table-of-contents)
+- [💊 MEDI READY](#-medi-ready)
+- [🔗 Links](#-links)
+- [🔍 Preview](#-preview)
 - [👨‍⚕️ Motivation](#️-motivation)
+- [🔥 Features](#-features)
 - [🎬 Getting Started](#-getting-started)
-  - [Client](#client)
-    - [Web](#web)
-    - [Mobile Application](#mobile-application)
-  - [Server](#server)
-    - [Main Server](#main-server)
-    - [Notification Server](#notification-server)
-- [📅 Schedule](#-schedule)
 - [🖥 Tech Stacks](#-tech-stacks)
-  - [Client](#client-1)
-    - [Web](#web-1)
-    - [Mobile Application](#mobile-application-1)
-    - [Testing](#testing)
-  - [Server](#server-1)
-    - [Main Server](#main-server-1)
-    - [Push Notification Server](#push-notification-server)
-    - [Testing](#testing-1)
-- [❓ Why?](#-why)
-    - [React Native (Expo)](#react-native-expo)
-    - [Redux Saga](#redux-saga)
-    - [React query](#react-query)
-    - [SQL](#sql)
-    - [Crone](#crone)
-- [🤯 Issues && Solutions](#-issues--solutions)
-    - [Push Notification](#push-notification)
-    - [Search Algorithms](#search-algorithms)
+- [🤝 우리는 이렇게 개발했습니다](#-우리는-이렇게-개발했습니다)
 
 <br>
 
-# 👨‍⚕️ Motivation
+## 🔗 Links
 
-약국에서 약을 처방 받는 환자들이 제시간에 약을 먹을 수 있도록 지정된 시간에 알림을 받을 수 있으면 좋겠다고 생각해서 시작된 아이디어 입니다.
+> RN 앱은 배포가 되지않아, Expo를 통해 로컬에서 실행해야 합니다.
 
-단순한 약 알림 어플이 아닌 약국에서 약을 처방 받을때 직접 약사에게 약과 복약지도 등 유용한 정보들이 담긴 카드를 어플로 받아 복약시간에 알림을 받고 복약 기록을 할 수 있는 서비스 입니다.
+### deploy
+
+- [Medi-Ready](https://www.mediready.kr)
+
+### Github Repositories
+
+- [Frontend Repo](https://github.com/Medi-Ready/medi-ready-frontend)
+- [React-Native Repo](https://github.com/Medi-Ready/medi-ready-rn)
+- [Backend Repo](https://github.com/Medi-Ready/medi-ready-backend)
+- [Push-Notification-Server Repo](https://github.com/Medi-Ready/medi-ready-push-notification)
 
 <br>
 
-# 🎬 Getting Started
+## 🔍 Preview
 
-Local 환경에서 실행시 아래와 같이 준비가 필요합니다.
+![prescription](./readme-assets/prescription.png)
 
-## Client
+- 시연의 편의를 위해, 알람 시간을 처방 1분 뒤로 설정
+- 영상설명
 
-### Web
+<br>
 
-Root 디렉토리에 .env 파일을 만들고 다음과 같이 설정해주세요
+## 👨‍⚕️ Motivation
+
+매일 챙겨먹어야 하는 약을 먹었는지 안먹었는지 기억이 나지 않을 때가 종종 있습니다. 그때마다 알림 어플을 찾아보곤 하는데요. 대부분의 어플들은 매번 직접 약을 등록해야 하거나 복용 이력을 관리할 수 없는 단점이 있어 잘 사용하지 않게 되었습니다. 그런데, 만약 **자동으로** 알림이 설정되고, 또 약 먹을 시간에 알림까지 울린다면 정말 편리하지 않을까? 라고 생각하게 되어 이 프로젝트를 기획하게 되었습니다.
+
+어떻게 자동으로 알림을 등록할 수 있을까 고민을 하였는데요. 최근 코로나로 인해 모든 장소에서 QR 체크인을 사용하는 것에서 영감을 얻어, 환자가 약국에서 QR 체크인을 하면 시스템상에 등록되도록 프로젝트를 진행했습니다.
+
+또한, 약국 계정에 처방 내역이 축적되기 때문에 약국 입장에서는 고객을 관리하는 동시에 약 먹을 시간을 알려주는 서비스를 제공할 수 있다는 측면에서 매력적이라고 느꼈습니다.
+
+<br>
+
+## 🔥 Features
+
+### 약사용 CRM (웹)
+
+- 환자는 QR 체크인을 통해, 대기명단에 이름을 올릴 수 있습니다.
+- 약사는 처방전과 복약 지도를 환자의 어플로 전송합니다.
+- 환자의 어플에 약 알림이 등록됩니다. ex) 3일간 아침,점심,저녁
+- 과거 처방 이력을 확인할 수 있습니다.
+
+### 환자용 앱
+
+- 날짜별/시간별로 복용 여부를 체크할 수 있습니다.
+- 설정한 시간에 푸시 알림을 받습니다.
+- 알람을 켜고 끌 수 있으며, 알람 이력을 확인할 수 있습니다.
+- 지난 처방 이력을 확인할 수 있으며, 약 정보를 확인할 수 있습니다.
+
+<br>
+
+## 🎬 Getting Started
+
+Local 환경에서 실행시 아래와 같이 환경변수를 설정해야 합니다.
+
+<details>
+  <summary>Client (Web)</summary>
+.env 파일에 아래와 같이 환경변수를 입력해 주세요.
 
 ```
+REACT_APP_API_KEY=<Firebase API Key>
+REACT_APP_AUTH_DOMAIN=<Firebase Auth Domain>
+REACT_APP_PROJECT_ID=<Firebase Project ID>
+REACT_APP_APP_ID=<Firebase App ID>
 
+REACT_APP_BASE_URL=<default = http://localhost:8080>
 ```
 
-### Mobile Application
+</details>
 
-Root 디렉토리에 environment.js 파일을 만들고 다음과 같이 설정해주세요
+<details>
+  <summary>Client (React Native Mobile App)</summary>
+environment.js 파일에 아래와 같이 환경변수를 입력해 주세요.
 
 ```
 import Constants from "expo-constants";
@@ -95,118 +125,133 @@ const getEnvVars = (env = Constants.manifest.releaseChannel) => {
 export default getEnvVars;
 ```
 
-## Server
+</details>
 
-### Main Server
+<details>
+  <summary>Main Server</summary>
+.env 파일에 아래와 같이 환경변수를 입력해 주세요.
 
-### Notification Server
+```
+ORIGIN_URI_DEV=<origin uri: default = "http://localhost:3000">
+PUSH_NOTIFICATION_URI=<origin uri: default = http://localhost:8081>
+
+MYSQL_USERNAME=<mysql username: default = root>
+MYSQL_PASSWORD=<mysql password>
+MYSQL_DATABASE=mediready
+MYSQL_HOST=<my sql host: default = "127.0.0.1">
+
+JWT_SECRET_KEY=<jwt secret key>
+COOKIE_SECRET_KEY=<cookie secret key>
+```
+
+</details>
+
+<details>
+<summary>Push Notification Server</summary>
+.env 파일에 아래와 같이 환경변수를 입력해 주세요.
+
+```
+EXPO_ACCESS_TOKEN=<Expo Access Token>
+```
+
+</details>
 
 <br>
 
-# 📅 Schedule
+## 🖥 Tech Stacks
 
-  <details>
-    <summary>
-      1 주차
-    </summary>
-
-    - 아이디어 기획 & 목업
-    - 기술 스택 학습 (React Native & SQL)
-
-  </details>
-
-  <br>
-
-  <details>
-    <summary>
-      2주차
-    </summary>
-
-    - 개발 진행
-
-  </details>
-
-  <br>
-
-  <details>
-    <summary>
-      3주차
-    </summary>
-
-    - 배포
-    - readme 작성
-    - 테스트 코드 작성
-    - 코드 refactoring
-
-  </details>
-
-  <br>
-  <br>
-
-# 🖥 Tech Stacks
-
-## Client
-
-### Web
+### Client
 
 - React
-- React Query
-- Styled-Component
-
-### Mobile Application
-
 - React Native (Expo)
+- Styled-Component
 - Redux Toolkit
 - Redux Saga
+- React Query
+
+### Server
+
+- Node JS
+- Express
+- MySQL, Sequelize
+- AWS RDS
+- Node Schedule
+- Expo Server SDK(Firebase Cloud Messaging)
 
 ### Testing
 
 - Jest
 - React Testing Library
+- Mocha, Chai
+  > Test Case Coverage  
+  > Client 54%, React Native 46%, Server 73%
 
-## Server
+### Deployment
 
-### Main Server
+- Netlify
+- AWS Elastic Beanstalk
 
-- Node JS
-- Express
-- MySQL
-- Json Web Token Authentication
+<br>
 
-### Push Notification Server
+## 🤝 우리는 이렇게 개발했습니다
 
-- Express
-- Crone (scheduling)
+### React Native Life Cycle 이해
 
-### Testing
+브라우저에서 실행되는 React와는 다르게, 모바일 애플리케이션에서 실행되는 React native는 다른 화면으로 이동했을 때 component가 unmount되지 않고 stack 구조로 쌓이기 때문에 life cycle을 이용하여 전역 상태를 관리하는 데 어려움을 겪었습니다. 이 문제를 해결하기 위해 React Navigation의 "focus" 이벤트를 사용하여 상태를 업데이트 하는 방식을 사용하였습니다.
 
-- Mocha + Chai
+```js
+navigation.addListener("focus", () => {
+  dispatch(...);
+});
+```
 
-# ❓ Why?
+### Redux Saga의 도입
 
-### React Native (Expo)
+이번 프로젝트에서 React Native를 처음 접했기 때문에, 프로젝트 기간을 고려하여 Expo를 사용했습니다. 그러나 비동기 처리를 할 때면 종종 에러가 발생했고, 핸들링이 쉽지 않았습니다. 그래서 비동기 및 사이드 이펙트 관리와 역할에 따른 코드 분할이 용이한 Redux-Saga를 도입하기로 결정했습니다.
 
-- Learning curve 가 낮아 비교적 개발시간이 많이 없었던 해당 프로젝트에 쓰기 적합하다고 판단했습니다.
-- 초기설정시간을 절약하고 배포가 용이하다는점에서 Expo 를 사용하였습니다.
+Generator와 같은 새로운 개념들을 이해하고 적용하는 데 시간이 소요되었지만, 결과적으로 효율적인 에러 핸들링이 가능하다는 점을 느꼈습니다. 특히 비동기 처리를 단순히 기다리는 것이 아니라, 주도적으로 액션을 모니터링하고 컨트롤할 수 있다는 점에서 Redux-Saga의 장점을 느낄 수 있었습니다.
 
-### Redux Saga
+다만, Toolkit과 Redux-Saga를 분리하여 파일 구조를 설계했다는 점에서 아쉬움이 남습니다. 다음 번에는 Slice와 Redux-Saga가 하나의 파일이 한가지 기능을 담당하는 Ducks 패턴을 이용해 더욱 직관적인 구조를 설계해보고 싶습니다.
 
-- Generator 와 같은 어려운 개념 때문에 Learning Curve 가 높다는 장벽이 있었지만, Data Fetching 같은 여러 Side Effect 를 효율적으로 관리하고 에러핸들링 및 testing 이 비교적 쉽다는 장점 때문에 사용하기로 했습니다.
+<details>
+  <summary>예시</summary>
 
-### React query
+```
+// What I did
 
-- 비동기 처리 및 캐싱기능
+src/
+  api
+  component
+  redux/
+    reducers
+    store
+  sagas/
+    handlers
+    rootSaga.js
 
-### SQL
+// What I should have done
 
-- Database
+src/
+  api
+  component
+  feature/
+      index.js
+      slice.js
+      saga.js
+```
 
-### Crone
-
-- Push Notification 을 설정된 시간에 동작시키기 위해서 사용하였습니다.
-
-# 🤯 Issues && Solutions
+</details>
 
 ### Push Notification
 
+초기에는 Firebase Cloud Messaging과 직접 통신하여 푸시알림 기능을 구현하려고 기획했습니다. 그러나 해당 방식은 안드로이드/IOS를 구분하여 개발해야 한다는 점과 비용을 지불해야 한다는 단점이 있어 Expo SDK 서버를 통해 우회적으로 FCM을 이용하는 방식을 도입했습니다.
+
+하지만, FCM 서버와 직접 통신하지 않는 탓에 설정한 알림을 관리하기가 어렵다는 점이 아쉽게 느껴집니다. 현재로서는 알림을 위한 서버를 구축하고, DB에 알림 설정한 정보를 모두 저장한 뒤, 필요할 때마다 node schedule와 Expo SDK 서버를 통해 우회적으로 알림을 관리해야 하는 비효율적인 구조를 갖고있습니다. 추후에는 이러한 점을 개선하여 알림 서비스를 직접 관리해보고 싶은 마음입니다.
+
 ### Search Algorithms
+
+![search](./readme-assets/search.png)
+
+CRM 목적에 부합하기 위해, 환자 정보에 기반하여 검색어를 추천하는 알고리즘을 구현하려고 시도했습니다. 그러나 의학적인 지식과 많은 데이터가 필요하다는 점에서 한계가 있다고 판단하여 다른 방식을 찾아보았습니다. 결과적으로, 현재 CRM 상에서 키워드와 검색 빈도수에 기반하여 데이터를 제공하게 되었습니다.
+
+약사가 처방을 진행하면 빈도가 높아지는 방식을 도입했기 때문에, 공공 API에서 약의 이름만 데이터베이스에 따로 저장해두
